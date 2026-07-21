@@ -1,0 +1,83 @@
+.mission-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: var(--s-2);
+  padding: var(--s-5);
+  border-radius: var(--r-lg);
+  border-top: 4px solid var(--cat);
+}
+.mission-card.is-completed {
+  background: linear-gradient(180deg, var(--c-mint-50), var(--surface));
+}
+.mission-card.is-archived { opacity: 0.78; }
+
+.mission-card-head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: var(--s-2);
+}
+.mission-status {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 6px 12px;
+  border-radius: var(--r-pill);
+  font-size: 0.78rem;
+  font-weight: 800;
+  color: color-mix(in srgb, var(--st) 60%, var(--ink-900));
+  background: color-mix(in srgb, var(--st) 14%, white);
+}
+.mission-card-title { font-size: 1.15rem; margin-top: 2px; }
+.mission-card-date { font-weight: 700; font-size: 0.8rem; color: var(--ink-500); }
+.mission-card-desc { font-size: 0.9rem; }
+
+.mission-steps {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding: var(--s-3);
+  background: var(--surface-2);
+  border-radius: var(--r-md);
+  margin-top: 4px;
+}
+.mission-steps-count { font-size: 0.78rem; font-weight: 800; color: var(--ink-500); }
+.mission-steps ul { display: flex; flex-direction: column; gap: 4px; }
+.mission-step {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  font-size: 0.9rem;
+}
+.mission-step input { position: absolute; opacity: 0; pointer-events: none; }
+.mission-step-box {
+  display: grid;
+  place-items: center;
+  width: 20px;
+  height: 20px;
+  border-radius: 7px;
+  font-size: 0.7rem;
+  color: transparent;
+  background: var(--surface);
+  border: 2px solid var(--c-mint-200);
+  transition: all 0.16s var(--ease-bounce);
+  flex-shrink: 0;
+}
+.mission-step input:checked + .mission-step-box {
+  background: var(--c-green-500);
+  border-color: var(--c-green-500);
+  color: white;
+}
+.mission-step input:focus-visible + .mission-step-box { box-shadow: var(--sh-ring); }
+.mission-step-done { text-decoration: line-through; color: var(--ink-300); }
+
+.mission-card-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: auto;
+  padding-top: var(--s-2);
+}
+.mission-delete { margin-left: auto; }

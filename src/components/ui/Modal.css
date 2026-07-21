@@ -1,0 +1,56 @@
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 80;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  padding: var(--s-4);
+  background: rgba(18, 53, 40, 0.34);
+  backdrop-filter: blur(4px);
+  animation: fade-up 0.2s ease both;
+}
+
+.modal {
+  width: 100%;
+  max-width: 560px;
+  max-height: 88vh;
+  display: flex;
+  flex-direction: column;
+  border-radius: var(--r-xl);
+  animation: pop-in 0.28s var(--ease-bounce) both;
+  overflow: hidden;
+}
+
+.modal-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--s-3);
+  padding: var(--s-5) var(--s-5) var(--s-3);
+}
+.modal-title {
+  display: flex;
+  align-items: center;
+  gap: var(--s-2);
+  font-size: 1.3rem;
+}
+.modal-title-emoji { font-size: 1.4rem; }
+
+.modal-body {
+  padding: 0 var(--s-5) var(--s-4);
+  overflow-y: auto;
+}
+
+.modal-foot {
+  display: flex;
+  gap: var(--s-3);
+  justify-content: flex-end;
+  padding: var(--s-4) var(--s-5) var(--s-5);
+  border-top: 1px solid rgba(23, 98, 74, 0.08);
+  background: var(--surface-2);
+}
+
+@media (min-width: 640px) {
+  .modal-overlay { align-items: center; }
+}

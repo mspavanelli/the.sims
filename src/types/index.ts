@@ -1,0 +1,103 @@
+export type Step = {
+  id: string;
+  title: string;
+  completed: boolean;
+};
+
+export type Character = {
+  id: string;
+  name: string;
+  image?: string;
+  emoji?: string;
+  age?: number;
+  tagline?: string;
+  traits: string[];
+  interests: string[];
+  likes: string[];
+  quirks: string[];
+  affectionStyles: string[];
+  energySources: string[];
+  aspirations: string[];
+};
+
+export type MissionCategory =
+  | "encontro"
+  | "passeio"
+  | "experiencia"
+  | "cotidiano"
+  | "surpresa"
+  | "viagem";
+
+export type MissionStatus = "idea" | "planned" | "completed" | "archived";
+
+export type Mission = {
+  id: string;
+  title: string;
+  description?: string;
+  category: MissionCategory;
+  status: MissionStatus;
+  date?: string;
+  steps?: Step[];
+};
+
+export type Memory = {
+  id: string;
+  title: string;
+  description?: string;
+  date: string;
+  location?: string;
+  image?: string;
+  emoji?: string;
+  category?: string;
+  tags: string[];
+};
+
+export type GoalHorizon = "short" | "medium" | "long";
+export type GoalProgressType = "percentage" | "checklist" | "narrative";
+
+export type Goal = {
+  id: string;
+  title: string;
+  horizon: GoalHorizon;
+  progressType: GoalProgressType;
+  progress?: number;
+  steps?: Step[];
+  description?: string;
+};
+
+export type ConversationSensitivity = "light" | "meaningful" | "delicate";
+export type ConversationStatus = "horizon" | "ready" | "discussed" | "paused";
+
+export type Conversation = {
+  id: string;
+  title: string;
+  context?: string;
+  topics: string[];
+  sensitivity: ConversationSensitivity;
+  status: ConversationStatus;
+};
+
+export type Aspiration = {
+  id: string;
+  title: string;
+  description?: string;
+  emoji?: string;
+};
+
+export type Chapter = {
+  title: string;
+  subtitle?: string;
+};
+
+export type AppState = {
+  coupleName: string;
+  saveTagline?: string;
+  currentChapter: Chapter;
+  characters: Character[];
+  memories: Memory[];
+  missions: Mission[];
+  goals: Goal[];
+  conversations: Conversation[];
+  aspirations: Aspiration[];
+  featuredConversationId?: string;
+};

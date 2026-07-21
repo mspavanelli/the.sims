@@ -1,0 +1,124 @@
+/* ===== Desktop: floating side rail ===== */
+.nav {
+  position: fixed;
+  z-index: 40;
+  display: flex;
+  background: var(--surface-glass);
+  backdrop-filter: blur(14px);
+  border: 1px solid rgba(255, 255, 255, 0.6);
+  box-shadow: var(--sh-md);
+}
+
+.nav-brand {
+  display: flex;
+  align-items: center;
+  gap: var(--s-2);
+}
+.nav-brand-mark {
+  display: grid;
+  place-items: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 14px;
+  font-size: 1.2rem;
+  color: var(--on-accent);
+  background: linear-gradient(135deg, var(--c-green-400), var(--c-blue-500));
+  box-shadow: var(--sh-sm);
+}
+.nav-brand-text {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: 1.05rem;
+}
+
+.nav-list {
+  display: flex;
+  gap: 4px;
+}
+
+.nav-link,
+.nav-config {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 14px;
+  border-radius: var(--r-pill);
+  font-weight: 700;
+  color: var(--ink-500);
+  transition: background 0.2s ease, color 0.2s ease, transform 0.16s var(--ease-bounce);
+}
+.nav-link:hover,
+.nav-config:hover {
+  background: var(--surface-2);
+  color: var(--ink-900);
+}
+.nav-link.is-active {
+  background: linear-gradient(135deg, var(--c-mint-100), var(--c-sky-100));
+  color: var(--accent-strong);
+}
+.nav-config.is-active {
+  background: var(--surface-2);
+  color: var(--ink-900);
+}
+.nav-emoji { font-size: 1.15rem; line-height: 1; }
+
+/* Mobile-first bottom bar layout */
+@media (max-width: 899px) {
+  .nav {
+    left: 12px;
+    right: 12px;
+    bottom: 12px;
+    height: var(--nav-h);
+    border-radius: var(--r-xl);
+    align-items: center;
+    padding: 0 6px;
+    justify-content: space-between;
+  }
+  .nav-brand,
+  .nav-label,
+  .nav-config-label {
+    display: none;
+  }
+  .nav-list {
+    flex: 1;
+    justify-content: space-around;
+    gap: 0;
+  }
+  .nav-link {
+    flex-direction: column;
+    gap: 2px;
+    padding: 8px 10px;
+    font-size: 0.62rem;
+  }
+  .nav-link .nav-label {
+    display: block;
+    font-size: 0.62rem;
+    font-weight: 800;
+  }
+  .nav-emoji { font-size: 1.35rem; }
+  .nav-config {
+    padding: 10px;
+  }
+}
+
+/* Desktop side rail */
+@media (min-width: 900px) {
+  .nav {
+    top: 20px;
+    left: 20px;
+    bottom: 20px;
+    width: 232px;
+    flex-direction: column;
+    border-radius: var(--r-xl);
+    padding: var(--s-5) var(--s-4);
+    gap: var(--s-4);
+  }
+  .nav-brand { padding: 0 8px var(--s-2); }
+  .nav-list {
+    flex-direction: column;
+    gap: 6px;
+    width: 100%;
+  }
+  .nav-link { width: 100%; }
+  .nav-config { margin-top: auto; }
+}

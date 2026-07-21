@@ -1,0 +1,7 @@
+.missions-filters { margin-bottom: var(--s-5); }
+.missions-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(290px, 1fr));
+  gap: var(--s-4);
+  align-items: start;
+}

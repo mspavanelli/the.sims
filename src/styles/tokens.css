@@ -1,0 +1,76 @@
+:root {
+  /* Base palette — vivid greens & blues, light background */
+  --c-mint-50: #edfbf3;
+  --c-mint-100: #d3f6e2;
+  --c-mint-200: #a7ecc7;
+  --c-green-400: #38d39f;
+  --c-green-500: #17c08a;
+  --c-green-600: #0ba374;
+
+  --c-sky-100: #dcefff;
+  --c-sky-300: #8fd0ff;
+  --c-blue-400: #4aa6ff;
+  --c-blue-500: #2f8bff;
+  --c-blue-600: #1f6fe0;
+
+  --c-plum-500: #7b6cff;
+  --c-plum-400: #9b8dff;
+  --c-coral-500: #ff7a8a;
+  --c-coral-400: #ff98a4;
+  --c-amber-400: #ffbf5c;
+  --c-lemon-300: #ffe58a;
+
+  /* Surfaces */
+  --bg: #eef6f2;
+  --bg-tint-a: #d9f0ff;
+  --bg-tint-b: #dcf7ea;
+  --surface: #ffffff;
+  --surface-2: #f6faf8;
+  --surface-glass: rgba(255, 255, 255, 0.72);
+
+  /* Text */
+  --ink-900: #123528;
+  --ink-700: #2b4a3e;
+  --ink-500: #5c7268;
+  --ink-300: #90a49b;
+  --on-accent: #ffffff;
+
+  /* Accents (semantic) */
+  --accent: var(--c-green-500);
+  --accent-strong: var(--c-green-600);
+  --accent-2: var(--c-blue-500);
+  --accent-3: var(--c-plum-500);
+  --accent-warm: var(--c-coral-500);
+
+  /* Radii — organic, rounded */
+  --r-sm: 10px;
+  --r-md: 16px;
+  --r-lg: 24px;
+  --r-xl: 34px;
+  --r-pill: 999px;
+  --r-blob: 42% 58% 55% 45% / 52% 44% 56% 48%;
+
+  /* Shadows — soft, floating */
+  --sh-sm: 0 4px 12px rgba(23, 98, 74, 0.08);
+  --sh-md: 0 12px 30px rgba(23, 98, 74, 0.12);
+  --sh-lg: 0 24px 60px rgba(23, 98, 74, 0.18);
+  --sh-ring: 0 0 0 4px rgba(23, 192, 138, 0.18);
+
+  /* Spacing scale */
+  --s-1: 4px;
+  --s-2: 8px;
+  --s-3: 12px;
+  --s-4: 16px;
+  --s-5: 24px;
+  --s-6: 32px;
+  --s-7: 48px;
+  --s-8: 64px;
+
+  /* Typography */
+  --font-body: "Nunito", "Quicksand", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-display: "Baloo 2", "Nunito", system-ui, sans-serif;
+
+  --nav-h: 74px;
+  --shell-max: 1080px;
+  --ease-bounce: cubic-bezier(0.34, 1.56, 0.64, 1);
+}

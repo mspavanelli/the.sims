@@ -1,0 +1,53 @@
+.memory-card {
+  display: flex;
+  overflow: hidden;
+  border-radius: var(--r-lg);
+}
+.memory-card-photo,
+.memory-card-emoji {
+  flex-shrink: 0;
+  width: 108px;
+  display: grid;
+  place-items: center;
+}
+.memory-card-photo { background: var(--surface-2); }
+.memory-card-photo img { width: 100%; height: 100%; object-fit: cover; }
+.memory-card-emoji {
+  font-size: 2.6rem;
+  background: linear-gradient(160deg, var(--c-mint-100), var(--c-sky-100));
+}
+.memory-card-body {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding: var(--s-4);
+  flex: 1;
+  min-width: 0;
+}
+.memory-card-date { font-weight: 800; font-size: 0.78rem; color: var(--ink-500); }
+.memory-card-actions { display: flex; gap: 6px; }
+.memory-card-actions .btn-icon { width: 32px; height: 32px; font-size: 0.85rem; }
+.memory-card-title { font-size: 1.15rem; }
+.memory-card-loc { font-size: 0.85rem; font-weight: 700; }
+.memory-card-desc { font-size: 0.9rem; }
+.memory-card-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 4px;
+}
+.memory-card-cat {
+  background: var(--c-mint-100);
+  color: var(--accent-strong);
+  font-weight: 800;
+}
+.memory-card-tag {
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: var(--accent-2);
+}
+
+@media (max-width: 480px) {
+  .memory-card-photo,
+  .memory-card-emoji { width: 76px; font-size: 2rem; }
+}

@@ -1,0 +1,20 @@
+.category-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 7px 14px;
+  border-radius: var(--r-pill);
+  font-size: 0.82rem;
+  font-weight: 800;
+  color: color-mix(in srgb, var(--cp) 60%, var(--ink-900));
+  background: color-mix(in srgb, var(--cp) 15%, white);
+  border: 2px solid transparent;
+  transition: all 0.16s var(--ease-bounce);
+}
+button.category-pill { cursor: pointer; }
+button.category-pill:hover { transform: translateY(-2px); }
+.category-pill.is-active {
+  color: white;
+  background: var(--cp);
+  box-shadow: 0 8px 18px color-mix(in srgb, var(--cp) 40%, transparent);
+}

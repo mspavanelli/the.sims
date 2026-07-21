@@ -1,0 +1,98 @@
+.chapter-banner {
+  position: relative;
+  overflow: hidden;
+  border-radius: var(--r-xl);
+  padding: var(--s-6) var(--s-6);
+  color: var(--on-accent);
+  background: linear-gradient(135deg, #17c08a 0%, #2f8bff 62%, #7b6cff 120%);
+  box-shadow: var(--sh-lg);
+  isolation: isolate;
+}
+.chapter-banner-glow {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    600px 240px at 20% -20%,
+    rgba(255, 255, 255, 0.4),
+    transparent 60%
+  );
+  z-index: -1;
+}
+.chapter-banner-content {
+  position: relative;
+  z-index: 2;
+  max-width: 62%;
+}
+.chapter-banner-eyebrow {
+  text-transform: uppercase;
+  letter-spacing: 0.16em;
+  font-size: 0.72rem;
+  font-weight: 800;
+  opacity: 0.9;
+}
+.chapter-banner-name {
+  color: #fff;
+  font-size: clamp(1.9rem, 5vw, 2.9rem);
+  margin: 6px 0 4px;
+  text-shadow: 0 4px 18px rgba(10, 40, 30, 0.25);
+}
+.chapter-banner-tagline {
+  font-weight: 600;
+  opacity: 0.92;
+  margin-bottom: var(--s-4);
+}
+.chapter-banner-chapter {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 16px;
+  border-radius: var(--r-pill);
+  background: rgba(255, 255, 255, 0.18);
+  backdrop-filter: blur(6px);
+  font-size: 1.2rem;
+}
+.chapter-banner-chapter div {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.2;
+}
+.chapter-banner-chapter strong {
+  font-family: var(--font-display);
+  font-size: 0.95rem;
+}
+.chapter-banner-chapter span {
+  font-size: 0.8rem;
+  opacity: 0.9;
+  font-weight: 600;
+}
+
+.chapter-banner-decor { position: absolute; inset: 0; z-index: 1; }
+.cb-blob {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(2px);
+  opacity: 0.5;
+}
+.cb-blob-1 {
+  width: 180px; height: 180px;
+  right: -30px; top: -40px;
+  background: rgba(255, 255, 255, 0.35);
+  animation: float-y 7s ease-in-out infinite;
+}
+.cb-blob-2 {
+  width: 120px; height: 120px;
+  right: 90px; bottom: -50px;
+  background: rgba(255, 229, 138, 0.45);
+  animation: float-y 6s ease-in-out infinite reverse;
+}
+.cb-blob-3 {
+  width: 70px; height: 70px;
+  right: 30px; top: 90px;
+  background: rgba(255, 152, 164, 0.5);
+  animation: float-y 5s ease-in-out infinite;
+}
+
+@media (max-width: 640px) {
+  .chapter-banner-content { max-width: 100%; }
+  .cb-blob-1 { width: 120px; height: 120px; }
+}

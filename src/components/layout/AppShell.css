@@ -1,0 +1,13 @@
+.shell {
+  min-height: 100%;
+}
+
+.shell-main {
+  min-height: 100vh;
+}
+
+@media (min-width: 900px) {
+  .shell-main {
+    padding-left: 252px;
+  }
+}

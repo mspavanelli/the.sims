@@ -1,0 +1,41 @@
+.steps-editor {
+  display: flex;
+  flex-direction: column;
+  gap: var(--s-2);
+}
+.steps-editor-list {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.steps-editor-list li {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 10px;
+  background: var(--surface-2);
+  border-radius: var(--r-md);
+}
+.steps-editor-list li span { flex: 1; font-size: 0.92rem; }
+.steps-editor-check {
+  display: grid;
+  place-items: center;
+  width: 22px;
+  height: 22px;
+  border-radius: 7px;
+  font-size: 0.72rem;
+  color: transparent;
+  background: var(--surface);
+  border: 2px solid var(--c-mint-200);
+  transition: all 0.16s var(--ease-bounce);
+  flex-shrink: 0;
+}
+.steps-editor-check.is-on {
+  background: var(--c-green-500);
+  border-color: var(--c-green-500);
+  color: white;
+}
+.steps-editor-done { text-decoration: line-through; color: var(--ink-300); }
+.steps-editor-remove { color: var(--ink-300); font-size: 0.85rem; }
+.steps-editor-remove:hover { color: var(--c-coral-500); }
+.steps-editor-row { display: flex; gap: var(--s-2); }

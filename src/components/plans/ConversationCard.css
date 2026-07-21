@@ -1,0 +1,63 @@
+.conversation-card {
+  display: flex;
+  flex-direction: column;
+  gap: var(--s-2);
+  padding: var(--s-5);
+  border-radius: var(--r-lg);
+  border-top: 4px solid var(--st);
+}
+.conversation-card.is-featured {
+  box-shadow: var(--sh-md), 0 0 0 2px var(--c-amber-400);
+}
+.conversation-head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: var(--s-2);
+}
+.conversation-status,
+.conversation-sens {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 5px 11px;
+  border-radius: var(--r-pill);
+  font-size: 0.75rem;
+  font-weight: 800;
+}
+.conversation-status {
+  color: color-mix(in srgb, var(--st) 60%, var(--ink-900));
+  background: color-mix(in srgb, var(--st) 14%, white);
+}
+.conversation-sens {
+  color: color-mix(in srgb, var(--se) 60%, var(--ink-900));
+  background: color-mix(in srgb, var(--se) 14%, white);
+}
+.conversation-star {
+  font-size: 1.3rem;
+  color: var(--c-amber-400);
+  line-height: 1;
+  transition: transform 0.16s var(--ease-bounce);
+}
+.conversation-star:hover { transform: scale(1.2) rotate(8deg); }
+.conversation-star.is-on { color: #f5a623; }
+
+.conversation-title { font-size: 1.12rem; }
+.conversation-context { font-size: 0.9rem; }
+.conversation-topics {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: var(--s-3);
+  background: var(--surface-2);
+  border-radius: var(--r-md);
+  font-size: 0.88rem;
+  color: var(--ink-700);
+}
+.conversation-actions {
+  display: flex;
+  gap: 6px;
+  margin-top: auto;
+  padding-top: var(--s-2);
+}
+.conversation-actions .btn-ghost { margin-right: auto; }

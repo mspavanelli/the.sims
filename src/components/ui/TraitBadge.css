@@ -1,0 +1,14 @@
+.trait-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 13px;
+  border-radius: var(--r-pill);
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: color-mix(in srgb, var(--tb) 62%, var(--ink-900));
+  background: color-mix(in srgb, var(--tb) 14%, white);
+  transition: transform 0.16s var(--ease-bounce);
+}
+.trait-badge:hover { transform: translateY(-2px); }
+.trait-badge-emoji { font-size: 0.92rem; }

@@ -1,0 +1,28 @@
+.aspiration-card {
+  display: flex;
+  align-items: center;
+  gap: var(--s-3);
+  padding: var(--s-4);
+  border-radius: var(--r-lg);
+  background: linear-gradient(140deg, var(--c-mint-50), var(--c-sky-100));
+  box-shadow: var(--sh-sm);
+}
+.aspiration-emoji {
+  display: grid;
+  place-items: center;
+  width: 52px;
+  height: 52px;
+  font-size: 1.6rem;
+  border-radius: 30% 70% 62% 38% / 42% 40% 60% 58%;
+  background: rgba(255, 255, 255, 0.7);
+  flex-shrink: 0;
+}
+.aspiration-title { font-size: 1.05rem; }
+.aspiration-desc { font-size: 0.85rem; margin-top: 2px; }
+.aspiration-actions { display: flex; flex-direction: column; gap: 4px; }
+.aspiration-actions .btn-icon {
+  width: 32px;
+  height: 32px;
+  font-size: 0.8rem;
+  background: rgba(255, 255, 255, 0.7);
+}
