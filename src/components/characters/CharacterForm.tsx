@@ -22,6 +22,7 @@ function blank(): Character {
     quirks: [],
     affectionStyles: [],
     energySources: [],
+    energyDrains: [],
     aspirations: [],
   };
 }
@@ -111,6 +112,59 @@ export default function CharacterForm({ open, character, onClose, onSave }: Prop
           />
         </Field>
 
+        <Field label="Quem é essa pessoa" hint="Uma descrição humana, sem depender de rótulos">
+          <textarea
+            className="textarea"
+            value={draft.bio ?? ""}
+            onChange={(e) => set("bio", e.target.value || undefined)}
+            placeholder="Constrói mapas mentais de tudo, gosta de conectar ideias improváveis…"
+          />
+        </Field>
+
+        <div className="form-grid cols-2">
+          <Field label="Hoje — humor do momento" hint="Estado editável, pura ambientação">
+            <div className="row gap-2">
+              <input
+                className="input"
+                style={{ width: 64, textAlign: "center" }}
+                value={draft.today?.emoji ?? ""}
+                onChange={(e) =>
+                  set("today", {
+                    emoji: e.target.value,
+                    text: draft.today?.text ?? "",
+                  })
+                }
+                placeholder="☕"
+                maxLength={4}
+                aria-label="Emoji do humor de hoje"
+              />
+              <input
+                className="input grow"
+                value={draft.today?.text ?? ""}
+                onChange={(e) => {
+                  const text = e.target.value;
+                  set(
+                    "today",
+                    text || draft.today?.emoji
+                      ? { emoji: draft.today?.emoji ?? "", text }
+                      : undefined,
+                  );
+                }}
+                placeholder="com vontade de sushi"
+              />
+            </div>
+          </Field>
+          <Field label="MBTI (opcional)" hint="Só um detalhe pequeno">
+            <input
+              className="input"
+              value={draft.mbti ?? ""}
+              onChange={(e) => set("mbti", e.target.value.toUpperCase() || undefined)}
+              placeholder="INTP"
+              maxLength={4}
+            />
+          </Field>
+        </div>
+
         <Field label="Traços de personalidade">
           <TagInput
             values={draft.traits}
@@ -132,7 +186,7 @@ export default function CharacterForm({ open, character, onClose, onSave }: Prop
             accent="var(--c-green-500)"
           />
         </Field>
-        <Field label="Peculiaridades">
+        <Field label="Curiosidades" hint="Pequenos detalhes que fazem essa pessoa">
           <TagInput
             values={draft.quirks}
             onChange={(v) => set("quirks", v)}
@@ -146,11 +200,18 @@ export default function CharacterForm({ open, character, onClose, onSave }: Prop
             accent="var(--c-coral-500)"
           />
         </Field>
-        <Field label="Fontes de energia">
+        <Field label="O que dá energia">
           <TagInput
             values={draft.energySources}
             onChange={(v) => set("energySources", v)}
-            accent="var(--c-blue-600)"
+            accent="var(--c-green-600)"
+          />
+        </Field>
+        <Field label="O que drena a energia">
+          <TagInput
+            values={draft.energyDrains}
+            onChange={(v) => set("energyDrains", v)}
+            accent="var(--c-coral-500)"
           />
         </Field>
         <Field label="Aspirações pessoais">

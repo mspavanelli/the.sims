@@ -41,8 +41,8 @@ export default function ConversationCard({
         <button
           className={"conversation-star" + (featured ? " is-on" : "")}
           onClick={onToggleFeatured}
-          aria-label={featured ? "Remover destaque" : "Destacar na tela inicial"}
-          title={featured ? "Em destaque na tela inicial" : "Destacar na tela inicial"}
+          aria-label={featured ? "Remover destaque" : "Destacar no Início"}
+          title={featured ? "Em destaque no Início" : "Destacar no Início"}
         >
           {featured ? "★" : "☆"}
         </button>

@@ -26,7 +26,7 @@ export default function PlansPage() {
       <PageHeader
         emoji="🌈"
         title="Planos"
-        subtitle="Metas, conversas no horizonte e aspirações do casal"
+        subtitle="Metas, cartas de conversa e aspirações do casal"
       />
 
       {/* ===== Metas ===== */}
@@ -78,10 +78,15 @@ export default function PlansPage() {
         )}
       </section>
 
-      {/* ===== Conversas no horizonte ===== */}
+      {/* ===== Cartas de conversa ===== */}
       <section className="plans-section">
         <div className="plans-section-head">
-          <h2 className="section-title">💬 Conversas no horizonte</h2>
+          <div>
+            <h2 className="section-title">💌 Cartas de conversa</h2>
+            <p className="muted plans-section-hint">
+              Assuntos que vocês querem abrir com calma, um convite ao diálogo.
+            </p>
+          </div>
           <button
             className="btn btn-soft btn-sm"
             onClick={() => {
@@ -89,14 +94,14 @@ export default function PlansPage() {
               setConvOpen(true);
             }}
           >
-            + Conversa
+            + Carta
           </button>
         </div>
         {state.conversations.length === 0 ? (
           <EmptyState
-            emoji="🌅"
-            title="Nada no horizonte"
-            message="Anote assuntos que vocês querem conversar com carinho."
+            emoji="💌"
+            title="Nenhuma carta ainda"
+            message="Guarde aqui os assuntos que vocês querem conversar com carinho."
           />
         ) : (
           <div className="plans-grid">
@@ -110,7 +115,7 @@ export default function PlansPage() {
                   setConvOpen(true);
                 }}
                 onDelete={() => {
-                  if (confirm("Remover esta conversa?"))
+                  if (confirm("Remover esta carta?"))
                     dispatch({ type: "removeConversation", id: c.id });
                 }}
                 onToggleFeatured={() =>

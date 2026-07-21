@@ -12,9 +12,10 @@ const sections: Array<{
   { key: "traits", label: "Traços", emoji: "🎭", accent: "var(--c-plum-500)" },
   { key: "interests", label: "Interesses", emoji: "🎨", accent: "var(--c-blue-500)" },
   { key: "likes", label: "Gostos", emoji: "💚", accent: "var(--c-green-500)" },
-  { key: "quirks", label: "Peculiaridades", emoji: "🌀", accent: "var(--c-amber-400)" },
+  { key: "quirks", label: "Curiosidades", emoji: "🔍", accent: "var(--c-amber-400)" },
   { key: "affectionStyles", label: "Formas de afeto", emoji: "🤍", accent: "var(--c-coral-500)" },
-  { key: "energySources", label: "Fontes de energia", emoji: "⚡", accent: "var(--c-blue-600)" },
+  { key: "energySources", label: "O que dá energia", emoji: "⚡", accent: "var(--c-green-600)" },
+  { key: "energyDrains", label: "O que drena a energia", emoji: "🪫", accent: "var(--c-coral-500)" },
   { key: "aspirations", label: "Aspirações pessoais", emoji: "✨", accent: "var(--c-plum-400)" },
 ];
 
@@ -41,14 +42,33 @@ export default function CharacterCard({
               ✎
             </button>
           </div>
-          {character.age != null && (
-            <span className="chip character-card-age">🎂 {character.age} anos</span>
-          )}
+          <div className="row wrap gap-2 character-card-meta">
+            {character.age != null && (
+              <span className="chip">🎂 {character.age} anos</span>
+            )}
+            {character.mbti && (
+              <span className="chip character-card-mbti">🧩 {character.mbti}</span>
+            )}
+          </div>
           {character.tagline && (
             <p className="character-card-tagline muted">{character.tagline}</p>
           )}
         </div>
       </div>
+
+      {character.today?.text && (
+        <div className="character-today">
+          <span className="character-today-label eyebrow">Hoje</span>
+          <p className="character-today-text">
+            <span className="character-today-emoji" aria-hidden>
+              {character.today.emoji || "✨"}
+            </span>
+            {character.today.text}
+          </p>
+        </div>
+      )}
+
+      {character.bio && <p className="character-card-bio">{character.bio}</p>}
 
       <div className="character-card-sections">
         {sections.map((s) => {

@@ -1,0 +1,124 @@
+.home-now {
+  padding: var(--s-5);
+  display: flex;
+  flex-direction: column;
+  gap: var(--s-3);
+  background:
+    radial-gradient(120% 140% at 100% 0%, var(--bg-tint-a), transparent 55%),
+    var(--surface);
+}
+
+.home-now-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--s-3);
+  flex-wrap: wrap;
+}
+
+/* Clima simbólico */
+.home-now-weather {
+  display: flex;
+  align-items: center;
+  gap: var(--s-3);
+  padding: 8px 14px 8px 8px;
+  border-radius: var(--r-pill);
+  background: var(--surface-2);
+  box-shadow: var(--sh-sm);
+  transition: transform 0.18s var(--ease-bounce), box-shadow 0.2s ease;
+  text-align: left;
+}
+.home-now-weather:hover { transform: translateY(-2px); box-shadow: var(--sh-md); }
+.home-now-weather-emoji {
+  font-size: 1.7rem;
+  animation: float-y 5s ease-in-out infinite;
+}
+.home-now-weather-text { display: flex; flex-direction: column; line-height: 1.2; }
+.home-now-moment {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 0.98rem;
+}
+.home-now-weather-text .muted { font-size: 0.78rem; }
+
+/* Música do momento */
+.home-now-music {
+  display: flex;
+  align-items: center;
+  gap: var(--s-2);
+  padding: 8px 16px;
+  border-radius: var(--r-pill);
+  background: color-mix(in srgb, var(--c-plum-500) 12%, white);
+  color: var(--ink-700);
+  box-shadow: var(--sh-sm);
+  transition: transform 0.18s var(--ease-bounce);
+  max-width: 100%;
+}
+.home-now-music:hover { transform: translateY(-2px); }
+.home-now-music-note {
+  color: var(--c-plum-500);
+  font-size: 1.15rem;
+  animation: float-y 3s ease-in-out infinite;
+}
+.home-now-music-text {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.15;
+  min-width: 0;
+}
+.home-now-music-text strong {
+  font-family: var(--font-display);
+  font-size: 0.92rem;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.home-now-music-text .muted { font-size: 0.76rem; }
+.home-now-music.editing {
+  background: var(--surface);
+  padding: 6px;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+.home-now-music.editing .input { padding: 8px 12px; width: 140px; }
+
+/* Saudação */
+.home-now-greeting {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: clamp(1.3rem, 3vw, 1.7rem);
+  color: var(--ink-900);
+}
+
+/* Novidades */
+.home-now-news {
+  display: flex;
+  flex-direction: column;
+  gap: var(--s-2);
+}
+.home-now-news li {
+  display: flex;
+  align-items: center;
+  gap: var(--s-3);
+  padding: 10px 14px;
+  background: var(--surface-2);
+  border-radius: var(--r-md);
+  font-weight: 600;
+  color: var(--ink-700);
+}
+.home-now-news-emoji {
+  display: grid;
+  place-items: center;
+  width: 34px;
+  height: 34px;
+  font-size: 1.1rem;
+  border-radius: 40% 60% 55% 45% / 55% 45% 60% 40%;
+  background: var(--surface);
+  box-shadow: var(--sh-sm);
+  flex-shrink: 0;
+}
+
+@media (max-width: 720px) {
+  .home-now-top { flex-direction: column; align-items: stretch; }
+  .home-now-music { justify-content: flex-start; }
+}

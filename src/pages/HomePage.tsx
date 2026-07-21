@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import { useSave } from "../state/useSave";
 import Avatar from "../components/ui/Avatar";
 import ChapterBanner from "../components/ui/ChapterBanner";
+import HomeNow from "../components/home/HomeNow";
 import ProgressBar from "../components/ui/ProgressBar";
 import CategoryPill from "../components/ui/CategoryPill";
 import {
@@ -60,6 +61,8 @@ export default function HomePage() {
         chapterSubtitle={state.currentChapter.subtitle}
       />
 
+      <HomeNow />
+
       <div className="home-grid">
         {/* Dupla em destaque */}
         <Link to="/personagens" className="home-card home-duo card-hover">
@@ -108,10 +111,10 @@ export default function HomePage() {
 
         {/* Conversa em destaque */}
         <Link to="/planos" className="home-card card-hover">
-          <span className="home-card-eyebrow eyebrow">Conversa em destaque</span>
+          <span className="home-card-eyebrow eyebrow">Carta em destaque</span>
           {featured ? (
             <div className="home-conv">
-              <h3>💬 {featured.title}</h3>
+              <h3>💌 {featured.title}</h3>
               {featured.context && (
                 <p className="muted home-clamp">{featured.context}</p>
               )}
@@ -122,7 +125,7 @@ export default function HomePage() {
               />
             </div>
           ) : (
-            <p className="muted">Nenhuma conversa no horizonte ainda.</p>
+            <p className="muted">Nenhuma carta guardada ainda.</p>
           )}
         </Link>
 

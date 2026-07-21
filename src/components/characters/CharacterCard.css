@@ -10,8 +10,46 @@
   align-items: flex-start;
 }
 .character-card-name { font-size: 1.45rem; }
-.character-card-age { margin-top: 6px; }
+.character-card-meta { margin-top: 6px; }
+.character-card-mbti {
+  background: color-mix(in srgb, var(--c-plum-500) 14%, white);
+  color: var(--c-plum-500);
+}
 .character-card-tagline { margin-top: 8px; font-weight: 600; }
+
+/* Bio humana — substitui a descrição genérica de MBTI */
+.character-card-bio {
+  color: var(--ink-700);
+  font-size: 0.96rem;
+  line-height: 1.55;
+}
+
+/* Bloco "Hoje" — humor do momento */
+.character-today {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding: 12px 16px;
+  border-radius: var(--r-md);
+  background:
+    radial-gradient(120% 160% at 0% 0%, var(--bg-tint-b), transparent 60%),
+    var(--surface-2);
+  border: 1px dashed color-mix(in srgb, var(--c-green-500) 30%, transparent);
+}
+.character-today-label { color: var(--accent-strong); }
+.character-today-text {
+  display: flex;
+  align-items: center;
+  gap: var(--s-2);
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 1.02rem;
+  color: var(--ink-900);
+}
+.character-today-emoji {
+  font-size: 1.3rem;
+  animation: float-y 4s ease-in-out infinite;
+}
 
 .character-card-sections {
   display: flex;

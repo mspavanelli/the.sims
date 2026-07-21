@@ -5,6 +5,7 @@ import {
   missionCategoryMeta,
   missionStatusMeta,
 } from "../../lib/labels";
+import { burstConfetti } from "../../lib/confetti";
 import "./MissionCard.css";
 
 export default function MissionCard({
@@ -87,7 +88,10 @@ export default function MissionCard({
         {!isCompleted && (
           <button
             className="btn btn-soft btn-sm"
-            onClick={() => onSetStatus("completed")}
+            onClick={(e) => {
+              burstConfetti(e.currentTarget);
+              onSetStatus("completed");
+            }}
           >
             🌟 Concluir
           </button>

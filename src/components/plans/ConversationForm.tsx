@@ -52,8 +52,8 @@ export default function ConversationForm({
     <Modal
       open={open}
       onClose={onClose}
-      title={conversation ? "Editar conversa" : "Nova conversa"}
-      emoji="💬"
+      title={conversation ? "Editar carta" : "Nova carta"}
+      emoji="💌"
       footer={
         <>
           <button className="btn btn-ghost" onClick={onClose}>
@@ -84,7 +84,7 @@ export default function ConversationForm({
             className="textarea"
             value={draft.context ?? ""}
             onChange={(e) => set("context", e.target.value || undefined)}
-            placeholder="Por que esse assunto está no horizonte?"
+            placeholder="Por que essa carta está esperando para ser aberta?"
           />
         </Field>
 

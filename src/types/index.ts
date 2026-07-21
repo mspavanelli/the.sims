@@ -4,6 +4,12 @@ export type Step = {
   completed: boolean;
 };
 
+/** Estado atual de humor da pessoa — editável à mão, para dar vida à ficha. */
+export type CharacterToday = {
+  emoji: string;
+  text: string;
+};
+
 export type Character = {
   id: string;
   name: string;
@@ -11,12 +17,20 @@ export type Character = {
   emoji?: string;
   age?: number;
   tagline?: string;
+  /** Descrição humana e longa — substitui o rótulo genérico de MBTI. */
+  bio?: string;
+  /** MBTI vive aqui só como pequeno detalhe, nunca como descrição principal. */
+  mbti?: string;
+  /** "Hoje" — humor do momento, manual. */
+  today?: CharacterToday;
   traits: string[];
   interests: string[];
   likes: string[];
   quirks: string[];
   affectionStyles: string[];
   energySources: string[];
+  /** O que drena a energia dessa pessoa. */
+  energyDrains: string[];
   aspirations: string[];
 };
 
@@ -89,10 +103,24 @@ export type Chapter = {
   subtitle?: string;
 };
 
+/** Clima simbólico do save — pura ambientação, sem integração de API. */
+export type SaveWeather = {
+  emoji: string;
+  label: string;
+};
+
+/** Música do momento — o que está tocando no mundo do casal agora. */
+export type NowPlaying = {
+  title: string;
+  artist?: string;
+};
+
 export type AppState = {
   coupleName: string;
   saveTagline?: string;
   currentChapter: Chapter;
+  saveWeather?: SaveWeather;
+  nowPlaying?: NowPlaying;
   characters: Character[];
   memories: Memory[];
   missions: Mission[];

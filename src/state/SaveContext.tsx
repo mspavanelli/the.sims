@@ -14,6 +14,8 @@ import type {
   Goal,
   Memory,
   Mission,
+  NowPlaying,
+  SaveWeather,
 } from "../types";
 import { cloneSeed } from "../data/seed";
 import { loadState, saveState } from "../lib/storage";
@@ -22,6 +24,8 @@ type Action =
   | { type: "restoreDefaults" }
   | { type: "setChapter"; chapter: Chapter }
   | { type: "setCoupleName"; coupleName: string; saveTagline?: string }
+  | { type: "setWeather"; weather?: SaveWeather }
+  | { type: "setNowPlaying"; nowPlaying?: NowPlaying }
   | { type: "setFeaturedConversation"; id?: string }
   | { type: "upsertCharacter"; character: Character }
   | { type: "upsertMemory"; memory: Memory }
@@ -55,6 +59,10 @@ function reducer(state: AppState, action: Action): AppState {
         coupleName: action.coupleName,
         saveTagline: action.saveTagline ?? state.saveTagline,
       };
+    case "setWeather":
+      return { ...state, saveWeather: action.weather };
+    case "setNowPlaying":
+      return { ...state, nowPlaying: action.nowPlaying };
     case "setFeaturedConversation":
       return { ...state, featuredConversationId: action.id };
     case "upsertCharacter":
