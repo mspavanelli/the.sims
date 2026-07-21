@@ -102,6 +102,13 @@ ul { margin: 0; padding: 0; list-style: none; }
   white-space: nowrap;
 }
 .btn:active { transform: scale(0.96); }
+.btn:disabled {
+  cursor: default;
+  filter: saturate(0.55);
+  opacity: 0.72;
+  box-shadow: none;
+}
+.btn:disabled:hover { transform: none; box-shadow: none; }
 .btn-primary {
   background: linear-gradient(135deg, var(--c-green-400), var(--c-blue-500));
   color: var(--on-accent);

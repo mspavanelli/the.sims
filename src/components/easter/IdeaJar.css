@@ -1,0 +1,131 @@
+.idea-jar-intro {
+  font-size: 0.88rem;
+  margin-bottom: var(--s-4);
+}
+
+/* ---------- Carta sorteada ---------- */
+.idea-jar-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--s-3);
+  text-align: center;
+  padding: var(--s-5) var(--s-4);
+  border-radius: var(--r-lg);
+  background:
+    radial-gradient(120% 90% at 50% 0%, var(--c-mint-50), transparent 70%),
+    var(--surface-2);
+  border: 1px solid rgba(23, 98, 74, 0.08);
+  animation: pop-in 0.32s var(--ease-bounce) both;
+}
+
+.idea-jar-emoji {
+  display: grid;
+  place-items: center;
+  width: 84px;
+  height: 84px;
+  font-size: 2.4rem;
+  border-radius: var(--r-blob);
+  background: var(--surface);
+  box-shadow: var(--sh-sm);
+  animation: float-y 4.5s ease-in-out infinite;
+}
+
+.idea-jar-title {
+  font-size: 1.25rem;
+  max-width: 22ch;
+}
+
+.idea-jar-desc {
+  color: var(--ink-700);
+  font-size: 0.95rem;
+  max-width: 42ch;
+}
+
+/* ---------- Lista das 20 ---------- */
+.idea-jar-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--s-2);
+  animation: fade-up 0.3s var(--ease-bounce) both;
+}
+
+.idea-jar-list-item {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--s-3);
+  width: 100%;
+  text-align: left;
+  padding: 10px 12px;
+  border-radius: var(--r-md);
+  background: var(--surface-2);
+  transition: background 0.2s ease, transform 0.16s var(--ease-bounce);
+}
+.idea-jar-list-item:hover {
+  background: var(--c-mint-50);
+  transform: translateX(3px);
+}
+.idea-jar-list-item.is-current {
+  background: var(--c-mint-100);
+  box-shadow: inset 0 0 0 1px var(--c-mint-200);
+}
+
+.idea-jar-list-num {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: 0.78rem;
+  color: var(--ink-300);
+  padding-top: 3px;
+}
+
+.idea-jar-list-emoji {
+  font-size: 1.2rem;
+  line-height: 1.2;
+}
+
+.idea-jar-list-text {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+.idea-jar-list-text strong {
+  font-family: var(--font-display);
+  font-size: 0.95rem;
+}
+.idea-jar-list-text .muted { font-size: 0.82rem; line-height: 1.4; }
+
+/* ---------- Rodapé do corpo ---------- */
+.idea-jar-foot {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--s-3);
+  margin-top: var(--s-4);
+  font-size: 0.82rem;
+}
+
+.idea-jar-link {
+  font-weight: 800;
+  font-size: 0.82rem;
+  color: var(--accent-strong);
+  padding: 0;
+}
+.idea-jar-link:hover { text-decoration: underline; }
+
+/* ---------- Gatilhos (o ♡ secreto) ----------
+   Só o mínimo: cada ♡ mantém o visual do lugar onde vive. O brilho fica
+   num <span> interno porque o coração da Home já usa transform pra flutuar. */
+.idea-jar-trigger {
+  padding: 0;
+  font: inherit;
+  color: inherit;
+}
+.idea-jar-trigger > span {
+  display: block;
+  transition: transform 0.24s var(--ease-bounce), filter 0.24s ease;
+}
+.idea-jar-trigger:hover > span {
+  transform: scale(1.16) rotate(-8deg);
+  filter: drop-shadow(0 3px 8px rgba(255, 122, 138, 0.45));
+}
+.idea-jar-trigger:active > span { transform: scale(0.9); }

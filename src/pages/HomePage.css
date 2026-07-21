@@ -52,6 +52,11 @@ a.home-card { cursor: pointer; }
 }
 .home-duo-name strong { font-family: var(--font-display); }
 .home-duo-name .muted { font-size: 0.82rem; }
+.home-duo-link {
+  align-self: center;
+  font-size: 0.85rem;
+  margin-top: var(--s-1);
+}
 
 /* Next / mem rows */
 .home-next,

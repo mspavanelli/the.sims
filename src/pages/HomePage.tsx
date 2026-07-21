@@ -1,8 +1,10 @@
+import { useState } from "react";
 import { Link } from "react-router-dom";
 import { useSave } from "../state/useSave";
 import Avatar from "../components/ui/Avatar";
 import ChapterBanner from "../components/ui/ChapterBanner";
 import HomeNow from "../components/home/HomeNow";
+import IdeaJar from "../components/easter/IdeaJar";
 import ProgressBar from "../components/ui/ProgressBar";
 import CategoryPill from "../components/ui/CategoryPill";
 import {
@@ -33,6 +35,7 @@ const shortcuts = [
 export default function HomePage() {
   const { state } = useSave();
   const [a, b] = state.characters;
+  const [jarOpen, setJarOpen] = useState(false);
 
   const today = new Date().toISOString().slice(0, 10);
   const nextMission =
@@ -64,12 +67,19 @@ export default function HomePage() {
       <HomeNow />
 
       <div className="home-grid">
-        {/* Dupla em destaque */}
-        <Link to="/personagens" className="home-card home-duo card-hover">
+        {/* Dupla em destaque — o ♡ do meio guarda o pote de ideias */}
+        <div className="home-card home-duo">
           <span className="home-card-eyebrow eyebrow">Nossos personagens</span>
           <div className="home-duo-avatars">
             {a && <Avatar name={a.name} emoji={a.emoji} image={a.image} size={82} />}
-            <span className="home-duo-heart" aria-hidden>♡</span>
+            <button
+              type="button"
+              className="home-duo-heart idea-jar-trigger"
+              onClick={() => setJarOpen(true)}
+              aria-label="Abrir o pote de ideias"
+            >
+              <span aria-hidden>♡</span>
+            </button>
             {b && <Avatar name={b.name} emoji={b.emoji} image={b.image} size={82} />}
           </div>
           <div className="home-duo-names">
@@ -80,7 +90,10 @@ export default function HomePage() {
               </div>
             ))}
           </div>
-        </Link>
+          <Link to="/personagens" className="home-goals-link home-duo-link">
+            Ver personagens →
+          </Link>
+        </div>
 
         {/* Próxima missão */}
         <Link to="/missoes" className="home-card card-hover">
@@ -195,6 +208,8 @@ export default function HomePage() {
           </Link>
         ))}
       </div>
+
+      <IdeaJar open={jarOpen} onClose={() => setJarOpen(false)} />
     </div>
   );
 }

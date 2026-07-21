@@ -1,4 +1,6 @@
+import { useState } from "react";
 import { NavLink } from "react-router-dom";
+import IdeaJar from "../easter/IdeaJar";
 import "./NavBar.css";
 
 const items = [
@@ -10,12 +12,20 @@ const items = [
 ];
 
 export default function NavBar() {
+  const [jarOpen, setJarOpen] = useState(false);
+
   return (
     <nav className="nav" aria-label="Navegação principal">
       <div className="nav-brand">
-        <span className="nav-brand-mark" aria-hidden>
-          ♡
-        </span>
+        {/* O ♡ da marca é o outro caminho para o pote de ideias */}
+        <button
+          type="button"
+          className="nav-brand-mark idea-jar-trigger"
+          onClick={() => setJarOpen(true)}
+          aria-label="Abrir o pote de ideias"
+        >
+          <span aria-hidden>♡</span>
+        </button>
         <span className="nav-brand-text">The Sims</span>
       </div>
 
@@ -48,6 +58,8 @@ export default function NavBar() {
         <span aria-hidden>⚙️</span>
         <span className="nav-config-label">Ajustes</span>
       </NavLink>
+
+      <IdeaJar open={jarOpen} onClose={() => setJarOpen(false)} />
     </nav>
   );
 }
