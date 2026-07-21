@@ -12,6 +12,8 @@
   width: 100%;
   height: 100%;
   object-fit: cover;
+  /* Foco um pouco acima do centro: é onde o rosto costuma estar. */
+  transform-origin: 50% 38%;
 }
 .avatar-initial {
   font-family: var(--font-display);

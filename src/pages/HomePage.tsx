@@ -26,7 +26,12 @@ function goalPercent(goal: Goal): number | null {
 }
 
 const shortcuts = [
-  { to: "/personagens", emoji: "🧑‍🤝‍🧑", label: "Personagens", tint: "var(--c-coral-500)" },
+  {
+    to: "/personagens",
+    emoji: "🧑‍🤝‍🧑",
+    label: "Personagens",
+    tint: "var(--c-coral-500)",
+  },
   { to: "/jornada", emoji: "🧭", label: "Jornada", tint: "var(--c-blue-500)" },
   { to: "/missoes", emoji: "🎯", label: "Missões", tint: "var(--c-green-500)" },
   { to: "/planos", emoji: "🌈", label: "Planos", tint: "var(--c-plum-500)" },
@@ -71,7 +76,15 @@ export default function HomePage() {
         <div className="home-card home-duo">
           <span className="home-card-eyebrow eyebrow">Nossos personagens</span>
           <div className="home-duo-avatars">
-            {a && <Avatar name={a.name} emoji={a.emoji} image={a.image} size={82} />}
+            {a && (
+              <Avatar
+                name={a.name}
+                emoji={a.emoji}
+                image={a.image}
+                size={82}
+                zoom={1.5}
+              />
+            )}
             <button
               type="button"
               className="home-duo-heart idea-jar-trigger"
@@ -80,7 +93,15 @@ export default function HomePage() {
             >
               <span aria-hidden>♡</span>
             </button>
-            {b && <Avatar name={b.name} emoji={b.emoji} image={b.image} size={82} />}
+            {b && (
+              <Avatar
+                name={b.name}
+                emoji={b.emoji}
+                image={b.image}
+                size={82}
+                zoom={1.4}
+              />
+            )}
           </div>
           <div className="home-duo-names">
             {state.characters.map((c) => (
@@ -112,7 +133,9 @@ export default function HomePage() {
                     color={missionCategoryMeta[nextMission.category].color}
                   />
                   {nextMission.date && (
-                    <span className="chip">📅 {formatDate(nextMission.date)}</span>
+                    <span className="chip">
+                      📅 {formatDate(nextMission.date)}
+                    </span>
                   )}
                 </div>
               </div>
@@ -144,7 +167,9 @@ export default function HomePage() {
 
         {/* Memória mais recente */}
         <Link to="/jornada" className="home-card card-hover">
-          <span className="home-card-eyebrow eyebrow">Memória mais recente</span>
+          <span className="home-card-eyebrow eyebrow">
+            Memória mais recente
+          </span>
           {latestMemory ? (
             <div className="home-mem">
               <div className="home-mem-emoji" aria-hidden>

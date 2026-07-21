@@ -33,7 +33,7 @@
 
 .idea-jar-title {
   font-size: 1.25rem;
-  max-width: 22ch;
+  text-wrap: balance;
 }
 
 .idea-jar-desc {

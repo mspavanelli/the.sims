@@ -10,13 +10,43 @@ const sections: Array<{
   accent: string;
 }> = [
   { key: "traits", label: "Traços", emoji: "🎭", accent: "var(--c-plum-500)" },
-  { key: "interests", label: "Interesses", emoji: "🎨", accent: "var(--c-blue-500)" },
+  {
+    key: "interests",
+    label: "Interesses",
+    emoji: "🎨",
+    accent: "var(--c-blue-500)",
+  },
   { key: "likes", label: "Gostos", emoji: "💚", accent: "var(--c-green-500)" },
-  { key: "quirks", label: "Curiosidades", emoji: "🔍", accent: "var(--c-amber-400)" },
-  { key: "affectionStyles", label: "Formas de afeto", emoji: "🤍", accent: "var(--c-coral-500)" },
-  { key: "energySources", label: "O que dá energia", emoji: "⚡", accent: "var(--c-green-600)" },
-  { key: "energyDrains", label: "O que drena a energia", emoji: "🪫", accent: "var(--c-coral-500)" },
-  { key: "aspirations", label: "Aspirações pessoais", emoji: "✨", accent: "var(--c-plum-400)" },
+  {
+    key: "quirks",
+    label: "Curiosidades",
+    emoji: "🔍",
+    accent: "var(--c-amber-400)",
+  },
+  {
+    key: "affectionStyles",
+    label: "Formas de afeto",
+    emoji: "🤍",
+    accent: "var(--c-coral-500)",
+  },
+  {
+    key: "energySources",
+    label: "O que dá energia",
+    emoji: "⚡",
+    accent: "var(--c-green-600)",
+  },
+  {
+    key: "energyDrains",
+    label: "O que drena a energia",
+    emoji: "🪫",
+    accent: "var(--c-coral-500)",
+  },
+  {
+    key: "aspirations",
+    label: "Aspirações pessoais",
+    emoji: "✨",
+    accent: "var(--c-plum-400)",
+  },
 ];
 
 export default function CharacterCard({
@@ -34,11 +64,16 @@ export default function CharacterCard({
           emoji={character.emoji}
           image={character.image}
           size={92}
+          zoom={1.2}
         />
         <div className="grow">
           <div className="row between gap-2">
             <h2 className="character-card-name">{character.name}</h2>
-            <button className="btn-icon" onClick={onEdit} aria-label="Editar personagem">
+            <button
+              className="btn-icon"
+              onClick={onEdit}
+              aria-label="Editar personagem"
+            >
               ✎
             </button>
           </div>
@@ -47,7 +82,9 @@ export default function CharacterCard({
               <span className="chip">🎂 {character.age} anos</span>
             )}
             {character.mbti && (
-              <span className="chip character-card-mbti">🧩 {character.mbti}</span>
+              <span className="chip character-card-mbti">
+                🧩 {character.mbti}
+              </span>
             )}
           </div>
           {character.tagline && (

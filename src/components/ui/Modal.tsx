@@ -1,4 +1,5 @@
 import { useEffect, type ReactNode } from "react";
+import { createPortal } from "react-dom";
 import "./Modal.css";
 
 type ModalProps = {
@@ -33,7 +34,9 @@ export default function Modal({
 
   if (!open) return null;
 
-  return (
+  // Portal no body: a transição de rota deixa um `transform` permanente no
+  // container, e isso faria o overlay `fixed` se ancorar nele em vez da tela.
+  return createPortal(
     <div className="modal-overlay" onMouseDown={onClose}>
       <div
         className="modal panel"
@@ -65,6 +68,7 @@ export default function Modal({
 
         {footer && <footer className="modal-foot">{footer}</footer>}
       </div>
-    </div>
+    </div>,
+    document.body,
   );
 }

@@ -9,6 +9,13 @@ const STORAGE_KEY = "the-sims:v1";
  * quem já tinha um save — quebrando a interface. Preserva os dados do
  * usuário e só completa o que estiver faltando (merge raso por chave).
  */
+/**
+ * Avatares que o seed já usou. Um save antigo guardou o caminho da época;
+ * quando o arquivo é trocado (otimização, formato novo), o antigo quebraria.
+ * Só migramos estes — foto escolhida à mão pelo usuário fica intocada.
+ */
+const legacySeedAvatars = ["/avatar-matheus.png", "/avatar-luiza.png"];
+
 function withDefaults(parsed: Partial<AppState>): AppState {
   const base = cloneSeed();
   const merged = { ...base, ...parsed } as AppState;
@@ -16,6 +23,12 @@ function withDefaults(parsed: Partial<AppState>): AppState {
   // arrays esperados existam mesmo em fichas salvas antes deles.
   merged.characters = (parsed.characters ?? base.characters).map((c) => ({
     ...c,
+    // Avatar do seed entra em fichas salvas antes das imagens existirem —
+    // sem sobrescrever quem já escolheu uma foto própria.
+    image:
+      !c.image || legacySeedAvatars.includes(c.image)
+        ? base.characters.find((b) => b.id === c.id)?.image
+        : c.image,
     traits: c.traits ?? [],
     interests: c.interests ?? [],
     likes: c.likes ?? [],

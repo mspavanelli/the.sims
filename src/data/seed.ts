@@ -19,6 +19,7 @@ export const seed: AppState = {
     {
       id: "char-1",
       name: "Matheus",
+      image: "/avatar-matheus.jpg",
       emoji: "🌿",
       age: 32,
       tagline: "Curioso por tudo, mestre dos porquês",
@@ -43,6 +44,7 @@ export const seed: AppState = {
     {
       id: "char-2",
       name: "Luiza",
+      image: "/avatar-luiza.jpg",
       emoji: "🌻",
       age: 23,
       tagline: "Coleciona ideias, teorias e pores do sol",

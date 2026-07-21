@@ -5,6 +5,11 @@ type AvatarProps = {
   image?: string;
   emoji?: string;
   size?: number;
+  /**
+   * Aproxima a imagem no rosto. Os retratos do casal são de corpo/busto
+   * inteiro, então em tamanhos pequenos o rosto some se mostrarmos tudo.
+   */
+  zoom?: number;
 };
 
 // Gera um gradiente estável a partir do nome.
@@ -22,7 +27,13 @@ function gradientFor(name: string): string {
   return `linear-gradient(135deg, ${a}, ${b})`;
 }
 
-export default function Avatar({ name, image, emoji, size = 64 }: AvatarProps) {
+export default function Avatar({
+  name,
+  image,
+  emoji,
+  size = 64,
+  zoom = 1,
+}: AvatarProps) {
   const style = {
     width: size,
     height: size,
@@ -30,10 +41,13 @@ export default function Avatar({ name, image, emoji, size = 64 }: AvatarProps) {
     background: image ? undefined : gradientFor(name),
   } as React.CSSProperties;
 
+  const imgStyle =
+    zoom > 1 ? ({ transform: `scale(${zoom})` } as React.CSSProperties) : undefined;
+
   return (
     <div className="avatar" style={style} aria-hidden>
       {image ? (
-        <img src={image} alt="" />
+        <img src={image} alt="" style={imgStyle} />
       ) : emoji ? (
         <span>{emoji}</span>
       ) : (
