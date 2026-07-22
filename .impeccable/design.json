@@ -1,0 +1,342 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-07-21T00:00:00.000Z",
+  "title": "Design System: The Sims",
+  "extensions": {
+    "colorMeta": {
+      "verde-menta-viva": {
+        "role": "primary",
+        "displayName": "Verde Menta Viva",
+        "canonical": "#17c08a",
+        "tonalRamp": ["#084431", "#0e7655", "#14a979", "#1adb9d", "#40e8b2", "#72eec6", "#a4f4da", "#dffbf2"]
+      },
+      "verde-profundo": {
+        "role": "primary",
+        "displayName": "Verde Profundo",
+        "canonical": "#0ba374",
+        "tonalRamp": ["#054833", "#087c58", "#0cb17e", "#0fe5a3", "#36f1b8", "#6bf5ca", "#9ff9dd", "#defdf3"]
+      },
+      "verde-broto": {
+        "role": "primary",
+        "displayName": "Verde Broto",
+        "canonical": "#38d39f",
+        "tonalRamp": ["#0e3f2e", "#186d50", "#229b72", "#2cc894", "#50d8aa", "#7ee2c1", "#abedd7", "#e2f9f1"]
+      },
+      "azul-interface": {
+        "role": "secondary",
+        "displayName": "Azul Interface",
+        "canonical": "#2f8bff",
+        "tonalRamp": ["#00224d", "#003b85", "#0053bd", "#006cf5", "#2988ff", "#61a7ff", "#99c6ff", "#dbebff"]
+      },
+      "azul-piscina": {
+        "role": "secondary",
+        "displayName": "Azul Piscina",
+        "canonical": "#4aa6ff",
+        "tonalRamp": ["#00274d", "#004385", "#0060bd", "#007cf5", "#2996ff", "#61b1ff", "#99cdff", "#dbedff"]
+      },
+      "azul-fundo": {
+        "role": "secondary",
+        "displayName": "Azul Fundo",
+        "canonical": "#1f6fe0",
+        "tonalRamp": ["#092143", "#103a74", "#1752a6", "#1e6bd7", "#4386e5", "#74a6ec", "#a5c5f3", "#e0ebfb"]
+      },
+      "roxo-aspiracao": {
+        "role": "tertiary",
+        "displayName": "Roxo Aspiração",
+        "canonical": "#7b6cff",
+        "tonalRamp": ["#08004d", "#0e0085", "#1300bd", "#1900f5", "#3f29ff", "#7161ff", "#a399ff", "#dfdbff"]
+      },
+      "coral-carinho": {
+        "role": "tertiary",
+        "displayName": "Coral Carinho",
+        "canonical": "#ff7a8a",
+        "tonalRamp": ["#4d0009", "#850010", "#bd0017", "#f5001d", "#ff2943", "#ff6174", "#ff99a5", "#ffdbe0"]
+      },
+      "ambar-conquista": {
+        "role": "tertiary",
+        "displayName": "Âmbar Conquista",
+        "canonical": "#ffbf5c",
+        "tonalRamp": ["#4d2e00", "#855100", "#bd7300", "#f59500", "#ffab29", "#ffc161", "#ffd799", "#fff1db"]
+      },
+      "limao-segredo": {
+        "role": "tertiary",
+        "displayName": "Limão Segredo",
+        "canonical": "#ffe58a",
+        "tonalRamp": ["#4d3c00", "#856700", "#bd9300", "#f5be00", "#ffcf29", "#ffdc61", "#ffe899", "#fff7db"]
+      },
+      "menta-lavada": {
+        "role": "neutral",
+        "displayName": "Menta Lavada",
+        "canonical": "#d3f6e2",
+        "tonalRamp": ["#0d4023", "#176e3c", "#209d55", "#2acb6f", "#4ddb8a", "#7ce4a8", "#aaeec7", "#e1f9eb"]
+      },
+      "ceu-lavado": {
+        "role": "neutral",
+        "displayName": "Céu Lavado",
+        "canonical": "#dcefff",
+        "tonalRamp": ["#002a4d", "#004885", "#0066bd", "#0085f5", "#299dff", "#61b7ff", "#99d0ff", "#dbefff"]
+      },
+      "nevoa-de-jardim": {
+        "role": "neutral",
+        "displayName": "Névoa de Jardim",
+        "canonical": "#eef6f2",
+        "tonalRamp": ["#1a3226", "#2e5742", "#417b5e", "#55a07a", "#73b594", "#98c8b0", "#bcdccc", "#e8f3ed"]
+      },
+      "painel": {
+        "role": "neutral",
+        "displayName": "Painel",
+        "canonical": "#ffffff",
+        "tonalRamp": ["#262626", "#424242", "#5e5e5e", "#7a7a7a", "#949494", "#b0b0b0", "#cccccc", "#ededed"]
+      },
+      "painel-recuado": {
+        "role": "neutral",
+        "displayName": "Painel Recuado",
+        "canonical": "#f6faf8",
+        "tonalRamp": ["#1b3126", "#2f5542", "#43795e", "#579d7a", "#75b294", "#99c7b0", "#bddbcc", "#e8f2ed"]
+      },
+      "tinta-mata": {
+        "role": "neutral",
+        "displayName": "Tinta Mata",
+        "canonical": "#123528",
+        "tonalRamp": ["#13392b", "#22634b", "#308d6a", "#3eb78a", "#5fc9a1", "#89d7ba", "#b3e5d2", "#e4f6ef"]
+      },
+      "tinta-folha": {
+        "role": "neutral",
+        "displayName": "Tinta Folha",
+        "canonical": "#2b4a3e",
+        "tonalRamp": ["#1c3029", "#315446", "#457764", "#5a9b82", "#78b09a", "#9bc5b5", "#bedacf", "#e8f2ee"]
+      },
+      "tinta-salvia": {
+        "role": "neutral",
+        "displayName": "Tinta Sálvia",
+        "canonical": "#5c7268",
+        "tonalRamp": ["#222a27", "#3b4943", "#54685f", "#6d877c", "#889f95", "#a8b8b1", "#c7d1cc", "#ebefed"]
+      },
+      "tinta-musgo": {
+        "role": "neutral",
+        "displayName": "Tinta Musgo",
+        "canonical": "#90a49b",
+        "tonalRamp": ["#222a27", "#3c4943", "#55685f", "#6e877c", "#899f95", "#a8b8b1", "#c7d1cd", "#ebefed"]
+      }
+    },
+    "typographyMeta": {
+      "display": {
+        "displayName": "Display (Baloo 2)",
+        "purpose": "Nome do save no ChapterBanner. Um por tela, no máximo."
+      },
+      "headline": {
+        "displayName": "Headline (Baloo 2)",
+        "purpose": "Título de página no PageHeader."
+      },
+      "title": {
+        "displayName": "Title (Baloo 2)",
+        "purpose": "section-title, título de modal e de card."
+      },
+      "body": {
+        "displayName": "Body (Nunito)",
+        "purpose": "Texto corrido, memórias e cartas. Prosa longa em 65–75ch."
+      },
+      "label": {
+        "displayName": "Label (Nunito 800)",
+        "purpose": "Labels de campo, texto de botão, pills e nav."
+      }
+    },
+    "shadows": [
+      {
+        "name": "sh-sm",
+        "value": "0 4px 12px rgba(23, 98, 74, 0.08)",
+        "purpose": "Elementos pequenos que pousam: avatar, botão fantasma, emoji de cabeçalho, ponto da timeline."
+      },
+      {
+        "name": "sh-md",
+        "value": "0 12px 30px rgba(23, 98, 74, 0.12)",
+        "purpose": "Repouso de todo .panel e da NavBar de vidro."
+      },
+      {
+        "name": "sh-lg",
+        "value": "0 24px 60px rgba(23, 98, 74, 0.18)",
+        "purpose": "Elevação real: hover de card clicável e ChapterBanner."
+      },
+      {
+        "name": "sh-ring",
+        "value": "0 0 0 4px rgba(23, 192, 138, 0.18)",
+        "purpose": "Anel de foco de teclado global via :focus-visible. Nunca remover."
+      }
+    ],
+    "motion": [
+      {
+        "name": "ease-bounce",
+        "value": "cubic-bezier(0.34, 1.56, 0.64, 1)",
+        "purpose": "Mola curta padrão do sistema: hover de card, pills, :active de botão, pop-in de modal."
+      },
+      {
+        "name": "fade-up",
+        "value": "fade-up 0.5s var(--ease-bounce) both",
+        "purpose": "Entrada de item de lista (.anim-in). Escalonar dentro de uma lista é permitido; aplicar em toda seção não."
+      },
+      {
+        "name": "pop-in",
+        "value": "pop-in 0.28s var(--ease-bounce) both",
+        "purpose": "Aparição de modal e de avatar."
+      },
+      {
+        "name": "float-y",
+        "value": "float-y 5s ease-in-out infinite",
+        "purpose": "Flutuação lenta e contínua dos blobs decorativos do ChapterBanner."
+      },
+      {
+        "name": "sheen",
+        "value": "sheen 2.6s ease-in-out infinite",
+        "purpose": "Brilho que atravessa o preenchimento da ProgressBar."
+      },
+      {
+        "name": "reduced-motion",
+        "value": "@media (prefers-reduced-motion: reduce) { animation-duration: 0.001ms; transition-duration: 0.001ms }",
+        "purpose": "Bloco global obrigatório. Toda animação nova precisa continuar coberta por ele."
+      }
+    ],
+    "breakpoints": [
+      { "name": "form-stack", "value": "560px" },
+      { "name": "modal-center", "value": "640px" },
+      { "name": "side-rail", "value": "900px" }
+    ]
+  },
+  "components": [
+    {
+      "name": "Botão primário",
+      "kind": "button",
+      "refersTo": "button-primary",
+      "description": "Ação principal da tela. Pill total, peso 800, afunda ao clicar.",
+      "html": "<button class=\"ds-btn-primary\">✨ Nova memória</button>",
+      "css": ".ds-btn-primary { display: inline-flex; align-items: center; gap: 8px; padding: 12px 20px; border: none; border-radius: 999px; font-family: var(--font-body, \"Nunito\", system-ui, sans-serif); font-weight: 800; font-size: 0.95rem; color: #fff; background: linear-gradient(135deg, #38d39f, #2f8bff); box-shadow: 0 10px 22px rgba(47, 139, 255, 0.28); cursor: pointer; transition: transform 0.16s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.2s ease; } .ds-btn-primary:hover { transform: translateY(-2px); box-shadow: 0 14px 28px rgba(47, 139, 255, 0.34); } .ds-btn-primary:focus-visible { outline: none; box-shadow: 0 0 0 4px rgba(23, 192, 138, 0.18); } .ds-btn-primary:active { transform: scale(0.96); }"
+    },
+    {
+      "name": "Botão suave",
+      "kind": "button",
+      "refersTo": "button-soft",
+      "description": "Ação terciária dentro de um painel. Menta Lavada com texto Verde Profundo.",
+      "html": "<button class=\"ds-btn-soft\">concluir</button>",
+      "css": ".ds-btn-soft { display: inline-flex; align-items: center; gap: 8px; padding: 12px 20px; border: none; border-radius: 999px; font-family: var(--font-body, \"Nunito\", system-ui, sans-serif); font-weight: 800; font-size: 0.95rem; color: #0ba374; background: #d3f6e2; cursor: pointer; transition: background 0.2s ease, transform 0.16s cubic-bezier(0.34, 1.56, 0.64, 1); } .ds-btn-soft:hover { background: #a7ecc7; } .ds-btn-soft:focus-visible { outline: none; box-shadow: 0 0 0 4px rgba(23, 192, 138, 0.18); } .ds-btn-soft:active { transform: scale(0.96); }"
+    },
+    {
+      "name": "Campo de texto",
+      "kind": "input",
+      "refersTo": "input",
+      "description": "O campo é um recuo na superfície, não uma caixa contornada. No foco ele sobe pro branco e a borda ganha verde.",
+      "html": "<label class=\"ds-field\"><span class=\"ds-field-label\">Título da memória</span><input class=\"ds-input\" placeholder=\"O que aconteceu?\" /><span class=\"ds-field-hint\">Uma frase basta.</span></label>",
+      "css": ".ds-field { display: flex; flex-direction: column; gap: 6px; font-family: var(--font-body, \"Nunito\", system-ui, sans-serif); } .ds-field-label { font-weight: 800; font-size: 0.85rem; color: #2b4a3e; } .ds-field-hint { font-size: 0.78rem; color: #5c7268; } .ds-input { width: 100%; padding: 11px 14px; border-radius: 16px; border: 2px solid transparent; background: #f6faf8; color: #123528; font-family: inherit; font-size: 1rem; transition: border-color 0.16s ease, background 0.16s ease; } .ds-input::placeholder { color: #5c7268; } .ds-input:focus { outline: none; border-color: #17c08a; background: #fff; }"
+    },
+    {
+      "name": "Pill de categoria",
+      "kind": "chip",
+      "refersTo": "chip",
+      "description": "Cor por categoria misturada com branco no repouso; saturada e com sombra colorida quando ativa.",
+      "html": "<div style=\"display:flex;gap:8px\"><button class=\"ds-pill\">🍿 cinema</button><button class=\"ds-pill ds-pill-active\">🌊 viagem</button></div>",
+      "css": ".ds-pill { --cp: #2f8bff; display: inline-flex; align-items: center; gap: 6px; padding: 7px 14px; border-radius: 999px; border: 2px solid transparent; font-family: var(--font-body, \"Nunito\", system-ui, sans-serif); font-size: 0.82rem; font-weight: 800; color: color-mix(in srgb, var(--cp) 60%, #123528); background: color-mix(in srgb, var(--cp) 15%, white); cursor: pointer; transition: transform 0.16s cubic-bezier(0.34, 1.56, 0.64, 1); } .ds-pill:hover { transform: translateY(-2px); } .ds-pill-active { --cp: #7b6cff; color: #fff; background: var(--cp); box-shadow: 0 8px 18px color-mix(in srgb, var(--cp) 40%, transparent); }"
+    },
+    {
+      "name": "Painel",
+      "kind": "card",
+      "refersTo": "panel",
+      "description": "Container canônico: branco, cantos de 24px, sombra verde difusa, borda de 1px quase invisível. Nunca aninhar um dentro do outro.",
+      "html": "<section class=\"ds-panel\"><h3 class=\"ds-panel-title\">🌤️ nosso agora</h3><p class=\"ds-panel-text\">tarde de segunda, sol entrando pela janela.</p></section>",
+      "css": ".ds-panel { padding: 24px; border-radius: 24px; background: #fff; border: 1px solid rgba(23, 98, 74, 0.06); box-shadow: 0 12px 30px rgba(23, 98, 74, 0.12); font-family: var(--font-body, \"Nunito\", system-ui, sans-serif); } .ds-panel-title { margin: 0 0 8px; font-family: var(--font-display, \"Baloo 2\", system-ui, sans-serif); font-size: 1.15rem; font-weight: 700; line-height: 1.2; color: #123528; } .ds-panel-text { margin: 0; line-height: 1.5; color: #5c7268; }"
+    },
+    {
+      "name": "Item de navegação",
+      "kind": "nav",
+      "refersTo": "nav-link-active",
+      "description": "Barra inferior no celular, trilho lateral no desktop — sempre em vidro fosco. Ativo ganha gradiente menta→céu.",
+      "html": "<nav class=\"ds-nav\"><a class=\"ds-nav-link ds-nav-link-active\"><span aria-hidden=\"true\">🏡</span> Início</a><a class=\"ds-nav-link\"><span aria-hidden=\"true\">🧭</span> Jornada</a></nav>",
+      "css": ".ds-nav { display: flex; gap: 6px; padding: 10px; border-radius: 34px; background: rgba(255, 255, 255, 0.72); backdrop-filter: blur(14px); border: 1px solid rgba(255, 255, 255, 0.6); box-shadow: 0 12px 30px rgba(23, 98, 74, 0.12); font-family: var(--font-body, \"Nunito\", system-ui, sans-serif); } .ds-nav-link { display: flex; align-items: center; gap: 10px; padding: 10px 14px; border-radius: 999px; font-weight: 700; color: #5c7268; cursor: pointer; transition: background 0.2s ease, color 0.2s ease; } .ds-nav-link:hover { background: #f6faf8; color: #123528; } .ds-nav-link-active { background: linear-gradient(135deg, #d3f6e2, #dcefff); color: #0ba374; }"
+    },
+    {
+      "name": "Item da timeline",
+      "kind": "custom",
+      "refersTo": "panel",
+      "description": "Componente-assinatura da Jornada: ponto de 44px com o emoji da memória, ligado por uma linha de 3px em gradiente verde→azul. É a única metáfora de progresso do app.",
+      "html": "<div class=\"ds-timeline\"><div class=\"ds-timeline-rail\"><div class=\"ds-timeline-dot\">📸</div><div class=\"ds-timeline-line\"></div></div><div class=\"ds-timeline-content\"><strong class=\"ds-timeline-title\">primeiro encontro</strong><span class=\"ds-timeline-date\">20 de abril</span></div></div>",
+      "css": ".ds-timeline { display: grid; grid-template-columns: 48px 1fr; gap: 12px; font-family: var(--font-body, \"Nunito\", system-ui, sans-serif); min-height: 96px; } .ds-timeline-rail { display: flex; flex-direction: column; align-items: center; } .ds-timeline-dot { display: grid; place-items: center; width: 44px; height: 44px; border-radius: 50%; font-size: 1.25rem; background: #fff; box-shadow: 0 4px 12px rgba(23, 98, 74, 0.08), 0 0 0 4px #eef6f2; } .ds-timeline-line { flex: 1; width: 3px; margin-top: 4px; border-radius: 999px; background: linear-gradient(to bottom, #38d39f, #4aa6ff); opacity: 0.4; } .ds-timeline-content { display: flex; flex-direction: column; gap: 2px; } .ds-timeline-title { font-family: var(--font-display, \"Baloo 2\", system-ui, sans-serif); font-size: 1.15rem; color: #123528; } .ds-timeline-date { font-size: 0.85rem; color: #5c7268; }"
+    },
+    {
+      "name": "Estado vazio",
+      "kind": "custom",
+      "refersTo": "panel",
+      "description": "Ensina a tela em vez de dizer 'nada aqui'. Borda tracejada, emoji grande e mensagem curta (34ch).",
+      "html": "<div class=\"ds-empty\"><div class=\"ds-empty-emoji\">🫙</div><strong class=\"ds-empty-title\">nenhuma ideia sorteada ainda</strong><p class=\"ds-empty-msg\">chacoalha o pote e veja o que aparece pra fazer no próximo encontro.</p></div>",
+      "css": ".ds-empty { display: flex; flex-direction: column; align-items: center; text-align: center; gap: 12px; padding: 48px 16px; border-radius: 24px; background: #f6faf8; border: 2px dashed rgba(23, 98, 74, 0.14); font-family: var(--font-body, \"Nunito\", system-ui, sans-serif); } .ds-empty-emoji { font-size: 3rem; } .ds-empty-title { font-family: var(--font-display, \"Baloo 2\", system-ui, sans-serif); font-size: 1.15rem; color: #123528; } .ds-empty-msg { margin: 0; max-width: 34ch; line-height: 1.5; color: #5c7268; }"
+    }
+  ],
+  "narrative": {
+    "northStar": "O Mundo de Bolso",
+    "overview": "Um mundo inteiro miniaturizado numa tela de celular. O fundo não é uma cor chapada: são duas manchas de luz — azul no canto superior esquerdo, verde no direito — fixas atrás de tudo, como o céu de um lugar que continua ali quando ninguém está olhando. Sobre esse céu pousam painéis brancos de cantos generosos, leves, com sombra difusa. Nada tem quina, nada é retangular por obrigação: avatares e emojis de cabeçalho usam formas de blob assimétrico, porque coisa viva não é retângulo.\n\nO sistema é lúdico sem ser infantil. A gramática vem de simuladores cozy — Animal Crossing, Stardew Valley, The Sims — traduzida em painéis flutuantes, pills coloridas por categoria, emoji como ícone de primeira classe e movimento com mola. O que ele explicitamente rejeita: dashboard/CRM, app de hábitos, rede social e app infantil. O risco real é o primeiro: tem CRUD de verdade por baixo, e CRUD puxa pra grade de cards iguais toda vez que ninguém está prestando atenção.\n\nDensidade é baixa por escolha. Celular, uma mão, sessões curtas: poucos elementos por tela, alvos grandes, texto curto em português coloquial. Onde um app de produtividade colocaria um número, este coloca uma frase.",
+    "keyCharacteristics": [
+      "Céu de luz fixo atrás de painéis brancos flutuantes",
+      "Cantos muito arredondados (16–34px) e formas de blob para o que é vivo",
+      "Emoji como ícone canônico — não há biblioteca de ícones",
+      "Cor codifica categoria, sempre acompanhada de texto ou emoji",
+      "Movimento com mola, curto, sempre com alternativa em prefers-reduced-motion",
+      "Zero métrica, zero nota, zero streak"
+    ],
+    "rules": [
+      {
+        "name": "A Regra da Tinta Musgo",
+        "body": "--ink-300 é decoração, não texto. Placeholder, dica de campo e qualquer palavra que precise ser lida usam --ink-500 no mínimo. Se um texto em Musgo sumiu no sol do meio-dia, ele nunca deveria estar em Musgo.",
+        "section": "colors"
+      },
+      {
+        "name": "A Regra do Verde Legível",
+        "body": "Branco sobre --c-green-500 dá 2.35:1 e sobre --c-green-400 é pior. Verde saturado é fundo de área grande, forma decorativa ou preenchimento de barra — nunca fundo de texto pequeno em branco. Texto verde sobre claro usa sempre --accent-strong.",
+        "section": "colors"
+      },
+      {
+        "name": "A Regra da Cor Acompanhada",
+        "body": "Nenhum estado, categoria ou humor é comunicado só por cor. Sempre vem com emoji, texto ou forma junto.",
+        "section": "colors"
+      },
+      {
+        "name": "A Regra do Peso, Não do Tamanho",
+        "body": "Hierarquia neste sistema se faz com peso (400 → 700 → 800) e família, não com escalas gigantes. Nenhum texto passa de 2.9rem: é um mundo de bolso, não um outdoor.",
+        "section": "typography"
+      },
+      {
+        "name": "A Regra do Emoji Ícone",
+        "body": "Emoji é o ícone oficial do sistema — em nav, cabeçalho, pill, timeline e estado vazio. Não introduzir biblioteca de ícones SVG. Emoji decorativo leva aria-hidden; emoji que carrega significado leva texto equivalente.",
+        "section": "typography"
+      },
+      {
+        "name": "A Regra da Sombra Verde",
+        "body": "Toda sombra do sistema é verde-escura translúcida (rgba(23,98,74,…)), nunca preta. Sombra preta sobre a Névoa de Jardim suja o céu e datou o app em 2014 na hora.",
+        "section": "elevation"
+      },
+      {
+        "name": "A Regra do Vidro Raro",
+        "body": "backdrop-filter existe em exatamente três lugares: NavBar, fundo de modal e o chip do ChapterBanner. Vidro é o material da navegação e da sobreposição — não é decoração de card.",
+        "section": "elevation"
+      }
+    ],
+    "dos": [
+      "Do manter todo texto legível em --ink-900, --ink-700 ou --ink-500. Nada abaixo de 4.5:1.",
+      "Do usar --accent-strong (#0ba374) para qualquer palavra verde sobre fundo claro.",
+      "Do acompanhar toda cor de estado com emoji ou texto — o app é usado no celular, na rua, por duas pessoas que podem estar com pressa.",
+      "Do dar a cada tela algo que muda sozinho: horário, clima, contagem regressiva, novidade composta. O mundo continua vivo entre as visitas.",
+      "Do escrever em português coloquial, minúsculo onde couber, com nomes e datas reais. Texto que serviria pra outro casal está errado.",
+      "Do cobrir toda animação nova com @media (prefers-reduced-motion: reduce) — o bloco global já existe, mantenha-o valendo.",
+      "Do usar emoji como ícone e aria-hidden quando ele for decorativo.",
+      "Do preferir --surface-2, espaçamento ou divisória de 1px quando precisar separar algo dentro de um painel."
+    ],
+    "donts": [
+      "Don't usar --ink-300 (#90a49b) em placeholder, dica de campo ou qualquer texto: 2.6:1 sobre branco. Hoje .field-hint, .input::placeholder e .eyebrow violam isso.",
+      "Don't pôr texto branco pequeno sobre --c-green-500 ou --c-green-400 (2.35:1 e pior).",
+      "Don't usar border-left/border-right colorida acima de 1px como listra de destaque. GoalCard.css faz isso hoje (border-left: 4px) e deve ser reescrito com borda completa, tinta de fundo ou o próprio emoji da meta.",
+      "Don't repetir a .eyebrow (maiúsculas tracked) acima de toda seção. Ela aparece em cinco cards da Home; isso é andaime, não voz.",
+      "Don't construir grade de cards idênticos com ícone + título + texto. É a rota direta pro dashboard/CRM, a anti-referência número um do projeto.",
+      "Don't introduzir métrica, nota, streak ou porcentagem que possa ser lida como cobrança — nada de app de hábitos.",
+      "Don't adicionar feed, contador de curtidas ou qualquer coisa que sugira plateia: são duas pessoas, não uma rede social.",
+      "Don't aumentar saturação ou arredondar mais 'pra ficar fofo' — a fronteira com app infantil está exatamente aí.",
+      "Don't aninhar painel dentro de painel.",
+      "Don't usar background-clip: text com gradiente, nem sombra preta, nem z-index arbitrário (a escala é: nav 40, modal 80).",
+      "Don't trocar Baloo 2 + Nunito nem introduzir uma terceira família ou uma biblioteca de ícones SVG."
+    ]
+  }
+}
