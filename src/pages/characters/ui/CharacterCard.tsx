@@ -15,7 +15,7 @@ const sections: Array<{
     emoji: "🎨",
     accent: "var(--c-blue-500)",
   },
-  { key: "likes", label: "Gostos", emoji: "💚", accent: "var(--c-green-500)" },
+  { key: "likes", label: "Gosta de", emoji: "💚", accent: "var(--c-green-500)" },
   {
     key: "quirks",
     label: "Curiosidades",
@@ -36,7 +36,7 @@ const sections: Array<{
   },
   {
     key: "energyDrains",
-    label: "O que drena a energia",
+    label: "O que drena energia",
     emoji: "🪫",
     accent: "var(--c-coral-500)",
   },
@@ -45,6 +45,30 @@ const sections: Array<{
     label: "Aspirações pessoais",
     emoji: "✨",
     accent: "var(--c-plum-400)",
+  },
+  {
+    key: "inventory",
+    label: "Inventário",
+    emoji: "🎒",
+    accent: "var(--c-amber-400)",
+  },
+  {
+    key: "soundtrack",
+    label: "Trilha sonora",
+    emoji: "🎵",
+    accent: "var(--c-blue-500)",
+  },
+  {
+    key: "skills",
+    label: "Habilidades",
+    emoji: "🏅",
+    accent: "var(--c-green-600)",
+  },
+  {
+    key: "worldview",
+    label: "Visão de mundo",
+    emoji: "🌍",
+    accent: "var(--c-plum-500)",
   },
 ];
 
@@ -105,6 +129,12 @@ export default function CharacterCard({
       )}
 
       {character.bio && <p className="character-card-bio">{character.bio}</p>}
+
+      {character.characterQuote && (
+        <blockquote className="character-card-quote">
+          <span aria-hidden>“</span>{character.characterQuote}
+        </blockquote>
+      )}
 
       <div className="character-card-sections">
         {sections.map((s) => {

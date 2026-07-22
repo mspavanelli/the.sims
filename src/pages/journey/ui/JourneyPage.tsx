@@ -4,6 +4,7 @@ import { CategoryPill, EmptyState, PageHeader } from "@/shared/ui";
 import MemoryCard from "./MemoryCard";
 import MemoryForm from "./MemoryForm";
 import TimelineItem from "./TimelineItem";
+import "./JourneyPage.css";
 
 const ALL = "__all__";
 
@@ -26,6 +27,15 @@ export default function JourneyPage() {
         .sort((a, b) => (a.date < b.date ? 1 : -1)),
     [state.memories, filter],
   );
+
+  const grouped = useMemo(() => {
+    const groups = new Map<string, Memory[]>();
+    sorted.forEach((memory) => {
+      const chapter = memory.category ?? "Outros momentos";
+      groups.set(chapter, [...(groups.get(chapter) ?? []), memory]);
+    });
+    return Array.from(groups.entries());
+  }, [sorted]);
 
   const openNew = () => {
     setEditing(null);
@@ -87,19 +97,26 @@ export default function JourneyPage() {
           }
         />
       ) : (
-        <div className="timeline">
-          {sorted.map((m, i) => (
-            <TimelineItem
-              key={m.id}
-              emoji={m.emoji ?? "📸"}
-              last={i === sorted.length - 1}
-            >
-              <MemoryCard
-                memory={m}
-                onEdit={() => openEdit(m)}
-                onDelete={() => remove(m.id)}
-              />
-            </TimelineItem>
+        <div className="journey-chapters">
+          {grouped.map(([chapter, memories]) => (
+            <section key={chapter} className="journey-chapter">
+              <h2 className="journey-chapter-title">{chapter}</h2>
+              <div className="timeline">
+                {memories.map((m, i) => (
+                  <TimelineItem
+                    key={m.id}
+                    emoji={m.emoji ?? "📸"}
+                    last={i === memories.length - 1}
+                  >
+                    <MemoryCard
+                      memory={m}
+                      onEdit={() => openEdit(m)}
+                      onDelete={() => remove(m.id)}
+                    />
+                  </TimelineItem>
+                ))}
+              </div>
+            </section>
           ))}
         </div>
       )}

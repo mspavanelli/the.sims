@@ -32,6 +32,16 @@ export type Character = {
   /** O que drena a energia dessa pessoa. */
   energyDrains: string[];
   aspirations: string[];
+  /** Itens simbólicos que acompanham essa pessoa no cotidiano. */
+  inventory?: string[];
+  /** Artistas e bandas que fazem parte da trilha sonora da pessoa. */
+  soundtrack?: string[];
+  /** Frase que resume a lógica interna do personagem. */
+  characterQuote?: string;
+  /** Habilidades que aparecem nas ações desse personagem. */
+  skills?: string[];
+  /** Crenças e lentes através das quais a pessoa interpreta o mundo. */
+  worldview?: string[];
 };
 
 export type MissionCategory =

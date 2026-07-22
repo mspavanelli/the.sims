@@ -38,6 +38,10 @@ function withDefaults(parsed: Partial<AppState>): AppState {
     energySources: c.energySources ?? [],
     energyDrains: c.energyDrains ?? [],
     aspirations: c.aspirations ?? [],
+    inventory: c.inventory ?? [],
+    soundtrack: c.soundtrack ?? [],
+    skills: c.skills ?? [],
+    worldview: c.worldview ?? [],
   }));
   return merged;
 }

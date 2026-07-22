@@ -1,0 +1,18 @@
+.journey-chapters {
+  display: flex;
+  flex-direction: column;
+  gap: var(--s-7);
+}
+
+.journey-chapter {
+  display: flex;
+  flex-direction: column;
+  gap: var(--s-4);
+}
+
+.journey-chapter-title {
+  margin: 0;
+  color: var(--ink-900);
+  font-size: 1.25rem;
+  text-wrap: balance;
+}

@@ -23,6 +23,11 @@ function blank(): Character {
     energySources: [],
     energyDrains: [],
     aspirations: [],
+    inventory: [],
+    soundtrack: [],
+    characterQuote: "",
+    skills: [],
+    worldview: [],
   };
 }
 
@@ -206,7 +211,7 @@ export default function CharacterForm({ open, character, onClose, onSave }: Prop
             accent="var(--c-green-600)"
           />
         </Field>
-        <Field label="O que drena a energia">
+        <Field label="O que drena energia">
           <TagInput
             values={draft.energyDrains}
             onChange={(v) => set("energyDrains", v)}
@@ -218,6 +223,42 @@ export default function CharacterForm({ open, character, onClose, onSave }: Prop
             values={draft.aspirations}
             onChange={(v) => set("aspirations", v)}
             accent="var(--c-plum-400)"
+          />
+        </Field>
+        <Field label="Inventário" hint="Itens favoritos que acompanham essa pessoa">
+          <TagInput
+            values={draft.inventory ?? []}
+            onChange={(v) => set("inventory", v)}
+            accent="var(--c-amber-400)"
+          />
+        </Field>
+        <Field label="Trilha sonora" hint="Artistas e bandas recorrentes">
+          <TagInput
+            values={draft.soundtrack ?? []}
+            onChange={(v) => set("soundtrack", v)}
+            accent="var(--c-blue-500)"
+          />
+        </Field>
+        <Field label="Habilidades" hint="O que essa pessoa faz especialmente bem">
+          <TagInput
+            values={draft.skills ?? []}
+            onChange={(v) => set("skills", v)}
+            accent="var(--c-green-600)"
+          />
+        </Field>
+        <Field label="Visão de mundo" hint="Crenças e ideias que orientam essa pessoa">
+          <TagInput
+            values={draft.worldview ?? []}
+            onChange={(v) => set("worldview", v)}
+            accent="var(--c-plum-500)"
+          />
+        </Field>
+        <Field label="Frase de personagem" hint="Uma frase que parece existir dentro desse jogo">
+          <textarea
+            className="textarea"
+            value={draft.characterQuote ?? ""}
+            onChange={(e) => set("characterQuote", e.target.value || undefined)}
+            placeholder="Existe um padrão escondido aqui…"
           />
         </Field>
       </div>
