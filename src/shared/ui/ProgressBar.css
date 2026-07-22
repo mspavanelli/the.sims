@@ -11,7 +11,12 @@
   background: var(--surface-2);
   overflow: hidden;
 }
+/* Preenche a pista inteira e desliza para dentro: animar `width` fazia o
+   navegador refazer o layout a cada frame. Com translateX é só composição,
+   e o brilho de dentro não estica junto. */
 .progress-fill {
+  position: relative;
+  width: 100%;
   height: 100%;
   border-radius: var(--r-pill);
   background: linear-gradient(
@@ -19,8 +24,7 @@
     color-mix(in srgb, var(--bar) 70%, white),
     var(--bar)
   );
-  transition: width 0.5s var(--ease-bounce);
-  position: relative;
+  transition: transform 0.5s var(--ease-out);
 }
 .progress-fill::after {
   content: "";

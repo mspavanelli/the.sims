@@ -4,7 +4,12 @@
   border-radius: var(--r-xl);
   padding: var(--s-6) var(--s-6);
   color: var(--on-accent);
-  background: linear-gradient(135deg, #17c08a 0%, #2f8bff 62%, #7b6cff 120%);
+  background: linear-gradient(
+    135deg,
+    var(--c-green-600) 0%,
+    var(--c-blue-500) 62%,
+    var(--c-plum-500) 120%
+  );
   box-shadow: var(--sh-lg);
   isolation: isolate;
 }
@@ -34,7 +39,7 @@
   color: #fff;
   font-size: clamp(1.9rem, 5vw, 2.9rem);
   margin: 6px 0 4px;
-  text-shadow: 0 4px 18px rgba(10, 40, 30, 0.25);
+  text-shadow: 0 4px 18px rgba(18, 53, 40, 0.3);
 }
 .chapter-banner-tagline {
   font-weight: 600;

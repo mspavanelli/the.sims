@@ -92,12 +92,16 @@ export function ChoicePills<T extends string>({
   value: T;
   onChange: (v: T) => void;
 }) {
+  // radiogroup em vez de um punhado de botões: o leitor de tela anuncia
+  // "1 de 4, marcado" em vez de só ler os rótulos soltos.
   return (
-    <div className="choice-row">
+    <div className="choice-row" role="radiogroup">
       {options.map((opt) => (
         <button
           key={opt.value}
           type="button"
+          role="radio"
+          aria-checked={opt.value === value}
           className={"choice" + (opt.value === value ? " is-on" : "")}
           style={{ ["--choice-accent" as string]: opt.color ?? "var(--accent)" }}
           onClick={() => onChange(opt.value)}

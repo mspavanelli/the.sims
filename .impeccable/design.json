@@ -16,6 +16,24 @@
         "canonical": "#0ba374",
         "tonalRamp": ["#054833", "#087c58", "#0cb17e", "#0fe5a3", "#36f1b8", "#6bf5ca", "#9ff9dd", "#defdf3"]
       },
+      "verde-fundo": {
+        "role": "primary",
+        "displayName": "Verde Fundo",
+        "canonical": "#0a7d59",
+        "tonalRamp": ["#052e21", "#075139", "#0a7452", "#0d976a", "#18bb85", "#3bd6a3", "#7ee5c4", "#d5f7ec"]
+      },
+      "verde-tinta": {
+        "role": "primary",
+        "displayName": "Verde Tinta",
+        "canonical": "#066647",
+        "tonalRamp": ["#042a1e", "#054a34", "#066647", "#08855c", "#0aa473", "#2ecb96", "#75e2bd", "#d2f6ea"]
+      },
+      "perigo-tinta": {
+        "role": "tertiary",
+        "displayName": "Perigo Tinta",
+        "canonical": "#b31a30",
+        "tonalRamp": ["#3d0910", "#66101c", "#8f1627", "#b31a30", "#d63a4c", "#e5717e", "#f0a5ae", "#ffe3e6"]
+      },
       "verde-broto": {
         "role": "primary",
         "displayName": "Verde Broto",
@@ -158,16 +176,31 @@
         "purpose": "Elevação real: hover de card clicável e ChapterBanner."
       },
       {
+        "name": "sh-border",
+        "value": "1px solid rgba(23, 98, 74, 0.08)",
+        "purpose": "Traço quase invisível que fecha painel e rodapé de modal."
+      },
+      {
+        "name": "focus",
+        "value": "outline: 3px solid #066647; outline-offset: 2px",
+        "purpose": "Foco de teclado global via :focus-visible. Contorno em vez de sombra: acompanha sozinho o raio de cada elemento. 7:1 sobre branco."
+      },
+      {
         "name": "sh-ring",
-        "value": "0 0 0 4px rgba(23, 192, 138, 0.18)",
-        "purpose": "Anel de foco de teclado global via :focus-visible. Nunca remover."
+        "value": "0 0 0 3px #066647",
+        "purpose": "Só onde o foco precisa vir como sombra: checkbox nativo escondido atrás de uma caixa desenhada."
       }
     ],
     "motion": [
       {
         "name": "ease-bounce",
         "value": "cubic-bezier(0.34, 1.56, 0.64, 1)",
-        "purpose": "Mola curta padrão do sistema: hover de card, pills, :active de botão, pop-in de modal."
+        "purpose": "A voz do app: passa do ponto e volta. Reservada para o que 'chega' — modal, avatar, card que sobe, clique de botão."
+      },
+      {
+        "name": "ease-out",
+        "value": "cubic-bezier(0.22, 1, 0.36, 1)",
+        "purpose": "Curva funcional: mudança de estado que não deve chamar atenção — borda de campo, cor de link, hover de pill."
       },
       {
         "name": "fade-up",
@@ -208,7 +241,7 @@
       "refersTo": "button-primary",
       "description": "Ação principal da tela. Pill total, peso 800, afunda ao clicar.",
       "html": "<button class=\"ds-btn-primary\">✨ Nova memória</button>",
-      "css": ".ds-btn-primary { display: inline-flex; align-items: center; gap: 8px; padding: 12px 20px; border: none; border-radius: 999px; font-family: var(--font-body, \"Nunito\", system-ui, sans-serif); font-weight: 800; font-size: 0.95rem; color: #fff; background: linear-gradient(135deg, #38d39f, #2f8bff); box-shadow: 0 10px 22px rgba(47, 139, 255, 0.28); cursor: pointer; transition: transform 0.16s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.2s ease; } .ds-btn-primary:hover { transform: translateY(-2px); box-shadow: 0 14px 28px rgba(47, 139, 255, 0.34); } .ds-btn-primary:focus-visible { outline: none; box-shadow: 0 0 0 4px rgba(23, 192, 138, 0.18); } .ds-btn-primary:active { transform: scale(0.96); }"
+      "css": ".ds-btn-primary { display: inline-flex; align-items: center; justify-content: center; gap: 8px; min-height: 44px; padding: 12px 20px; border: none; border-radius: 999px; font-family: var(--font-body, \"Nunito\", system-ui, sans-serif); font-weight: 800; font-size: 0.95rem; color: #fff; background: linear-gradient(135deg, #0a7d59, #1f6fe0); box-shadow: 0 10px 22px rgba(31, 111, 224, 0.3); cursor: pointer; transition: transform 0.16s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.2s cubic-bezier(0.22, 1, 0.36, 1); } .ds-btn-primary:hover { transform: translateY(-2px); background: linear-gradient(135deg, #066647, #1f6fe0); box-shadow: 0 14px 28px rgba(31, 111, 224, 0.36); } .ds-btn-primary:focus-visible { outline: 3px solid #066647; outline-offset: 2px; } .ds-btn-primary:active { transform: scale(0.96); }"
     },
     {
       "name": "Botão suave",
@@ -216,7 +249,7 @@
       "refersTo": "button-soft",
       "description": "Ação terciária dentro de um painel. Menta Lavada com texto Verde Profundo.",
       "html": "<button class=\"ds-btn-soft\">concluir</button>",
-      "css": ".ds-btn-soft { display: inline-flex; align-items: center; gap: 8px; padding: 12px 20px; border: none; border-radius: 999px; font-family: var(--font-body, \"Nunito\", system-ui, sans-serif); font-weight: 800; font-size: 0.95rem; color: #0ba374; background: #d3f6e2; cursor: pointer; transition: background 0.2s ease, transform 0.16s cubic-bezier(0.34, 1.56, 0.64, 1); } .ds-btn-soft:hover { background: #a7ecc7; } .ds-btn-soft:focus-visible { outline: none; box-shadow: 0 0 0 4px rgba(23, 192, 138, 0.18); } .ds-btn-soft:active { transform: scale(0.96); }"
+      "css": ".ds-btn-soft { display: inline-flex; align-items: center; justify-content: center; gap: 8px; min-height: 44px; padding: 12px 20px; border: none; border-radius: 999px; font-family: var(--font-body, \"Nunito\", system-ui, sans-serif); font-weight: 800; font-size: 0.95rem; color: #066647; background: #d3f6e2; cursor: pointer; transition: background 0.2s cubic-bezier(0.22, 1, 0.36, 1), transform 0.16s cubic-bezier(0.34, 1.56, 0.64, 1); } .ds-btn-soft:hover { background: #a7ecc7; } .ds-btn-soft:focus-visible { outline: 3px solid #066647; outline-offset: 2px; } .ds-btn-soft:active { transform: scale(0.96); }"
     },
     {
       "name": "Campo de texto",
@@ -224,15 +257,15 @@
       "refersTo": "input",
       "description": "O campo é um recuo na superfície, não uma caixa contornada. No foco ele sobe pro branco e a borda ganha verde.",
       "html": "<label class=\"ds-field\"><span class=\"ds-field-label\">Título da memória</span><input class=\"ds-input\" placeholder=\"O que aconteceu?\" /><span class=\"ds-field-hint\">Uma frase basta.</span></label>",
-      "css": ".ds-field { display: flex; flex-direction: column; gap: 6px; font-family: var(--font-body, \"Nunito\", system-ui, sans-serif); } .ds-field-label { font-weight: 800; font-size: 0.85rem; color: #2b4a3e; } .ds-field-hint { font-size: 0.78rem; color: #5c7268; } .ds-input { width: 100%; padding: 11px 14px; border-radius: 16px; border: 2px solid transparent; background: #f6faf8; color: #123528; font-family: inherit; font-size: 1rem; transition: border-color 0.16s ease, background 0.16s ease; } .ds-input::placeholder { color: #5c7268; } .ds-input:focus { outline: none; border-color: #17c08a; background: #fff; }"
+      "css": ".ds-field { display: flex; flex-direction: column; gap: 6px; font-family: var(--font-body, \"Nunito\", system-ui, sans-serif); } .ds-field-label { font-weight: 800; font-size: 0.85rem; color: #2b4a3e; } .ds-field-hint { font-size: 0.78rem; color: #5c7268; } .ds-input { width: 100%; min-height: 44px; padding: 11px 14px; border-radius: 16px; border: 2px solid transparent; background: #f6faf8; color: #123528; font-family: inherit; font-size: 1rem; transition: border-color 0.16s cubic-bezier(0.22, 1, 0.36, 1), background 0.16s cubic-bezier(0.22, 1, 0.36, 1); } .ds-input::placeholder { color: #5c7268; } .ds-input:focus { border-color: #066647; background: #fff; } .ds-input:focus-visible { outline: 3px solid #066647; outline-offset: 2px; }"
     },
     {
       "name": "Pill de categoria",
       "kind": "chip",
       "refersTo": "chip",
-      "description": "Cor por categoria misturada com branco no repouso; saturada e com sombra colorida quando ativa.",
-      "html": "<div style=\"display:flex;gap:8px\"><button class=\"ds-pill\">🍿 cinema</button><button class=\"ds-pill ds-pill-active\">🌊 viagem</button></div>",
-      "css": ".ds-pill { --cp: #2f8bff; display: inline-flex; align-items: center; gap: 6px; padding: 7px 14px; border-radius: 999px; border: 2px solid transparent; font-family: var(--font-body, \"Nunito\", system-ui, sans-serif); font-size: 0.82rem; font-weight: 800; color: color-mix(in srgb, var(--cp) 60%, #123528); background: color-mix(in srgb, var(--cp) 15%, white); cursor: pointer; transition: transform 0.16s cubic-bezier(0.34, 1.56, 0.64, 1); } .ds-pill:hover { transform: translateY(-2px); } .ds-pill-active { --cp: #7b6cff; color: #fff; background: var(--cp); box-shadow: 0 8px 18px color-mix(in srgb, var(--cp) 40%, transparent); }"
+      "description": "Cor por categoria misturada com branco. Ativa não inverte para branco: engrossa a tinta, ganha contorno na cor cheia e sombra colorida.",
+      "html": "<div style=\"display:flex;gap:8px\"><button class=\"ds-pill\">🍿 cinema</button><button class=\"ds-pill ds-pill-active\" aria-pressed=\"true\">🌊 viagem</button></div>",
+      "css": ".ds-pill { --cp: #2f8bff; display: inline-flex; align-items: center; gap: 6px; min-height: 36px; padding: 7px 14px; border-radius: 999px; border: 2px solid transparent; font-family: var(--font-body, \"Nunito\", system-ui, sans-serif); font-size: 0.82rem; font-weight: 800; color: color-mix(in srgb, var(--cp) 35%, #123528); background: color-mix(in srgb, var(--cp) 15%, white); cursor: pointer; transition: transform 0.16s cubic-bezier(0.34, 1.56, 0.64, 1), background 0.16s cubic-bezier(0.22, 1, 0.36, 1); } .ds-pill:hover { transform: translateY(-2px); } .ds-pill:focus-visible { outline: 3px solid #066647; outline-offset: 2px; } .ds-pill-active { --cp: #7b6cff; background: color-mix(in srgb, var(--cp) 26%, white); border-color: var(--cp); box-shadow: 0 8px 18px color-mix(in srgb, var(--cp) 30%, transparent); }"
     },
     {
       "name": "Painel",
@@ -248,7 +281,7 @@
       "refersTo": "nav-link-active",
       "description": "Barra inferior no celular, trilho lateral no desktop — sempre em vidro fosco. Ativo ganha gradiente menta→céu.",
       "html": "<nav class=\"ds-nav\"><a class=\"ds-nav-link ds-nav-link-active\"><span aria-hidden=\"true\">🏡</span> Início</a><a class=\"ds-nav-link\"><span aria-hidden=\"true\">🧭</span> Jornada</a></nav>",
-      "css": ".ds-nav { display: flex; gap: 6px; padding: 10px; border-radius: 34px; background: rgba(255, 255, 255, 0.72); backdrop-filter: blur(14px); border: 1px solid rgba(255, 255, 255, 0.6); box-shadow: 0 12px 30px rgba(23, 98, 74, 0.12); font-family: var(--font-body, \"Nunito\", system-ui, sans-serif); } .ds-nav-link { display: flex; align-items: center; gap: 10px; padding: 10px 14px; border-radius: 999px; font-weight: 700; color: #5c7268; cursor: pointer; transition: background 0.2s ease, color 0.2s ease; } .ds-nav-link:hover { background: #f6faf8; color: #123528; } .ds-nav-link-active { background: linear-gradient(135deg, #d3f6e2, #dcefff); color: #0ba374; }"
+      "css": ".ds-nav { display: flex; gap: 6px; padding: 10px; border-radius: 34px; background: rgba(255, 255, 255, 0.72); backdrop-filter: blur(14px); border: 1px solid rgba(255, 255, 255, 0.6); box-shadow: 0 12px 30px rgba(23, 98, 74, 0.12); font-family: var(--font-body, \"Nunito\", system-ui, sans-serif); } .ds-nav-link { display: flex; align-items: center; gap: 10px; padding: 10px 14px; border-radius: 999px; font-weight: 700; color: #5c7268; cursor: pointer; transition: background 0.2s cubic-bezier(0.22, 1, 0.36, 1), color 0.2s cubic-bezier(0.22, 1, 0.36, 1); } .ds-nav-link:hover { background: #f6faf8; color: #123528; } .ds-nav-link:focus-visible { outline: 3px solid #066647; outline-offset: 2px; } .ds-nav-link-active { background: linear-gradient(135deg, #d3f6e2, #dcefff); color: #066647; }"
     },
     {
       "name": "Item da timeline",
@@ -285,13 +318,18 @@
         "section": "colors"
       },
       {
-        "name": "A Regra do Verde Legível",
-        "body": "Branco sobre --c-green-500 dá 2.35:1 e sobre --c-green-400 é pior. Verde saturado é fundo de área grande, forma decorativa ou preenchimento de barra — nunca fundo de texto pequeno em branco. Texto verde sobre claro usa sempre --accent-strong.",
+        "name": "A Regra dos Quatro Verdes",
+        "body": "O degrau do verde é escolhido pelo trabalho, não pela beleza: 500 e 400 são forma, 700 é fundo com texto branco em cima, 800 é texto. Branco sobre --c-green-500 dá 2.35:1 — se você está pintando texto branco sobre verde, subiu na rampa errada.",
+        "section": "colors"
+      },
+      {
+        "name": "A Regra da Pill Não Invertida",
+        "body": "Estado ativo em pill colorida nunca vira branco sobre a cor saturada: no âmbar isso dá 1.6:1. Ativo é a mesma tinta escura, fundo mais forte, contorno na própria cor e sombra colorida.",
         "section": "colors"
       },
       {
         "name": "A Regra da Cor Acompanhada",
-        "body": "Nenhum estado, categoria ou humor é comunicado só por cor. Sempre vem com emoji, texto ou forma junto.",
+        "body": "Nenhum estado, categoria ou humor é comunicado só por cor. Sempre vem com emoji, texto ou forma junto — e, quando é controle, com aria-pressed, aria-checked ou role=\"radio\".",
         "section": "colors"
       },
       {
@@ -317,7 +355,9 @@
     ],
     "dos": [
       "Do manter todo texto legível em --ink-900, --ink-700 ou --ink-500. Nada abaixo de 4.5:1.",
-      "Do usar --accent-strong (#0ba374) para qualquer palavra verde sobre fundo claro.",
+      "Do usar --accent-ink (#066647) para qualquer palavra verde sobre fundo claro ou tinta de menta.",
+      "Do dar min-height: var(--tap) a botão e campo, e expandir a área de toque de alvo pequeno com um ::after de inset negativo — cresce o dedo, não o layout.",
+      "Do usar --ease-out para mudança de estado funcional e guardar --ease-bounce para o que 'chega' (modal, avatar, card que sobe, clique).",
       "Do acompanhar toda cor de estado com emoji ou texto — o app é usado no celular, na rua, por duas pessoas que podem estar com pressa.",
       "Do dar a cada tela algo que muda sozinho: horário, clima, contagem regressiva, novidade composta. O mundo continua vivo entre as visitas.",
       "Do escrever em português coloquial, minúsculo onde couber, com nomes e datas reais. Texto que serviria pra outro casal está errado.",
@@ -326,8 +366,10 @@
       "Do preferir --surface-2, espaçamento ou divisória de 1px quando precisar separar algo dentro de um painel."
     ],
     "donts": [
-      "Don't usar --ink-300 (#90a49b) em placeholder, dica de campo ou qualquer texto: 2.6:1 sobre branco. Hoje .field-hint, .input::placeholder e .eyebrow violam isso.",
+      "Don't usar --ink-300 (#90a49b) em placeholder, dica de campo ou qualquer texto: 2.6:1 sobre branco.",
       "Don't pôr texto branco pequeno sobre --c-green-500 ou --c-green-400 (2.35:1 e pior).",
+      "Don't inverter pill ativa para branco sobre a cor saturada.",
+      "Don't animar width, height, padding ou margin. A barra de progresso desliza com translateX dentro de uma pista com overflow: hidden.",
       "Don't usar border-left/border-right colorida acima de 1px como listra de destaque. GoalCard.css faz isso hoje (border-left: 4px) e deve ser reescrito com borda completa, tinta de fundo ou o próprio emoji da meta.",
       "Don't repetir a .eyebrow (maiúsculas tracked) acima de toda seção. Ela aparece em cinco cards da Home; isso é andaime, não voz.",
       "Don't construir grade de cards idênticos com ícone + título + texto. É a rota direta pro dashboard/CRM, a anti-referência número um do projeto.",

@@ -6,6 +6,10 @@
   --c-green-400: #38d39f;
   --c-green-500: #17c08a;
   --c-green-600: #0ba374;
+  /* Verdes escuros o bastante para carregar texto: 700 é fundo de área
+     (branco em cima = 5.1:1), 800 é texto sobre tinta clara (6:1 na menta). */
+  --c-green-700: #0a7d59;
+  --c-green-800: #066647;
 
   --c-sky-100: #dcefff;
   --c-sky-300: #8fd0ff;
@@ -28,7 +32,8 @@
   --surface-2: #f6faf8;
   --surface-glass: rgba(255, 255, 255, 0.72);
 
-  /* Text */
+  /* Text — ink-500 é o piso legível (5.2:1 no branco, 4.7:1 no fundo).
+     ink-300 é traço decorativo (2.6:1): nunca use em texto. */
   --ink-900: #123528;
   --ink-700: #2b4a3e;
   --ink-500: #5c7268;
@@ -38,9 +43,16 @@
   /* Accents (semantic) */
   --accent: var(--c-green-500);
   --accent-strong: var(--c-green-600);
+  /* Verde que pode ser texto pequeno sobre superfície clara ou tinta de menta. */
+  --accent-ink: var(--c-green-800);
   --accent-2: var(--c-blue-500);
   --accent-3: var(--c-plum-500);
   --accent-warm: var(--c-coral-500);
+
+  /* Perigo — remover algo aqui não é erro grave, então é tinta sobre tinta. */
+  --danger-tint: #ffe3e6;
+  --danger-tint-hover: #ffd0d6;
+  --danger-ink: #b31a30;
 
   /* Radii — organic, rounded */
   --r-sm: 10px;
@@ -50,11 +62,20 @@
   --r-pill: 999px;
   --r-blob: 42% 58% 55% 45% / 52% 44% 56% 48%;
 
-  /* Shadows — soft, floating */
+  /* Shadows — soft, floating. Sempre verde translúcida, nunca preta. */
   --sh-sm: 0 4px 12px rgba(23, 98, 74, 0.08);
   --sh-md: 0 12px 30px rgba(23, 98, 74, 0.12);
   --sh-lg: 0 24px 60px rgba(23, 98, 74, 0.18);
-  --sh-ring: 0 0 0 4px rgba(23, 192, 138, 0.18);
+  --sh-border: 1px solid rgba(23, 98, 74, 0.08);
+
+  /* Foco de teclado — contorno sólido com folga, em vez de halo translúcido.
+     O verde 800 dá 5.3:1 sobre branco; a folga separa do que estiver embaixo. */
+  --focus-w: 3px;
+  --focus-offset: 2px;
+  --focus-color: var(--c-green-800);
+  /* Para os poucos casos em que o foco precisa vir como sombra (checkbox
+     nativo escondido atrás de uma caixa desenhada). */
+  --sh-ring: 0 0 0 var(--focus-w) var(--focus-color);
 
   /* Spacing scale */
   --s-1: 4px;
@@ -72,5 +93,20 @@
 
   --nav-h: 74px;
   --shell-max: 1080px;
+
+  /* Motion — duas curvas, dois papéis.
+     bounce é a voz do app: passa do ponto e volta. Fica reservada para os
+     momentos em que algo "chega" (modal, avatar, card que sobe, clique).
+     out é a curva funcional: mudança de estado que não deve chamar atenção
+     (borda de campo, cor de link, hover de pill). */
   --ease-bounce: cubic-bezier(0.34, 1.56, 0.64, 1);
+  --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+
+  /* Alvos de toque — o app é usado no celular, com uma mão. */
+  --tap: 44px;
+  --tap-sm: 40px;
+
+  /* Camadas */
+  --z-nav: 40;
+  --z-overlay: 80;
 }

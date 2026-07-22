@@ -37,9 +37,11 @@ export default function StepsEditor({
             <li key={s.id}>
               <button
                 type="button"
+                role="checkbox"
+                aria-checked={s.completed}
                 className={"steps-editor-check" + (s.completed ? " is-on" : "")}
                 onClick={() => toggle(s.id)}
-                aria-label={s.completed ? "Desmarcar" : "Marcar"}
+                aria-label={s.title}
               >
                 ✓
               </button>
@@ -50,7 +52,7 @@ export default function StepsEditor({
                 type="button"
                 className="steps-editor-remove"
                 onClick={() => remove(s.id)}
-                aria-label="Remover passo"
+                aria-label={`Remover ${s.title}`}
               >
                 ✕
               </button>

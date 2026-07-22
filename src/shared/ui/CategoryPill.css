@@ -2,19 +2,25 @@
   display: inline-flex;
   align-items: center;
   gap: 6px;
+  min-height: 36px;
   padding: 7px 14px;
   border-radius: var(--r-pill);
   font-size: 0.82rem;
   font-weight: 800;
-  color: color-mix(in srgb, var(--cp) 60%, var(--ink-900));
+  /* Tinta puxada bem para o escuro: a mistura antiga (60% da cor) descia a
+     3.9:1 no verde e a 3.2:1 no âmbar. */
+  color: color-mix(in srgb, var(--cp) 35%, var(--ink-900));
   background: color-mix(in srgb, var(--cp) 15%, white);
   border: 2px solid transparent;
-  transition: all 0.16s var(--ease-bounce);
+  transition: transform 0.16s var(--ease-bounce),
+    background 0.16s var(--ease-out), border-color 0.16s var(--ease-out);
 }
 button.category-pill { cursor: pointer; }
 button.category-pill:hover { transform: translateY(-2px); }
+/* Ativa = a mesma tinta, mais forte, contornada e com sombra da própria cor.
+   Inverter para branco sobre a cor saturada dava 1.6:1 no âmbar. */
 .category-pill.is-active {
-  color: white;
-  background: var(--cp);
-  box-shadow: 0 8px 18px color-mix(in srgb, var(--cp) 40%, transparent);
+  background: color-mix(in srgb, var(--cp) 26%, white);
+  border-color: var(--cp);
+  box-shadow: 0 8px 18px color-mix(in srgb, var(--cp) 30%, transparent);
 }

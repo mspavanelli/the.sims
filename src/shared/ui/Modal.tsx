@@ -1,4 +1,4 @@
-import { useEffect, type ReactNode } from "react";
+import { useEffect, useRef, type ReactNode } from "react";
 import { createPortal } from "react-dom";
 import "./Modal.css";
 
@@ -19,16 +19,49 @@ export default function Modal({
   children,
   footer,
 }: ModalProps) {
+  const dialogRef = useRef<HTMLDivElement>(null);
+
   useEffect(() => {
     if (!open) return;
+
+    // Quem abriu o modal recebe o foco de volta quando ele fecha.
+    const opener = document.activeElement as HTMLElement | null;
+
+    const focusables = () =>
+      Array.from(
+        dialogRef.current?.querySelectorAll<HTMLElement>(
+          'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])',
+        ) ?? [],
+      ).filter((el) => !el.hasAttribute("disabled"));
+
+    // O primeiro campo é mais útil que o × de fechar; se não houver campo,
+    // o próprio diálogo recebe o foco.
+    const first = focusables().find(
+      (el) => !el.classList.contains("btn-icon"),
+    );
+    (first ?? dialogRef.current)?.focus();
+
     const onKey = (e: KeyboardEvent) => {
-      if (e.key === "Escape") onClose();
+      if (e.key === "Escape") {
+        onClose();
+        return;
+      }
+      if (e.key !== "Tab") return;
+      const items = focusables();
+      if (items.length === 0) return;
+      const edge = e.shiftKey ? items[0] : items[items.length - 1];
+      if (document.activeElement === edge) {
+        e.preventDefault();
+        (e.shiftKey ? items[items.length - 1] : items[0]).focus();
+      }
     };
+
     document.addEventListener("keydown", onKey);
     document.body.style.overflow = "hidden";
     return () => {
       document.removeEventListener("keydown", onKey);
       document.body.style.overflow = "";
+      opener?.focus?.();
     };
   }, [open, onClose]);
 
@@ -39,10 +72,12 @@ export default function Modal({
   return createPortal(
     <div className="modal-overlay" onMouseDown={onClose}>
       <div
+        ref={dialogRef}
         className="modal panel"
         role="dialog"
         aria-modal="true"
         aria-label={title}
+        tabIndex={-1}
         onMouseDown={(e) => e.stopPropagation()}
       >
         <header className="modal-head">

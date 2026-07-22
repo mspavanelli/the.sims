@@ -1,4 +1,5 @@
-@import url("https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600;700;800&family=Nunito:ital,wght@0,400;0,600;0,700;0,800;1,600&display=swap");
+/* As fontes são carregadas no <head> do index.html com preconnect: um @import
+   aqui só seria descoberto depois do CSS baixar e parsear. */
 
 *,
 *::before,
@@ -16,13 +17,23 @@ body {
   margin: 0;
   font-family: var(--font-body);
   color: var(--ink-900);
-  background:
-    radial-gradient(1200px 600px at 12% -8%, var(--bg-tint-a), transparent 60%),
-    radial-gradient(1000px 560px at 100% 0%, var(--bg-tint-b), transparent 55%),
-    var(--bg);
-  background-attachment: fixed;
+  background: var(--bg);
   -webkit-font-smoothing: antialiased;
   overflow-x: hidden;
+}
+
+/* O céu do mundo: duas manchas de luz que ficam paradas enquanto o conteúdo
+   rola. Como camada fixa própria em vez de `background-attachment: fixed` no
+   body — aquilo força repaint do fundo a cada frame de scroll no celular. */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background:
+    radial-gradient(1200px 600px at 12% -8%, var(--bg-tint-a), transparent 60%),
+    radial-gradient(1000px 560px at 100% 0%, var(--bg-tint-b), transparent 55%);
 }
 
 h1, h2, h3, h4 {
@@ -31,9 +42,10 @@ h1, h2, h3, h4 {
   line-height: 1.12;
   margin: 0;
   color: var(--ink-900);
+  text-wrap: balance;
 }
 
-p { margin: 0; line-height: 1.5; }
+p { margin: 0; line-height: 1.5; text-wrap: pretty; }
 
 button {
   font-family: inherit;
@@ -53,10 +65,11 @@ a { color: inherit; text-decoration: none; }
 
 ul { margin: 0; padding: 0; list-style: none; }
 
+/* Contorno sólido com folga: acompanha o raio de cada elemento sozinho e
+   continua visível sobre pill, painel branco ou botão colorido. */
 :focus-visible {
-  outline: none;
-  box-shadow: var(--sh-ring);
-  border-radius: var(--r-sm);
+  outline: var(--focus-w) solid var(--focus-color);
+  outline-offset: var(--focus-offset);
 }
 
 /* ---------- Layout helpers ---------- */
@@ -77,7 +90,7 @@ ul { margin: 0; padding: 0; list-style: none; }
   background: var(--surface);
   border-radius: var(--r-lg);
   box-shadow: var(--sh-md);
-  border: 1px solid rgba(23, 98, 74, 0.06);
+  border: var(--sh-border);
 }
 
 .card-hover {
@@ -94,11 +107,12 @@ ul { margin: 0; padding: 0; list-style: none; }
   align-items: center;
   justify-content: center;
   gap: var(--s-2);
+  min-height: var(--tap);
   padding: 12px 20px;
   border-radius: var(--r-pill);
   font-weight: 800;
   font-size: 0.95rem;
-  transition: transform 0.16s var(--ease-bounce), box-shadow 0.2s ease, background 0.2s ease;
+  transition: transform 0.16s var(--ease-bounce), box-shadow 0.2s var(--ease-out), background 0.2s var(--ease-out);
   white-space: nowrap;
 }
 .btn:active { transform: scale(0.96); }
@@ -109,12 +123,18 @@ ul { margin: 0; padding: 0; list-style: none; }
   box-shadow: none;
 }
 .btn:disabled:hover { transform: none; box-shadow: none; }
+/* Verde 700 → azul 600: mesmo gradiente da marca, fundo escuro o bastante
+   para o texto branco passar de 4.5:1 em qualquer ponto da rampa. */
 .btn-primary {
-  background: linear-gradient(135deg, var(--c-green-400), var(--c-blue-500));
+  background: linear-gradient(135deg, var(--c-green-700), var(--c-blue-600));
   color: var(--on-accent);
-  box-shadow: 0 10px 22px rgba(47, 139, 255, 0.28);
+  box-shadow: 0 10px 22px rgba(31, 111, 224, 0.3);
 }
-.btn-primary:hover { transform: translateY(-2px); box-shadow: 0 14px 28px rgba(47, 139, 255, 0.34); }
+.btn-primary:hover {
+  transform: translateY(-2px);
+  background: linear-gradient(135deg, var(--c-green-800), var(--c-blue-600));
+  box-shadow: 0 14px 28px rgba(31, 111, 224, 0.36);
+}
 .btn-ghost {
   background: var(--surface);
   color: var(--ink-700);
@@ -123,17 +143,17 @@ ul { margin: 0; padding: 0; list-style: none; }
 .btn-ghost:hover { background: var(--surface-2); }
 .btn-soft {
   background: var(--c-mint-100);
-  color: var(--accent-strong);
+  color: var(--accent-ink);
 }
 .btn-soft:hover { background: var(--c-mint-200); }
-.btn-danger { background: #ffe3e6; color: #d63a4c; }
-.btn-danger:hover { background: #ffd0d6; }
-.btn-sm { padding: 8px 14px; font-size: 0.85rem; }
+.btn-danger { background: var(--danger-tint); color: var(--danger-ink); }
+.btn-danger:hover { background: var(--danger-tint-hover); }
+.btn-sm { min-height: var(--tap-sm); padding: 8px 14px; font-size: 0.85rem; }
 .btn-icon {
-  width: 40px; height: 40px; padding: 0; border-radius: var(--r-pill);
+  width: var(--tap); height: var(--tap); padding: 0; border-radius: var(--r-pill);
   background: var(--surface-2); color: var(--ink-700); box-shadow: var(--sh-sm);
 }
-.btn-icon:hover { background: var(--c-mint-100); color: var(--accent-strong); }
+.btn-icon:hover { background: var(--c-mint-100); color: var(--accent-ink); }
 
 /* ---------- Chips / tags ---------- */
 .chip {
@@ -156,12 +176,13 @@ ul { margin: 0; padding: 0; list-style: none; }
   align-items: center;
   gap: var(--s-2);
 }
+/* Uma por tela, no máximo. Repetida acima de cada seção vira andaime. */
 .eyebrow {
   text-transform: uppercase;
   letter-spacing: 0.14em;
   font-size: 0.72rem;
   font-weight: 800;
-  color: var(--ink-300);
+  color: var(--ink-500);
 }
 .muted { color: var(--ink-500); }
 

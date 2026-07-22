@@ -6,7 +6,9 @@
   border-radius: var(--r-pill);
   font-size: 0.82rem;
   font-weight: 700;
-  color: color-mix(in srgb, var(--tb) 62%, var(--ink-900));
+  /* Mesma escada da CategoryPill: 35% da cor na tinta garante 5.5:1+ em
+     qualquer matiz da paleta. */
+  color: color-mix(in srgb, var(--tb) 35%, var(--ink-900));
   background: color-mix(in srgb, var(--tb) 14%, white);
   transition: transform 0.16s var(--ease-bounce);
 }

@@ -10,31 +10,32 @@
 }
 .field-hint {
   font-size: 0.78rem;
-  color: var(--ink-300);
+  color: var(--ink-500);
 }
 
 .input,
 .select,
 .textarea {
   width: 100%;
+  min-height: var(--tap);
   padding: 11px 14px;
   border-radius: var(--r-md);
   border: 2px solid transparent;
   background: var(--surface-2);
   color: var(--ink-900);
-  transition: border-color 0.16s ease, background 0.16s ease;
+  transition: border-color 0.16s var(--ease-out), background 0.16s var(--ease-out);
 }
 .input::placeholder,
 .textarea::placeholder {
-  color: var(--ink-300);
+  color: var(--ink-500);
 }
+/* O campo "sobe" para a superfície branca ao receber foco. A borda usa o
+   verde escuro (3.1:1 sobre o recuo) e o contorno global cuida do teclado. */
 .input:focus,
 .select:focus,
 .textarea:focus {
-  outline: none;
-  border-color: var(--accent);
+  border-color: var(--accent-ink);
   background: var(--surface);
-  box-shadow: none;
 }
 .textarea {
   resize: vertical;
@@ -86,16 +87,28 @@
   background: color-mix(in srgb, var(--tag-accent) 16%, white);
 }
 .tag-input-chip button {
+  position: relative;
   display: grid;
   place-items: center;
-  width: 18px;
-  height: 18px;
+  width: 22px;
+  height: 22px;
   border-radius: 50%;
-  font-size: 0.7rem;
+  font-size: 0.72rem;
   color: var(--ink-500);
   background: rgba(255, 255, 255, 0.7);
+  transition: color 0.16s var(--ease-out), background 0.16s var(--ease-out);
 }
-.tag-input-chip button:hover { color: var(--c-coral-500); }
+/* O × continua pequeno, mas o dedo acerta 44px: a área de toque cresce por
+   fora sem empurrar o layout do chip. */
+.tag-input-chip button::after {
+  content: "";
+  position: absolute;
+  inset: calc((var(--tap) - 22px) / -2);
+}
+.tag-input-chip button:hover {
+  color: var(--danger-ink);
+  background: var(--surface);
+}
 .tag-input-row {
   display: flex;
   gap: var(--s-2);
@@ -111,6 +124,7 @@
   display: inline-flex;
   align-items: center;
   gap: 6px;
+  min-height: var(--tap-sm);
   padding: 8px 14px;
   border-radius: var(--r-pill);
   font-weight: 700;
@@ -118,11 +132,12 @@
   color: var(--ink-500);
   background: var(--surface-2);
   border: 2px solid transparent;
-  transition: all 0.16s ease;
+  transition: color 0.16s var(--ease-out), background 0.16s var(--ease-out),
+    border-color 0.16s var(--ease-out);
 }
-.choice:hover { color: var(--ink-900); }
+.choice:hover { color: var(--ink-900); background: var(--c-mint-50); }
 .choice.is-on {
   color: var(--ink-900);
   background: color-mix(in srgb, var(--choice-accent, var(--accent)) 16%, white);
-  border-color: color-mix(in srgb, var(--choice-accent, var(--accent)) 45%, white);
+  border-color: color-mix(in srgb, var(--choice-accent, var(--accent)) 70%, white);
 }

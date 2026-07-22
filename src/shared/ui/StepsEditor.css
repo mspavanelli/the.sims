@@ -18,24 +18,40 @@
 }
 .steps-editor-list li span { flex: 1; font-size: 0.92rem; }
 .steps-editor-check {
+  position: relative;
   display: grid;
   place-items: center;
   width: 22px;
   height: 22px;
-  border-radius: 7px;
+  border-radius: var(--r-sm);
   font-size: 0.72rem;
   color: transparent;
   background: var(--surface);
   border: 2px solid var(--c-mint-200);
-  transition: all 0.16s var(--ease-bounce);
+  transition: background 0.16s var(--ease-out), border-color 0.16s var(--ease-out),
+    transform 0.16s var(--ease-bounce);
   flex-shrink: 0;
 }
 .steps-editor-check.is-on {
-  background: var(--c-green-500);
-  border-color: var(--c-green-500);
+  background: var(--c-green-700);
+  border-color: var(--c-green-700);
   color: white;
 }
-.steps-editor-done { text-decoration: line-through; color: var(--ink-300); }
-.steps-editor-remove { color: var(--ink-300); font-size: 0.85rem; }
-.steps-editor-remove:hover { color: var(--c-coral-500); }
+.steps-editor-check:active { transform: scale(0.9); }
+.steps-editor-done { text-decoration: line-through; color: var(--ink-500); }
+.steps-editor-remove {
+  position: relative;
+  color: var(--ink-500);
+  font-size: 0.85rem;
+  transition: color 0.16s var(--ease-out);
+}
+.steps-editor-remove:hover { color: var(--danger-ink); }
+/* Marcar e remover são os dois alvos mais apertados do app: 22px e ~14px de
+   glifo. A área clicável cresce por fora, sem inchar a linha do passo. */
+.steps-editor-check::after,
+.steps-editor-remove::after {
+  content: "";
+  position: absolute;
+  inset: -11px;
+}
 .steps-editor-row { display: flex; gap: var(--s-2); }

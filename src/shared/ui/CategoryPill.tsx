@@ -18,7 +18,13 @@ export default function CategoryPill({
 
   if (onClick) {
     return (
-      <button type="button" className={className} style={style} onClick={onClick}>
+      <button
+        type="button"
+        className={className}
+        style={style}
+        aria-pressed={active}
+        onClick={onClick}
+      >
         {emoji && <span aria-hidden>{emoji}</span>}
         {label}
       </button>

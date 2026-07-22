@@ -1,7 +1,7 @@
 /* ===== Desktop: floating side rail ===== */
 .nav {
   position: fixed;
-  z-index: 40;
+  z-index: var(--z-nav);
   display: flex;
   background: var(--surface-glass);
   backdrop-filter: blur(14px);
@@ -45,16 +45,18 @@
   border-radius: var(--r-pill);
   font-weight: 700;
   color: var(--ink-500);
-  transition: background 0.2s ease, color 0.2s ease, transform 0.16s var(--ease-bounce);
+  transition: background 0.2s var(--ease-out), color 0.2s var(--ease-out);
 }
 .nav-link:hover,
 .nav-config:hover {
   background: var(--surface-2);
   color: var(--ink-900);
 }
+/* O verde 600 dava 2.8:1 sobre a tinta de menta; o 800 passa de 5:1 em toda
+   a extensão do gradiente. */
 .nav-link.is-active {
   background: linear-gradient(135deg, var(--c-mint-100), var(--c-sky-100));
-  color: var(--accent-strong);
+  color: var(--accent-ink);
 }
 .nav-config.is-active {
   background: var(--surface-2);
@@ -88,11 +90,11 @@
     flex-direction: column;
     gap: 2px;
     padding: 8px 10px;
-    font-size: 0.62rem;
+    font-size: 0.7rem;
   }
   .nav-link .nav-label {
     display: block;
-    font-size: 0.62rem;
+    font-size: 0.7rem;
     font-weight: 800;
   }
   .nav-emoji { font-size: 1.35rem; }

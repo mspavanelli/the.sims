@@ -1,7 +1,7 @@
 .modal-overlay {
   position: fixed;
   inset: 0;
-  z-index: 80;
+  z-index: var(--z-overlay);
   display: flex;
   align-items: flex-end;
   justify-content: center;
@@ -47,7 +47,7 @@
   gap: var(--s-3);
   justify-content: flex-end;
   padding: var(--s-4) var(--s-5) var(--s-5);
-  border-top: 1px solid rgba(23, 98, 74, 0.08);
+  border-top: var(--sh-border);
   background: var(--surface-2);
 }
 
