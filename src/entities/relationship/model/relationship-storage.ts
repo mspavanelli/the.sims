@@ -23,6 +23,8 @@ const STORAGE_KEY = "the-sims:v1";
  * Só migramos estes — foto escolhida à mão pelo usuário fica intocada.
  */
 const legacySeedAvatars = ["/avatar-matheus.png", "/avatar-luiza.png"];
+const newGoalIds = new Set(["goal-4", "goal-5", "goal-6"]);
+const newMissionIds = new Set(["mis-6"]);
 
 function withDefaults(parsed: Partial<AppState>): AppState {
   const base = cloneSeed();
@@ -64,6 +66,27 @@ function withDefaults(parsed: Partial<AppState>): AppState {
     skills: c.skills ?? [],
     worldview: c.worldview ?? [],
   }));
+
+  // Itens adicionados ao seed entram em saves existentes sem substituir
+  // metas ou missões que a pessoa já editou ou criou.
+  if (parsed.goals) {
+    merged.goals = [
+      ...parsed.goals,
+      ...base.goals.filter(
+        (goal) => newGoalIds.has(goal.id) && !parsed.goals!.some((g) => g.id === goal.id),
+      ),
+    ];
+  }
+  if (parsed.missions) {
+    merged.missions = [
+      ...parsed.missions,
+      ...base.missions.filter(
+        (mission) =>
+          newMissionIds.has(mission.id) &&
+          !parsed.missions!.some((m) => m.id === mission.id),
+      ),
+    ];
+  }
   return merged;
 }
 

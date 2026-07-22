@@ -454,6 +454,14 @@ export const seed: AppState = {
       category: "passeio",
       status: "archived",
     },
+    {
+      id: "mis-6",
+      title: "Show do The Smiths",
+      description: "Uma noite para cantar junto e guardar mais uma memória na trilha sonora da gente.",
+      category: "experiencia",
+      status: "planned",
+      date: "2026-08-08",
+    },
   ],
 
   goals: [
@@ -484,6 +492,37 @@ export const seed: AppState = {
       progressType: "narrative",
       description:
         "Um lugar com horta, muitos livros e espaço para receber quem a gente ama.",
+    },
+    {
+      id: "goal-4",
+      title: "Treinar ao menos 3x na semana",
+      horizon: "short",
+      progressType: "checklist",
+      steps: [
+        { id: "g4s1", title: "Treino 1", completed: false },
+        { id: "g4s2", title: "Treino 2", completed: false },
+        { id: "g4s3", title: "Treino 3", completed: false },
+      ],
+      description: "Criar um ritmo sustentável de movimento juntos.",
+    },
+    {
+      id: "goal-5",
+      title: "Comer menos doces",
+      horizon: "short",
+      progressType: "percentage",
+      progress: 0,
+      description: "Diminuir aos poucos, sem transformar cuidado em cobrança.",
+    },
+    {
+      id: "goal-6",
+      title: "Planejar uma viagem em novembro",
+      horizon: "medium",
+      progressType: "checklist",
+      steps: [
+        { id: "g6s1", title: "Escolher o destino", completed: false },
+        { id: "g6s2", title: "Definir orçamento", completed: false },
+        { id: "g6s3", title: "Montar o roteiro", completed: false },
+      ],
     },
   ],
 
