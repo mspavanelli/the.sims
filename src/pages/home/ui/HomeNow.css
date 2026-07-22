@@ -58,13 +58,20 @@
 .home-now-music-note {
   color: var(--c-plum-500);
   font-size: 1.15rem;
-  animation: float-y 3s ease-in-out infinite;
+  animation: vinyl-spin 8s linear infinite;
 }
 .home-now-music-text {
   display: flex;
   flex-direction: column;
   line-height: 1.15;
   min-width: 0;
+}
+.home-now-music-label {
+  color: var(--ink-500);
+  font-size: 0.68rem;
+  font-weight: 800;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
 }
 .home-now-music-text strong {
   font-family: var(--font-display);
@@ -81,6 +88,21 @@
   flex-wrap: wrap;
 }
 .home-now-music.editing .input { padding: 8px 12px; width: 140px; }
+
+.home-now-album {
+  display: flex;
+  align-items: center;
+  gap: var(--s-2);
+  color: var(--ink-700);
+  font-size: 0.8rem;
+}
+.home-now-album > span:first-child { font-size: 1.05rem; }
+.home-now-album strong { color: var(--ink-900); }
+
+@keyframes vinyl-spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
 
 /* Saudação */
 .home-now-greeting {
@@ -121,4 +143,8 @@
 @media (max-width: 720px) {
   .home-now-top { flex-direction: column; align-items: stretch; }
   .home-now-music { justify-content: flex-start; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .home-now-music-note { animation: none; }
 }

@@ -2,6 +2,14 @@ export { RelationshipProvider } from "./model/relationship-store";
 export { useRelationship } from "./model/use-relationship";
 export { cloneSeed, seed } from "./model/relationship-seed";
 export {
+  nowPlayingAlbums,
+  nowPlayingTracks,
+  pickNowPlayingTrack,
+  pickWeeklyAlbum,
+  trackToNowPlaying,
+  weekKey,
+} from "./model/now-playing";
+export {
   contextualMoment,
   countdownPhrase,
   conversationSensitivities,
@@ -36,6 +44,14 @@ export type {
   MissionCategory,
   MissionStatus,
   NowPlaying,
+  WeeklyAlbum,
   SaveWeather,
   Step,
 } from "./model/relationship";
+export type {
+  Mood,
+  NowPlayingAlbum,
+  NowPlayingTrack,
+  Season,
+  Weather,
+} from "./model/now-playing";

@@ -2,7 +2,11 @@ import { useEffect, useMemo, useReducer, type ReactNode } from "react";
 import type { AppState } from "./relationship";
 import { RelationshipContext, type RelationshipAction } from "./relationship-context";
 import { cloneSeed } from "./relationship-seed";
-import { loadRelationship, saveRelationship } from "./relationship-storage";
+import {
+  createInitialRelationship,
+  loadRelationship,
+  saveRelationship,
+} from "./relationship-storage";
 
 function upsert<T extends { id: string }>(list: T[], item: T): T[] {
   const idx = list.findIndex((i) => i.id === item.id);
@@ -67,7 +71,7 @@ function reducer(state: AppState, action: RelationshipAction): AppState {
 }
 
 function init(): AppState {
-  return loadRelationship() ?? cloneSeed();
+  return loadRelationship() ?? createInitialRelationship();
 }
 
 export function RelationshipProvider({ children }: { children: ReactNode }) {

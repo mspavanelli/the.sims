@@ -1,4 +1,3 @@
-import { useState } from "react";
 import {
   contextualMoment,
   countdownPhrase,
@@ -25,25 +24,6 @@ export default function HomeNow() {
     );
     const next = weatherOptions[(idx + 1) % weatherOptions.length];
     dispatch({ type: "setWeather", weather: next });
-  };
-
-  // ---- Música do momento (edição inline) ----
-  const [editingMusic, setEditingMusic] = useState(false);
-  const [title, setTitle] = useState(state.nowPlaying?.title ?? "");
-  const [artist, setArtist] = useState(state.nowPlaying?.artist ?? "");
-
-  const openMusic = () => {
-    setTitle(state.nowPlaying?.title ?? "");
-    setArtist(state.nowPlaying?.artist ?? "");
-    setEditingMusic(true);
-  };
-  const saveMusic = () => {
-    const t = title.trim();
-    dispatch({
-      type: "setNowPlaying",
-      nowPlaying: t ? { title: t, artist: artist.trim() || undefined } : undefined,
-    });
-    setEditingMusic(false);
   };
 
   // ---- Novidades compostas ----
@@ -100,50 +80,26 @@ export default function HomeNow() {
           </span>
         </button>
 
-        {editingMusic ? (
-          <div className="home-now-music editing">
-            <input
-              className="input"
-              value={title}
-              autoFocus
-              placeholder="Música…"
-              onChange={(e) => setTitle(e.target.value)}
-              onKeyDown={(e) => e.key === "Enter" && saveMusic()}
-            />
-            <input
-              className="input"
-              value={artist}
-              placeholder="Artista (opcional)"
-              onChange={(e) => setArtist(e.target.value)}
-              onKeyDown={(e) => e.key === "Enter" && saveMusic()}
-            />
-            <button className="btn btn-primary btn-sm" onClick={saveMusic}>
-              ok
-            </button>
-          </div>
-        ) : (
-          <button
-            type="button"
-            className="home-now-music"
-            onClick={openMusic}
-            title="Editar a música do momento"
-          >
-            <span className="home-now-music-note" aria-hidden>
-              ♪
+        <div className="home-now-music" aria-label="Trilha sonora do momento">
+          <span className="home-now-music-note" aria-hidden>♪</span>
+          {state.nowPlaying ? (
+            <span className="home-now-music-text" key={state.nowPlayingId ?? state.nowPlaying.title}>
+              <span className="home-now-music-label">Tocando agora</span>
+              <strong>{state.nowPlaying.title}</strong>
+              {state.nowPlaying.artist && <span className="muted">{state.nowPlaying.artist}</span>}
             </span>
-            {state.nowPlaying ? (
-              <span className="home-now-music-text">
-                <strong>{state.nowPlaying.title}</strong>
-                {state.nowPlaying.artist && (
-                  <span className="muted">{state.nowPlaying.artist}</span>
-                )}
-              </span>
-            ) : (
-              <span className="muted">Tocando agora…</span>
-            )}
-          </button>
-        )}
+          ) : (
+            <span className="muted">A trilha deste momento ainda está se formando…</span>
+          )}
+        </div>
       </div>
+
+      {state.weeklyAlbum && (
+        <div className="home-now-album">
+          <span aria-hidden>💿</span>
+          <span><strong>Disco da semana</strong> · {state.weeklyAlbum.title} <span className="muted">— {state.weeklyAlbum.artist}</span></span>
+        </div>
+      )}
 
       <p className="home-now-greeting">
         <span aria-hidden>{dayEmoji}</span> {greeting}, {state.coupleName}

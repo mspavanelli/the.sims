@@ -1,6 +1,13 @@
 import { readJson, writeJson } from "@/shared/api";
 import type { AppState } from "./relationship";
 import { cloneSeed } from "./relationship-seed";
+import {
+  pickNowPlayingTrack,
+  pickWeeklyAlbum,
+  trackToNowPlaying,
+  weekKey,
+  nowPlayingTracks,
+} from "./now-playing";
 
 const STORAGE_KEY = "the-sims:v1";
 
@@ -20,6 +27,20 @@ const legacySeedAvatars = ["/avatar-matheus.png", "/avatar-luiza.png"];
 function withDefaults(parsed: Partial<AppState>): AppState {
   const base = cloneSeed();
   const merged = { ...base, ...parsed } as AppState;
+  const currentWeek = weekKey();
+  const savedAlbum = parsed.weeklyAlbum;
+  const weeklyAlbum = savedAlbum?.weekKey === currentWeek
+    ? savedAlbum
+    : { ...pickWeeklyAlbum(savedAlbum?.id), weekKey: currentWeek };
+  const savedTrack = parsed.nowPlayingId
+    ? nowPlayingTracks.find((track) => track.id === parsed.nowPlayingId)
+    : undefined;
+  const track = savedTrack && savedAlbum?.weekKey === currentWeek
+    ? savedTrack
+    : pickNowPlayingTrack(merged, weeklyAlbum, parsed.nowPlayingId);
+  merged.weeklyAlbum = weeklyAlbum;
+  merged.nowPlayingId = track.id;
+  merged.nowPlaying = trackToNowPlaying(track);
   // Personagens ganham campos-lista novos ao longo do tempo; garante que
   // arrays esperados existam mesmo em fichas salvas antes deles.
   merged.characters = (parsed.characters ?? base.characters).map((c) => ({
@@ -44,6 +65,10 @@ function withDefaults(parsed: Partial<AppState>): AppState {
     worldview: c.worldview ?? [],
   }));
   return merged;
+}
+
+export function createInitialRelationship(): AppState {
+  return withDefaults({});
 }
 
 export function loadRelationship(): AppState | null {

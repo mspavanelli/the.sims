@@ -12,7 +12,7 @@ export const seed: AppState = {
     subtitle: "Duas cabeças curiosas começaram uma história que continua se escrevendo.",
   },
   saveWeather: { emoji: "🌤️", label: "Céu de tarde preguiçosa" },
-  nowPlaying: { title: "Bohemian Rhapsody", artist: "Queen" },
+  nowPlaying: { title: "You're My Best Friend", artist: "Queen", album: "A Night at the Opera" },
   featuredConversationId: "conv-1",
 
   characters: [

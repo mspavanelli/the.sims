@@ -123,6 +123,15 @@ export type SaveWeather = {
 export type NowPlaying = {
   title: string;
   artist?: string;
+  album?: string;
+};
+
+export type WeeklyAlbum = {
+  id: string;
+  weekKey: string;
+  title: string;
+  artist: string;
+  year?: number;
 };
 
 export type AppState = {
@@ -131,6 +140,8 @@ export type AppState = {
   currentChapter: Chapter;
   saveWeather?: SaveWeather;
   nowPlaying?: NowPlaying;
+  nowPlayingId?: string;
+  weeklyAlbum?: WeeklyAlbum;
   characters: Character[];
   memories: Memory[];
   missions: Mission[];
