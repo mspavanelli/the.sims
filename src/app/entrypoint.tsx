@@ -6,6 +6,12 @@ import "./styles/global.css";
 import { AppProviders } from "./providers/AppProviders";
 import { router } from "./routes/router";
 
+if ("serviceWorker" in navigator && import.meta.env.PROD) {
+  window.addEventListener("load", () => {
+    void navigator.serviceWorker.register("/sw.js");
+  });
+}
+
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
     <AppProviders>
