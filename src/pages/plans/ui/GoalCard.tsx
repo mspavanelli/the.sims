@@ -36,7 +36,7 @@ export default function GoalCard({
 
       <h3 className="goal-card-title">{goal.title}</h3>
       {goal.description && goal.progressType !== "narrative" && (
-        <p className="muted goal-card-desc">{goal.description}</p>
+        <p className="muted goal-card-desc selectable">{goal.description}</p>
       )}
 
       {goal.progressType === "percentage" && (
@@ -82,7 +82,7 @@ export default function GoalCard({
       )}
 
       {goal.progressType === "narrative" && (
-        <p className="goal-narrative">{goal.description}</p>
+        <p className="goal-narrative selectable">{goal.description}</p>
       )}
     </article>
   );

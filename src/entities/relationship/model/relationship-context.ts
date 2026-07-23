@@ -14,6 +14,8 @@ import type {
 
 export type RelationshipAction =
   | { type: "restoreDefaults" }
+  /** Importar um save exportado: troca o mundo inteiro de uma vez. */
+  | { type: "replaceAll"; state: AppState }
   | { type: "setChapter"; chapter: Chapter }
   | { type: "setCoupleName"; coupleName: string; saveTagline?: string }
   | { type: "setWeather"; weather?: SaveWeather }

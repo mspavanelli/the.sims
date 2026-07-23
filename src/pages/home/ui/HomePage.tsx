@@ -7,6 +7,7 @@ import {
 import { Avatar, ChapterBanner, ProgressBar } from "@/shared/ui";
 import { useIdeaJar } from "@/widgets/app-shell";
 import HomeNow from "./HomeNow";
+import InstallHint from "./InstallHint";
 import "./HomePage.css";
 
 function goalPercent(goal: Goal): number | null {
@@ -117,6 +118,8 @@ export default function HomePage() {
           </Link>
         </section>
       )}
+
+      <InstallHint />
     </div>
   );
 }

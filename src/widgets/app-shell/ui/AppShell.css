@@ -2,12 +2,14 @@
   min-height: 100%;
 }
 
+/* `100dvh` e não `100vh`: no Safari de celular o `vh` mede a tela sem a barra de
+   URL, e o layout pula quando ela some. */
 .shell-main {
-  min-height: 100vh;
+  min-height: 100dvh;
 }
 
 @media (min-width: 900px) {
   .shell-main {
-    padding-left: 252px;
+    padding-left: calc(252px + var(--safe-l));
   }
 }

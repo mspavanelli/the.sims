@@ -41,7 +41,7 @@ export default function MemoryCard({
           <span className="memory-card-loc muted">📍 {memory.location}</span>
         )}
         {memory.description && (
-          <p className="memory-card-desc muted">{memory.description}</p>
+          <p className="memory-card-desc muted selectable">{memory.description}</p>
         )}
 
         {(memory.category || memory.tags.length > 0) && (

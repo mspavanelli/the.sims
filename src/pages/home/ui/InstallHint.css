@@ -1,0 +1,29 @@
+/* Discreto de propósito: não é painel branco flutuante, é um bilhete pousado no
+   fim da Home. Quem já abriu pelo ícone nunca vê isto. */
+.install-hint {
+  display: flex;
+  align-items: center;
+  gap: var(--s-3);
+  padding: var(--s-3) var(--s-4);
+  border-radius: var(--r-lg);
+  background: var(--c-mint-50);
+  border: 1px solid var(--c-line);
+}
+
+.install-hint-emoji {
+  font-size: var(--e-md);
+  flex-shrink: 0;
+}
+
+.install-hint-text {
+  flex: 1;
+  min-width: 0;
+  font-size: var(--t-label);
+  color: var(--ink-700);
+}
+
+.install-hint-close {
+  flex-shrink: 0;
+  background: transparent;
+  box-shadow: none;
+}

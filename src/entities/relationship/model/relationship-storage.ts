@@ -102,6 +102,37 @@ export function loadRelationship(): AppState | null {
   return parsed && typeof parsed === "object" ? withDefaults(parsed) : null;
 }
 
-export function saveRelationship(state: AppState): void {
-  writeJson(STORAGE_KEY, state);
+/** `false` quando o aparelho recusou a escrita — quem chama tem que avisar. */
+export function saveRelationship(state: AppState): boolean {
+  return writeJson(STORAGE_KEY, state);
+}
+
+/**
+ * O save como arquivo. É a única porta de saída do mundo: sem backend, o que
+ * existe mora no `localStorage` deste aparelho, e o Safari do iOS descarta o
+ * `localStorage` depois de sete dias sem visita quando o app não está instalado
+ * na tela de início.
+ */
+export function serializeSave(state: AppState): string {
+  return JSON.stringify(state, null, 2);
+}
+
+/**
+ * Lê um arquivo exportado. Passa pelo mesmo `withDefaults` do carregamento, então
+ * um save antigo é completado com os campos novos em vez de abrir quebrado.
+ * Devolve `null` quando o arquivo não é um save deste mundo.
+ */
+export function parseSave(text: string): AppState | null {
+  try {
+    const parsed: unknown = JSON.parse(text);
+    if (!parsed || typeof parsed !== "object") return null;
+    const candidate = parsed as Partial<AppState>;
+    const looksLikeSave =
+      typeof candidate.coupleName === "string" ||
+      Array.isArray(candidate.characters) ||
+      Array.isArray(candidate.memories);
+    return looksLikeSave ? withDefaults(candidate) : null;
+  } catch {
+    return null;
+  }
 }

@@ -128,7 +128,7 @@ export default function CharacterCard({
         </div>
       )}
 
-      {character.bio && <p className="character-card-bio">{character.bio}</p>}
+      {character.bio && <p className="character-card-bio selectable">{character.bio}</p>}
 
       {character.characterQuote && (
         <blockquote className="character-card-quote">

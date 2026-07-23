@@ -6,6 +6,7 @@
   align-items: flex-end;
   justify-content: center;
   padding: var(--s-4);
+  padding-bottom: calc(var(--s-4) + var(--safe-b));
   background: rgba(18, 53, 40, 0.34);
   backdrop-filter: blur(4px);
   animation: fade-up 0.2s ease both;
@@ -14,7 +15,7 @@
 .modal {
   width: 100%;
   max-width: 560px;
-  max-height: 88vh;
+  max-height: 88dvh;
   display: flex;
   flex-direction: column;
   border-radius: var(--r-xl);
@@ -37,12 +38,20 @@
 }
 .modal-title-emoji { font-size: var(--e-md); }
 
+/* `overscroll-behavior: contain` para o elástico do iOS não vazar do corpo do
+   modal para a página atrás dele. */
 .modal-body {
   padding: 0 var(--s-5) var(--s-4);
   overflow-y: auto;
+  overscroll-behavior: contain;
+  -webkit-overflow-scrolling: touch;
 }
 
+/* Grudado no fundo do modal: com o teclado virtual aberto, o botão de salvar
+   continua alcançável em vez de ficar embaixo das teclas. */
 .modal-foot {
+  position: sticky;
+  bottom: 0;
   display: flex;
   align-items: center;
   gap: var(--s-3);

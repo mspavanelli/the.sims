@@ -54,11 +54,11 @@ export default function ConversationCard({
 
       <h3 className="conversation-title">{conversation.title}</h3>
       {conversation.context && (
-        <p className="muted conversation-context">{conversation.context}</p>
+        <p className="muted conversation-context selectable">{conversation.context}</p>
       )}
 
       {conversation.topics.length > 0 && (
-        <ul className="conversation-topics">
+        <ul className="conversation-topics selectable">
           {conversation.topics.map((t) => (
             <li key={t}>💬 {t}</li>
           ))}

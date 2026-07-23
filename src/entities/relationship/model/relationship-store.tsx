@@ -1,4 +1,5 @@
-import { useEffect, useMemo, useReducer, type ReactNode } from "react";
+import { useEffect, useMemo, useReducer, useRef, type ReactNode } from "react";
+import { useToast } from "@/shared/ui";
 import type { AppState } from "./relationship";
 import { RelationshipContext, type RelationshipAction } from "./relationship-context";
 import { cloneSeed } from "./relationship-seed";
@@ -30,6 +31,8 @@ function reducer(state: AppState, action: RelationshipAction): AppState {
   switch (action.type) {
     case "restoreDefaults":
       return cloneSeed();
+    case "replaceAll":
+      return action.state;
     case "setChapter":
       return { ...state, currentChapter: action.chapter };
     case "setCoupleName":
@@ -91,10 +94,23 @@ function init(): AppState {
 
 export function RelationshipProvider({ children }: { children: ReactNode }) {
   const [state, dispatch] = useReducer(reducer, undefined, init);
+  const { notify } = useToast();
+  const warned = useRef(false);
 
   useEffect(() => {
-    saveRelationship(state);
-  }, [state]);
+    if (saveRelationship(state)) {
+      warned.current = false;
+      return;
+    }
+    // Uma vez por sessão: repetir o aviso a cada tecla digitada seria pior do
+    // que o silêncio. A voz continua sendo a do app, não a de um erro de rede.
+    if (warned.current) return;
+    warned.current = true;
+    notify({
+      emoji: "🫧",
+      message: "esse aparelho não deixou guardar — exporta o save em Ajustes?",
+    });
+  }, [state, notify]);
 
   const value = useMemo(() => ({ state, dispatch }), [state]);
 

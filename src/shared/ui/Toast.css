@@ -2,9 +2,9 @@
    `pointer-events: none` na camada para não roubar toque do que está embaixo. */
 .toast-layer {
   position: fixed;
-  left: 12px;
-  right: 12px;
-  bottom: calc(var(--nav-h) + var(--s-5));
+  left: calc(var(--nav-gap) + var(--safe-l));
+  right: calc(var(--nav-gap) + var(--safe-r));
+  bottom: calc(var(--nav-space) + var(--s-5));
   z-index: var(--z-toast);
   display: flex;
   justify-content: center;
@@ -51,7 +51,7 @@
 
 @media (min-width: 900px) {
   .toast-layer {
-    left: 252px;
-    bottom: var(--s-6);
+    left: calc(252px + var(--safe-l));
+    bottom: calc(var(--s-6) + var(--safe-b));
   }
 }

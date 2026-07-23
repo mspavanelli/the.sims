@@ -159,7 +159,7 @@ export default function IdeaJar({
             {current.emoji}
           </span>
           <h3 className="idea-jar-title">{current.title}</h3>
-          <p className="idea-jar-desc">{current.description}</p>
+          <p className="idea-jar-desc selectable">{current.description}</p>
           <CategoryPill
             label={meta.label}
             emoji={meta.emoji}

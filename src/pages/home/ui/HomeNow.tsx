@@ -8,6 +8,7 @@ import {
   useRelationship,
   weatherOptions,
 } from "@/entities/relationship";
+import { useNow } from "@/shared/lib";
 import "./HomeNow.css";
 
 type News = { key: string; emoji: string; text: string; to?: string };
@@ -29,7 +30,9 @@ function dayIndex(now: Date): number {
  */
 export default function HomeNow() {
   const { state, dispatch } = useRelationship();
-  const now = new Date();
+  // Vivo: o app instalado congela e volta, então a hora se atualiza sozinha ao
+  // retomar — a saudação, a contagem e o slot rotativo junto com ela.
+  const now = useNow();
   const { greeting, emoji: dayEmoji } = daypart(now);
   const weather = state.saveWeather ?? weatherOptions[0];
 

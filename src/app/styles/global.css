@@ -13,6 +13,11 @@ body,
   height: 100%;
 }
 
+/* O aparelho gira sem que o iOS reescale o texto sozinho. */
+html {
+  -webkit-text-size-adjust: 100%;
+}
+
 body {
   margin: 0;
   font-family: var(--font-body);
@@ -20,6 +25,55 @@ body {
   background: var(--bg);
   -webkit-font-smoothing: antialiased;
   overflow-x: hidden;
+  /* Rolar pra cima no topo e recarregar o mundo por acidente é a pior quebra
+     possível da ilusão de app instalado. */
+  overscroll-behavior-y: contain;
+  /* O retângulo cinza do iOS não existe em nenhum jogo de tablet — o retorno do
+     toque é o `:active` com `scale(0.96)`, que já é o vocabulário do sistema. */
+  -webkit-tap-highlight-color: transparent;
+  /* A lupa de seleção aparecendo em cima de um emoji da NavBar entrega o
+     navegador na hora. Texto de memória e carta é a exceção: `.selectable`. */
+  -webkit-user-select: none;
+  user-select: none;
+}
+
+/* As exceções deliberadas: o que ela pode querer copiar (memória, carta, bio) e
+   o que ela está escrevendo — sem isto o `none` herdado impede até posicionar o
+   cursor dentro de um campo no WebKit. */
+.selectable,
+input,
+textarea,
+[contenteditable] {
+  -webkit-user-select: text;
+  user-select: text;
+}
+
+/* Mata o atraso de ~300ms do double-tap-to-zoom: botão de jogo responde no
+   toque, não meio segundo depois. */
+button,
+a,
+label,
+summary,
+input,
+select,
+textarea,
+[role="button"],
+.btn,
+.chip,
+.choice {
+  touch-action: manipulation;
+}
+
+/* No aparelho não existe ponteiro: onde o desktop levanta com o hover, o toque
+   afunda. Especificidade baixa de propósito — `.btn:active` (0.96) continua
+   mandando, e quem tiver `:active` próprio também. */
+button:active,
+a[href]:active,
+[role="button"]:active {
+  transform: scale(0.97);
+}
+button[disabled]:active {
+  transform: none;
 }
 
 /* O céu do mundo: duas manchas de luz que ficam paradas enquanto o conteúdo
@@ -217,15 +271,37 @@ ul { margin: 0; padding: 0; list-style: none; }
 .route-loading {
   display: grid;
   place-items: center;
-  min-height: 40vh;
+  min-height: 40dvh;
   font-weight: 700;
 }
 
+/* O conteúdo nasce dentro das bordas físicas: nada debaixo do relógio em cima,
+   nada preso atrás da barra de gestos embaixo, nada cortado pelo notch quando o
+   aparelho vira de lado. */
 .page {
   max-width: var(--shell-max);
   margin: 0 auto;
-  padding: var(--s-5) var(--s-4) calc(var(--nav-h) + var(--s-6));
+  padding-top: calc(var(--s-5) + var(--safe-t));
+  padding-bottom: calc(var(--nav-space) + var(--s-6));
+  padding-left: calc(var(--s-4) + var(--safe-l));
+  padding-right: calc(var(--s-4) + var(--safe-r));
 }
+
+/* iPad retrato: a mesma barra inferior, mas a coluna não estica. O ar que sobra
+   vira respiro — nunca linha de texto mais longa que a medida de leitura. */
+@media (min-width: 600px) and (max-width: 899px) {
+  .page {
+    max-width: 720px;
+    padding-left: calc(var(--s-5) + var(--safe-l));
+    padding-right: calc(var(--s-5) + var(--safe-r));
+  }
+}
+
 @media (min-width: 900px) {
-  .page { padding: var(--s-6) var(--s-6) var(--s-7); }
+  .page {
+    padding-top: calc(var(--s-6) + var(--safe-t));
+    padding-bottom: calc(var(--s-7) + var(--safe-b));
+    padding-left: calc(var(--s-6) + var(--safe-l));
+    padding-right: calc(var(--s-6) + var(--safe-r));
+  }
 }

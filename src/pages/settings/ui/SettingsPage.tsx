@@ -1,5 +1,10 @@
-import { useState } from "react";
-import { seed, useRelationship } from "@/entities/relationship";
+import { useRef, useState } from "react";
+import {
+  parseSave,
+  seed,
+  serializeSave,
+  useRelationship,
+} from "@/entities/relationship";
 import { Field, Modal, PageHeader, useToast } from "@/shared/ui";
 import "./SettingsPage.css";
 
@@ -13,6 +18,7 @@ export default function SettingsPage() {
     state.currentChapter.subtitle ?? "",
   );
   const [restoreOpen, setRestoreOpen] = useState(false);
+  const fileInput = useRef<HTMLInputElement>(null);
 
   const saveIdentity = () => {
     dispatch({
@@ -28,6 +34,34 @@ export default function SettingsPage() {
       },
     });
     notify({ emoji: "💞", message: "O jeitinho do save foi atualizado." });
+  };
+
+  /** O mundo vira arquivo: a única cópia que sobrevive a trocar de aparelho. */
+  const exportSave = () => {
+    const stamp = new Date().toISOString().slice(0, 10);
+    const url = URL.createObjectURL(
+      new Blob([serializeSave(state)], { type: "application/json" }),
+    );
+    const link = document.createElement("a");
+    link.href = url;
+    link.download = `nosso-save-${stamp}.json`;
+    link.click();
+    URL.revokeObjectURL(url);
+    notify({ emoji: "📦", message: "Nosso save saiu inteirinho num arquivo." });
+  };
+
+  const importSave = async (file: File) => {
+    const imported = parseSave(await file.text());
+    if (!imported) {
+      notify({ emoji: "🤔", message: "Esse arquivo não parece um save nosso." });
+      return;
+    }
+    dispatch({ type: "replaceAll", state: imported });
+    setCoupleName(imported.coupleName);
+    setTagline(imported.saveTagline ?? "");
+    setChapterTitle(imported.currentChapter.title);
+    setChapterSubtitle(imported.currentChapter.subtitle ?? "");
+    notify({ emoji: "🌎", message: "O mundo voltou do arquivo." });
   };
 
   // Única ação sem volta do app — e por isso a única que ainda pergunta antes.
@@ -90,6 +124,37 @@ export default function SettingsPage() {
               Salvar alterações
             </button>
           </div>
+        </div>
+      </section>
+
+      <section className="panel settings-card">
+        <h2 className="section-title">📦 Nosso save</h2>
+        <p className="muted" style={{ marginTop: "var(--s-2)" }}>
+          Tudo mora só neste aparelho. Guardar uma cópia de vez em quando é o
+          jeito de o mundo atravessar uma troca de celular — e de voltar inteiro
+          se algo acontecer aqui.
+        </p>
+        <div className="row wrap gap-3" style={{ marginTop: "var(--s-4)" }}>
+          <button className="btn btn-soft" onClick={exportSave}>
+            📦 Exportar nosso save
+          </button>
+          <button
+            className="btn btn-ghost"
+            onClick={() => fileInput.current?.click()}
+          >
+            📥 Importar um save
+          </button>
+          <input
+            ref={fileInput}
+            type="file"
+            accept="application/json,.json"
+            hidden
+            onChange={(e) => {
+              const file = e.target.files?.[0];
+              if (file) void importSave(file);
+              e.target.value = "";
+            }}
+          />
         </div>
       </section>
 

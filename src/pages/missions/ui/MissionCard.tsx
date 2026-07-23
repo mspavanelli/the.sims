@@ -55,7 +55,7 @@ export default function MissionCard({
         <span className="mission-card-date">📅 {formatDate(mission.date)}</span>
       )}
       {mission.description && (
-        <p className="mission-card-desc muted">{mission.description}</p>
+        <p className="mission-card-desc muted selectable">{mission.description}</p>
       )}
 
       {steps.length > 0 && (

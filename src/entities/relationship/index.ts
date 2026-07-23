@@ -1,6 +1,7 @@
 export { RelationshipProvider } from "./model/relationship-store";
 export { useRelationship } from "./model/use-relationship";
 export { cloneSeed, seed } from "./model/relationship-seed";
+export { parseSave, serializeSave } from "./model/relationship-storage";
 export {
   nowPlayingAlbums,
   nowPlayingTracks,

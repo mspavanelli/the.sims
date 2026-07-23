@@ -2,6 +2,7 @@ import { Suspense, type ReactNode } from "react";
 import { Navigate, createHashRouter } from "react-router-dom";
 import { HomePage } from "@/pages/home";
 import { AppShell } from "@/widgets/app-shell";
+import { RouteRecovery } from "./RouteRecovery";
 import {
   CharactersPage,
   JourneyPage,
@@ -13,15 +14,17 @@ import {
 /** Espera curta e silenciosa: em rede local o pedaço chega antes de aparecer. */
 function lazyRoute(element: ReactNode) {
   return (
-    <Suspense
-      fallback={
-        <div className="page route-loading" role="status">
-          <span className="muted">carregando esse cantinho…</span>
-        </div>
-      }
-    >
-      {element}
-    </Suspense>
+    <RouteRecovery>
+      <Suspense
+        fallback={
+          <div className="page route-loading" role="status">
+            <span className="muted">carregando esse cantinho…</span>
+          </div>
+        }
+      >
+        {element}
+      </Suspense>
+    </RouteRecovery>
   );
 }
 

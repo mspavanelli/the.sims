@@ -18,7 +18,7 @@ export default function AspirationCard({
       <div className="grow">
         <h3 className="aspiration-title">{aspiration.title}</h3>
         {aspiration.description && (
-          <p className="muted aspiration-desc">{aspiration.description}</p>
+          <p className="muted aspiration-desc selectable">{aspiration.description}</p>
         )}
       </div>
       <div className="aspiration-actions">
