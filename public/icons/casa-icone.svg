@@ -1,0 +1,219 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024" width="1024" height="1024">
+  <defs>
+    <clipPath id="squircle">
+      <rect x="0" y="0" width="1024" height="1024" rx="232" ry="232"/>
+    </clipPath>
+
+    <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#6fc3ec"/>
+      <stop offset="42%" stop-color="#a3dbcd"/>
+      <stop offset="72%" stop-color="#a9de92"/>
+      <stop offset="100%" stop-color="#78ca55"/>
+    </linearGradient>
+
+    <radialGradient id="glow" cx="0.5" cy="0.5" r="0.5">
+      <stop offset="0%" stop-color="#ffffff" stop-opacity="0.85"/>
+      <stop offset="45%" stop-color="#eaffc0" stop-opacity="0.35"/>
+      <stop offset="100%" stop-color="#eaffc0" stop-opacity="0"/>
+    </radialGradient>
+
+    <linearGradient id="gemA" x1="0" y1="0" x2="0.3" y2="1">
+      <stop offset="0%" stop-color="#d6f77a"/>
+      <stop offset="100%" stop-color="#8fd939"/>
+    </linearGradient>
+    <linearGradient id="gemB" x1="0" y1="0" x2="0.2" y2="1">
+      <stop offset="0%" stop-color="#b6ea52"/>
+      <stop offset="100%" stop-color="#63bd23"/>
+    </linearGradient>
+    <linearGradient id="gemC" x1="0" y1="0" x2="0.4" y2="1">
+      <stop offset="0%" stop-color="#5cba22"/>
+      <stop offset="100%" stop-color="#2f8b0e"/>
+    </linearGradient>
+    <linearGradient id="gemD" x1="0" y1="0" x2="0.6" y2="1">
+      <stop offset="0%" stop-color="#7ccf30"/>
+      <stop offset="100%" stop-color="#3f9c14"/>
+    </linearGradient>
+
+    <radialGradient id="ground" cx="0.42" cy="0.3" r="0.85">
+      <stop offset="0%" stop-color="#8fd95c"/>
+      <stop offset="100%" stop-color="#4f9d2e"/>
+    </radialGradient>
+
+    <linearGradient id="wall" x1="0" y1="0" x2="0.35" y2="1">
+      <stop offset="0%" stop-color="#f6ebd6"/>
+      <stop offset="100%" stop-color="#dcc7a4"/>
+    </linearGradient>
+    <linearGradient id="wallSide" x1="0" y1="0" x2="0.4" y2="1">
+      <stop offset="0%" stop-color="#e8d9be"/>
+      <stop offset="100%" stop-color="#cbb595"/>
+    </linearGradient>
+
+    <linearGradient id="roof" x1="0.1" y1="0" x2="0.6" y2="1">
+      <stop offset="0%" stop-color="#e87c40"/>
+      <stop offset="100%" stop-color="#c5552a"/>
+    </linearGradient>
+    <linearGradient id="roof2" x1="0" y1="0" x2="0.5" y2="1">
+      <stop offset="0%" stop-color="#d9682f"/>
+      <stop offset="100%" stop-color="#ab4520"/>
+    </linearGradient>
+
+    <linearGradient id="chim" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#d3b894"/>
+      <stop offset="100%" stop-color="#ab8f6b"/>
+    </linearGradient>
+
+    <linearGradient id="door" x1="0" y1="0" x2="0.5" y2="1">
+      <stop offset="0%" stop-color="#4d8f96"/>
+      <stop offset="100%" stop-color="#2f6a72"/>
+    </linearGradient>
+
+    <linearGradient id="tree" x1="0.15" y1="0" x2="0.9" y2="1">
+      <stop offset="0%" stop-color="#57ac41"/>
+      <stop offset="100%" stop-color="#2b6d2a"/>
+    </linearGradient>
+    <linearGradient id="bush" x1="0.2" y1="0" x2="0.8" y2="1">
+      <stop offset="0%" stop-color="#7fcc46"/>
+      <stop offset="100%" stop-color="#3e8c2b"/>
+    </linearGradient>
+
+    <clipPath id="roofClip">
+      <polygon points="492,545 698,720 286,720"/>
+    </clipPath>
+    <clipPath id="wingRoofClip">
+      <polygon points="620,712 816,800 816,834 620,746"/>
+    </clipPath>
+    <clipPath id="groundClip">
+      <ellipse cx="512" cy="896" rx="360" ry="76"/>
+    </clipPath>
+  </defs>
+
+  <g clip-path="url(#squircle)">
+    <!-- fundo -->
+    <rect x="0" y="0" width="1024" height="1024" fill="url(#sky)"/>
+
+    <!-- raios suaves -->
+    <g fill="#ffffff" opacity="0.10">
+      <polygon points="512,300 190,-40 340,-40"/>
+      <polygon points="512,300 834,-40 684,-40"/>
+      <polygon points="512,300 60,540 60,360"/>
+      <polygon points="512,300 964,360 964,540"/>
+      <polygon points="512,300 250,820 120,700"/>
+      <polygon points="512,300 774,820 904,700"/>
+    </g>
+
+    <!-- brilho atrás da gema -->
+    <circle cx="512" cy="360" r="330" fill="url(#glow)"/>
+
+    <!-- gema facetada (desenho original) -->
+    <g>
+      <polygon points="460,195 512,195 512,305 396,305" fill="url(#gemA)"/>
+      <polygon points="512,195 564,195 628,305 512,305" fill="url(#gemB)"/>
+      <polygon points="396,305 512,305 512,548 444,420" fill="url(#gemD)"/>
+      <polygon points="512,305 628,305 580,420 512,548" fill="url(#gemC)"/>
+      <polygon points="460,195 564,195 628,305 580,420 512,548 444,420 396,305"
+               fill="none" stroke="#ffffff" stroke-opacity="0.35" stroke-width="3" stroke-linejoin="round"/>
+      <polygon points="470,208 508,208 508,232 452,232" fill="#ffffff" opacity="0.45"/>
+    </g>
+
+    <!-- terreno -->
+    <ellipse cx="512" cy="906" rx="360" ry="76" fill="#3f7f24" opacity="0.55"/>
+    <ellipse cx="512" cy="896" rx="360" ry="76" fill="url(#ground)"/>
+
+    <!-- caminho -->
+    <g clip-path="url(#groundClip)">
+      <polygon points="424,930 566,930 618,1000 372,1000" fill="#dcb87f"/>
+      <polygon points="424,930 566,930 592,966 398,966" fill="#e6c690" opacity="0.6"/>
+    </g>
+
+    <!-- sombra da casa -->
+    <ellipse cx="540" cy="892" rx="250" ry="42" fill="#2f6b1c" opacity="0.25"/>
+
+    <!-- árvore -->
+    <rect x="268" y="820" width="26" height="74" rx="10" fill="#8a5a34"/>
+    <path d="M281 528 C 348 636 356 764 281 848 C 206 764 214 636 281 528 Z" fill="url(#tree)"/>
+    <path d="M281 528 C 320 620 328 748 281 848 C 300 748 306 626 281 528 Z" fill="#7cc44e" opacity="0.55"/>
+
+    <!-- chaminé -->
+    <rect x="690" y="566" width="76" height="180" fill="url(#chim)"/>
+    <rect x="674" y="548" width="108" height="34" rx="10" fill="#a3855f"/>
+
+    <!-- ala direita: paredes -->
+    <rect x="628" y="756" width="176" height="140" fill="url(#wallSide)"/>
+    <!-- ala direita: telhado -->
+    <polygon points="620,712 816,800 816,834 620,746" fill="url(#roof2)"/>
+    <g clip-path="url(#wingRoofClip)" stroke="#8e3717" stroke-opacity="0.35" stroke-width="4">
+      <line x1="620" y1="726" x2="816" y2="814"/>
+      <line x1="660" y1="712" x2="660" y2="850"/>
+      <line x1="720" y1="712" x2="720" y2="850"/>
+      <line x1="780" y1="712" x2="780" y2="850"/>
+    </g>
+
+    <!-- corpo principal -->
+    <polygon points="352,690 632,690 632,896 352,896" fill="url(#wall)"/>
+    <polygon points="352,700 492,586 632,700" fill="url(#wall)"/>
+
+    <!-- telhado principal -->
+    <polygon points="492,545 698,720 286,720" fill="url(#roof)"/>
+    <rect x="278" y="716" width="428" height="34" rx="12" fill="url(#roof2)"/>
+    <g clip-path="url(#roofClip)" stroke="#9c3f1b" stroke-opacity="0.30" stroke-width="5">
+      <line x1="286" y1="608" x2="698" y2="608"/>
+      <line x1="286" y1="646" x2="698" y2="646"/>
+      <line x1="286" y1="684" x2="698" y2="684"/>
+      <line x1="400" y1="545" x2="400" y2="720"/>
+      <line x1="584" y1="545" x2="584" y2="720"/>
+    </g>
+    <polygon points="492,545 698,720 668,720 492,571" fill="#ffffff" opacity="0.10"/>
+
+    <!-- porta -->
+    <path d="M448 896 L448 800 A44 44 0 0 1 536 800 L536 896 Z" fill="url(#door)"/>
+    <path d="M448 896 L448 800 A44 44 0 0 1 536 800 L536 896 Z" fill="none" stroke="#27585f" stroke-width="6"/>
+    <g stroke="#27585f" stroke-opacity="0.55" stroke-width="4">
+      <line x1="492" y1="770" x2="492" y2="896"/>
+      <line x1="452" y1="832" x2="532" y2="832"/>
+    </g>
+    <circle cx="519" cy="854" r="8" fill="#e8b84b"/>
+
+    <!-- degraus -->
+    <rect x="428" y="896" width="130" height="24" rx="8" fill="#e9dcc0"/>
+    <rect x="410" y="918" width="166" height="24" rx="8" fill="#dccdb0"/>
+
+    <!-- janelas -->
+    <g>
+      <rect x="662" y="796" width="60" height="62" rx="8" fill="#5c9aa1"/>
+      <rect x="672" y="806" width="40" height="42" rx="4" fill="#8fd3e0"/>
+      <line x1="692" y1="806" x2="692" y2="848" stroke="#5c9aa1" stroke-width="5"/>
+      <line x1="672" y1="827" x2="712" y2="827" stroke="#5c9aa1" stroke-width="5"/>
+      <rect x="652" y="858" width="80" height="26" rx="6" fill="#a06f43"/>
+      <circle cx="670" cy="856" r="7" fill="#f08a8a"/>
+      <circle cx="692" cy="852" r="8" fill="#f4a0a0"/>
+      <circle cx="714" cy="857" r="7" fill="#f08a8a"/>
+    </g>
+    <g>
+      <rect x="748" y="806" width="54" height="56" rx="8" fill="#5c9aa1"/>
+      <rect x="757" y="815" width="36" height="38" rx="4" fill="#8fd3e0"/>
+      <line x1="775" y1="815" x2="775" y2="853" stroke="#5c9aa1" stroke-width="5"/>
+      <line x1="757" y1="834" x2="793" y2="834" stroke="#5c9aa1" stroke-width="5"/>
+    </g>
+
+    <!-- arbustos -->
+    <circle cx="356" cy="862" r="56" fill="url(#bush)"/>
+    <circle cx="340" cy="846" r="30" fill="#8ed455" opacity="0.5"/>
+    <ellipse cx="770" cy="868" rx="82" ry="60" fill="url(#bush)"/>
+    <ellipse cx="748" cy="846" rx="40" ry="26" fill="#8ed455" opacity="0.45"/>
+    <g fill="#f2909a">
+      <circle cx="726" cy="856" r="8"/>
+      <circle cx="784" cy="838" r="8"/>
+      <circle cx="812" cy="874" r="8"/>
+      <circle cx="756" cy="890" r="8"/>
+    </g>
+
+    <!-- tufos de grama -->
+    <g fill="#4fa32c">
+      <path d="M604 894 C 600 862 612 844 620 836 C 616 862 616 880 618 894 Z"/>
+      <path d="M622 894 C 626 862 642 848 654 842 C 640 862 634 878 634 894 Z"/>
+      <path d="M600 894 C 588 872 574 864 562 860 C 578 872 588 882 592 894 Z"/>
+      <path d="M262 886 C 254 866 240 858 228 854 C 242 866 250 876 252 886 Z"/>
+      <path d="M300 886 C 308 866 322 858 334 854 C 320 866 312 876 310 886 Z"/>
+    </g>
+  </g>
+</svg>

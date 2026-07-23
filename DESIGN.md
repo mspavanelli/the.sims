@@ -436,12 +436,22 @@ Um sistema, três composições. Não existe "versão mobile": existe o aparelho
 
 ### Estado atual
 
-Já valendo: manifesto `standalone`, ícones, `theme-color`, metas do iOS, service
-worker com casca + fontes e fallback offline, alvos de `--tap` 44px, `:active` com
-mola. **Ainda não implementado** e coberto por esta seção como padrão a cumprir:
-`viewport-fit=cover` e todo o bloco de `env(safe-area-inset-*)`, `dvh`,
-`overscroll-behavior`, `touch-action`, `-webkit-tap-highlight-color`,
-`user-select` da casca, e a faixa dedicada de iPad retrato.
+Tudo desta seção está valendo: manifesto `standalone` com `id` e ícone
+`maskable`, `apple-mobile-web-app-title`, `theme-color`, `viewport-fit=cover`,
+os quatro `env(safe-area-inset-*)` em tokens (`--safe-t/r/b/l` e `--nav-space`),
+`100dvh`, `overscroll-behavior`, `touch-action`, `-webkit-tap-highlight-color`,
+`user-select` da casca com a exceção `.selectable`, rodapé de modal grudado para
+o teclado virtual, a faixa de iPad retrato (600–899px) e alvos de `--tap` 44px
+com `:active` de mola no toque.
+
+Offline cobre o app inteiro, não só a casca: as cinco áreas em `lazy()` são
+buscadas em segundo plano **depois** de `serviceWorker.ready` — antes disso elas
+passariam por fora do SW — e o service worker busca a folha do Google Fonts e
+cada `.woff2` dela ao ativar, porque a folha é pedida no `<head>` antes de ele
+existir. Uma única visita com sinal deixa o mundo inteiro disponível no avião.
+
+Falta só o que não dá para verificar fora do aparelho: se o relógio branco do
+`black-translucent` continua legível sobre o céu claro no topo.
 
 ## 7. Do's and Don'ts
 
