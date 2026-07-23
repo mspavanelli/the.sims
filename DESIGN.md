@@ -68,6 +68,7 @@ typography:
     fontWeight: 800
     letterSpacing: "0.14em"
 rounded:
+  xs: "7px"
   sm: "10px"
   md: "16px"
   lg: "24px"
@@ -125,6 +126,11 @@ components:
     textColor: "{colors.tinta-mata}"
     rounded: "{rounded.md}"
     padding: "11px 14px"
+  toast:
+    backgroundColor: "{colors.painel}"
+    textColor: "{colors.tinta-mata}"
+    rounded: "{rounded.pill}"
+    padding: "12px 14px 12px 16px"
   chip:
     backgroundColor: "{colors.painel-recuado}"
     textColor: "{colors.tinta-folha}"
@@ -151,7 +157,10 @@ O sistema é lúdico sem ser infantil. A gramática vem de simuladores cozy — 
 
 Densidade é baixa por escolha. Celular, uma mão, sessões curtas: poucos elementos por tela, alvos grandes, texto curto em português coloquial. Onde um app de produtividade colocaria um número, este coloca uma frase.
 
+E "de bolso" é literal: o app é uma **PWA instalada**, aberta pelo ícone na tela de início do iPhone ou do iPad, em `standalone` — sem barra de URL, sem abas. A referência de execução é um jogo de tablet, não um site responsivo. Isso não é detalhe de infraestrutura: é a primeira coisa que sustenta a ilusão, e cada tela é desenhada dentro dela (seção 6).
+
 **Key Characteristics:**
+- App instalado em tela cheia, não página de navegador — bordas do aparelho respeitadas, toque que responde na hora, abre offline
 - Céu de luz fixo atrás de painéis brancos flutuantes
 - Cantos muito arredondados (16–34px) e formas de blob para o que é vivo
 - Emoji como ícone canônico — não há biblioteca de ícones
@@ -213,6 +222,29 @@ Quatro degraus de verde, cada um com um trabalho. Quanto mais escuro, mais o ver
 - **Body** (Nunito, 400, 1rem, 1.5): texto corrido, memórias, cartas. Prosa longa fica em 65–75ch; `EmptyState` usa 34ch de propósito.
 - **Label** (Nunito, 800, 0.85rem): `.field-label`, texto de botão (0.95rem), pill (0.82rem), nav mobile (0.62rem).
 
+### A rampa em tokens
+
+Nenhum tamanho literal no CSS: onze degraus de texto e cinco de ornamento, todos
+em `tokens.css`. Emoji e glifos decorativos crescem por outra lógica que a do
+texto e por isso têm escala própria — assim um emoji grande não puxa a rampa de
+leitura para cima.
+
+| Token | Valor | Onde |
+|---|---|---|
+| `--t-micro` | 0.72rem | eyebrow, label de música, contagem de passos |
+| `--t-pill` | 0.82rem | pill, chip, data, dica de campo |
+| `--t-label` | 0.85rem | `.field-label`, botão `sm`, descrição de card |
+| `--t-body-sm` | 0.92rem | texto de apoio dentro de card |
+| `--t-action` | 0.95rem | texto de botão, bio, descrição do pote |
+| `--t-body` | 1rem | corpo, campo de formulário |
+| `--t-body-lg` | 1.1rem | título de card menor, nome na Home |
+| `--t-title` | 1.15rem | `.section-title`, título de card |
+| `--t-title-lg` | 1.3rem | título de modal, nome de personagem, capítulo da jornada |
+| `--t-headline` | clamp(1.5rem, 4vw, 2rem) | `PageHeader`, saudação do "Nosso agora" |
+| `--t-display` | clamp(1.9rem, 5vw, 2.9rem) | nome do save no `ChapterBanner` |
+
+Ornamento: `--e-sm` 1.15rem · `--e-md` 1.35rem · `--e-lg` 1.7rem · `--e-xl` 2.2rem · `--e-2xl` 3rem.
+
 ### Named Rules
 
 **A Regra do Peso, Não do Tamanho.** Hierarquia neste sistema se faz com peso (400 → 700 → 800) e família, não com escalas gigantes. Nenhum texto passa de 2.9rem: é um mundo de bolso, não um outdoor.
@@ -229,6 +261,12 @@ O sistema é flutuante, em duas camadas e sem exceção para bordas fortes. A ca
 - **`--sh-lg`** (`0 24px 60px rgba(23,98,74,0.18)`): hover de card e `chapter-banner`. É elevação real, não ênfase visual.
 - **`--sh-border`** (`1px solid rgba(23,98,74,0.08)`): o traço quase invisível que fecha painel e rodapé de modal.
 - **Foco** (`outline: 3px solid var(--c-green-800)` + `outline-offset: 2px`): contorno global via `:focus-visible`, 7:1 sobre branco. Contorno em vez de sombra porque acompanha sozinho o raio de cada elemento — pill continua pill. `--sh-ring` sobrevive só onde o foco precisa vir como sombra (checkbox nativo escondido atrás de caixa desenhada).
+
+### Camadas
+
+Escala fechada, sem valor solto: **nav 40 · overlay 80 · toast 90 · confete 100**.
+O moodlet fica acima do modal porque também confirma o que acontece dentro dele;
+o confete é a única coisa que passa por cima de tudo, e some sozinho.
 
 ### Named Rules
 
@@ -259,6 +297,36 @@ O sistema é flutuante, em duas camadas e sem exceção para bordas fortes. A ca
 - **`.card-hover`** adiciona subida de 4px em `--ease-bounce` + `--sh-lg`. Só onde o card inteiro é clicável.
 - **Nunca aninhar painel dentro de painel.** Dentro de um painel, a separação é por `--surface-2`, espaçamento ou divisória de 1px.
 
+### A lavagem de categoria
+
+Card de meta, missão e carta carregam a cor da categoria como **uma lavagem que
+nasce no topo e se dissolve na superfície** em ~104px:
+
+```css
+background: linear-gradient(
+  180deg,
+  color-mix(in srgb, var(--cat) 10%, var(--surface)) 0,
+  var(--surface) 104px
+);
+```
+
+Uma gramática só para os três. Antes eram três: `border-left: 4px` na meta e
+`border-top: 4px` na missão e na carta — listra colorida é banimento absoluto, e
+ter três dialetos de destaque no mesmo app é pior do que não ter nenhum. A cor
+continua acompanhada pela pill de categoria, que carrega emoji e texto.
+
+### Toast (moodlet do save)
+
+Pill branca flutuante logo acima da NavBar, com `--sh-lg` e entrada em
+`--ease-bounce`. Vive numa região `role="status"` / `aria-live="polite"`
+**permanente** — só o conteúdo troca, então leitor de tela anuncia a mudança sem
+mover o foco de onde estava.
+
+Dois tempos: 3,2s quando só confirma; 6s quando carrega **"Desfazer"**. É o
+padrão de remoção do app inteiro: some primeiro, oferece a volta depois. A única
+exceção é "Restaurar dados iniciais", que continua perguntando antes por um
+`Modal` — é a única ação sem volta que existe.
+
 ### Inputs / Fields
 - **Style:** fundo Painel Recuado, borda de 2px transparente, `--r-md`, padding `11px 14px`, `min-height: 44px`. O campo é um recuo, não uma caixa contornada.
 - **Focus:** a borda ganha Verde Tinta e o fundo vira branco — o campo "sobe" pra superfície. O contorno global cuida do teclado; nunca zerar `box-shadow`/`outline` no `:focus` de um campo.
@@ -277,7 +345,105 @@ Grade de duas colunas (48px + conteúdo). Ponto circular de 44px em superfície 
 ### ChapterBanner (componente-assinatura)
 O único lugar onde a cor toma a tela: gradiente verde→azul→roxo com três blobs em flutuação lenta e um brilho radial. Carrega o nome do save e o capítulo atual. Um por tela, e só nas telas que abrem um contexto.
 
-## 6. Do's and Don'ts
+## 6. A casca do app (PWA)
+
+O app é instalado e roda em tela cheia num aparelho de mão. Tudo nesta seção existe
+para uma coisa só: apagar o navegador da experiência. Não é uma camada técnica em
+cima do design — é a moldura dentro da qual todas as outras cinco seções acontecem.
+
+### O aparelho instalado
+
+- **Manifesto:** `display: standalone`, `theme_color` Verde Menta Viva (`#17c08a`),
+  `background_color` Névoa de Jardim (`#eef6f2`) — o splash de abertura é o mesmo
+  céu do app, então não existe flash branco entre o toque no ícone e o mundo.
+- **Ícones:** 192 e 512 no manifesto, mais `apple-touch-icon` (iOS ignora o
+  manifesto pra isso). O ícone é a capa do jogo: ele fica na tela de início dela
+  entre os outros apps, e tem que aguentar essa comparação.
+- **Barra de status:** `apple-mobile-web-app-status-bar-style: black-translucent`
+  — o céu passa por trás do relógio. É o que faz o app ocupar a tela inteira, e é
+  também o que torna as safe areas obrigatórias logo abaixo.
+- **Sem trava de orientação.** Retrato é o cânone; paisagem no iPad tem que
+  continuar bonita, com o trilho lateral, e nunca virar celular esticado.
+
+### Offline não é estado de erro
+
+O service worker cacheia a casca (`/`, manifesto, ícones) e **as fontes do Google**
+— sem isso, o app instalado abria offline em `system-ui` e perdia a identidade
+tipográfica inteira, justamente no cenário que o SW existe pra cobrir. Navegação é
+network-first com fallback pro `/` cacheado: o dinossauro do Chrome ou a página de
+erro do Safari dentro de um app instalado é falha grave, não degradação aceitável.
+
+Como o save vive em `localStorage`, offline é indistinguível de online — e é assim
+que tem que parecer. O app nunca fala sobre conexão.
+
+### As bordas da tela (safe areas)
+
+Tela cheia significa que o notch, a Dynamic Island e a barra de gestos passam por
+cima do layout. O padrão do sistema:
+
+- `<meta name="viewport" … viewport-fit=cover>` — sem isso o `env()` devolve zero e
+  o app fica com faixas pretas.
+- **NavBar mobile:** os 12px de folga viram
+  `calc(12px + env(safe-area-inset-bottom))`. A barra flutua acima da barra de
+  gestos do iPhone, nunca embaixo dela.
+- **`.page`:** o `padding-bottom` já reserva `--nav-h`; soma o mesmo inset, senão o
+  último card fica preso atrás da barra em telas com gesto.
+- **Trilho desktop/iPad paisagem:** `top`, `left` e `bottom` somam os insets
+  correspondentes.
+- **Topo:** o `ChapterBanner` e o `PageHeader` respiram `env(safe-area-inset-top)`
+  — nenhum texto ou controle nasce debaixo do relógio.
+
+### Altura de verdade
+
+`100vh` mente no Safari de celular: mede a tela sem a barra de URL, que aparece e
+some enquanto rola. Onde a altura significa "a tela toda", use `100dvh` (ou `svh`
+quando o conteúdo não pode saltar). `.shell-main` e overlay de modal entram nessa
+regra.
+
+### Toque, não ponteiro
+
+- **`touch-action: manipulation`** em botão, pill e alvo clicável: mata o atraso de
+  ~300ms do double-tap-to-zoom. Botão de jogo responde no toque, não meio segundo
+  depois.
+- **`-webkit-tap-highlight-color: transparent`** global: o retângulo cinza do iOS
+  não existe em nenhum jogo de tablet. O feedback é o `:active` com
+  `scale(0.96)` em `--ease-bounce`, que já é o vocabulário do sistema.
+- **`user-select: none`** na casca — nav, pills, botões, emoji, títulos de card. A
+  lupa de seleção do iOS aparecendo em cima de um emoji da NavBar é o tipo de
+  detalhe que denuncia o navegador. **Exceção deliberada:** memórias, cartas e
+  qualquer texto que ela possa querer copiar continuam selecionáveis.
+- **`overscroll-behavior-y: contain`** no documento e dentro de modal: mata o
+  pull-to-refresh (recarregar o mundo por acidente ao rolar pra cima é a pior
+  quebra possível) e impede o elástico de vazar do modal pro fundo.
+- **Nada depende de `:hover`.** Hover é enfeite de desktop; toda informação e todo
+  affordance tem que estar visível em repouso. Onde o hover levanta um card, o
+  toque tem `:active`.
+- **Teclado virtual:** campo em foco não pode ficar escondido atrás do teclado. Em
+  modal, o rodapé com o botão de salvar acompanha; `font-size` de campo nunca abaixo
+  de 16px (`--t-body`), senão o iOS dá zoom sozinho ao focar — e o zoom não volta.
+
+### Os três tamanhos
+
+Um sistema, três composições. Não existe "versão mobile": existe o aparelho.
+
+- **iPhone (<600px)** — a tela do produto. Coluna única, barra inferior flutuante
+  debaixo do polegar, densidade baixa, uma ação principal por tela.
+- **iPad retrato (600–899px)** — a mesma barra inferior, mas o conteúdo **não
+  estica**: `--shell-max` segura a medida, e o ar que sobra vira respiro, não
+  linhas de 120 caracteres. Onde couber, a Jornada e os Planos ganham duas colunas.
+- **iPad paisagem / desktop (≥900px)** — trilho lateral de 232px, conteúdo com
+  `padding-left: 252px`. Mesmo mundo, outra moldura.
+
+### Estado atual
+
+Já valendo: manifesto `standalone`, ícones, `theme-color`, metas do iOS, service
+worker com casca + fontes e fallback offline, alvos de `--tap` 44px, `:active` com
+mola. **Ainda não implementado** e coberto por esta seção como padrão a cumprir:
+`viewport-fit=cover` e todo o bloco de `env(safe-area-inset-*)`, `dvh`,
+`overscroll-behavior`, `touch-action`, `-webkit-tap-highlight-color`,
+`user-select` da casca, e a faixa dedicada de iPad retrato.
+
+## 7. Do's and Don'ts
 
 ### Do:
 - **Do** manter todo texto legível em `--ink-900`, `--ink-700` ou `--ink-500`. Nada abaixo de 4.5:1.
@@ -290,18 +456,33 @@ O único lugar onde a cor toma a tela: gradiente verde→azul→roxo com três b
 - **Do** cobrir toda animação nova com `@media (prefers-reduced-motion: reduce)` — o bloco global já existe, mantenha-o valendo.
 - **Do** usar emoji como ícone e `aria-hidden` quando ele for decorativo.
 - **Do** preferir `--surface-2`, espaçamento ou divisória de 1px quando precisar separar algo dentro de um painel.
+- **Do** confirmar toda ação de escrita com um moodlet (`useToast`), e oferecer **desfazer** em vez de perguntar antes — remover algo aqui não é erro grave.
+- **Do** puxar todo tamanho de `--t-*` (texto) ou `--e-*` (ornamento), e todo raio de `--r-*`. Se falta um degrau, o degrau entra no token e na tabela — não no arquivo do componente.
+- **Do** dar nome ao item em `aria-label` de botão repetido: "Editar a missão Piquenique", não "Editar missão" oito vezes na mesma lista.
+- **Do** desenhar toda tela dentro das safe areas: o que encosta na borda de baixo soma `env(safe-area-inset-bottom)`, o que encosta na de cima soma `env(safe-area-inset-top)`.
+- **Do** testar cada tela no aparelho instalado, não só na aba do navegador — notch, barra de gestos, teclado virtual e abrir offline só aparecem lá.
+- **Do** manter campo de formulário em `--t-body` (16px) ou mais: abaixo disso o iOS dá zoom sozinho ao focar, e a tela nunca mais volta ao lugar.
+- **Do** dizer por que o botão de salvar está desligado (`.form-why` no rodapé do modal), em vez de deixar o campo obrigatório para a pessoa adivinhar.
 
 ### Don't:
 - **Don't** usar `--ink-300` (`#90a49b`) em placeholder, dica de campo ou qualquer texto: 2.6:1 sobre branco.
 - **Don't** pôr texto branco pequeno sobre `--c-green-500` ou `--c-green-400` (2.35:1 e pior).
 - **Don't** inverter pill ativa para branco sobre a cor saturada.
 - **Don't** animar `width`, `height`, `padding` ou `margin`. A barra de progresso desliza com `translateX` dentro de uma pista com `overflow: hidden`.
-- **Don't** usar `border-left`/`border-right` colorida acima de 1px como listra de destaque. `GoalCard.css` faz isso hoje (`border-left: 4px`) e deve ser reescrito com borda completa, tinta de fundo ou o próprio emoji da meta.
-- **Don't** repetir a `.eyebrow` (maiúsculas tracked) acima de toda seção. Ela aparece em cinco cards da Home; isso é andaime, não voz. Uma por tela, no máximo — de preferência nenhuma.
+- **Don't** usar `border-left`/`border-right`/`border-top` colorida acima de 1px como listra de destaque. Categoria em card se marca com a lavagem de topo descrita acima.
+- **Don't** repetir a `.eyebrow` (maiúsculas tracked) acima de toda seção — é andaime, não voz. Uma por tela, no máximo. A Home não tem nenhuma: os cinco cards que a repetiam viraram dois blocos de formas diferentes.
 - **Don't** construir grade de cards idênticos com ícone + título + texto. É a rota direta pro **dashboard/CRM**, a anti-referência número um do projeto.
 - **Don't** introduzir métrica, nota, streak ou porcentagem que possa ser lida como cobrança — nada de **app de hábitos**.
 - **Don't** adicionar feed, contador de curtidas ou qualquer coisa que sugira plateia: são duas pessoas, não uma **rede social**.
 - **Don't** aumentar saturação ou arredondar mais "pra ficar fofo" — a fronteira com **app infantil** está exatamente aí.
 - **Don't** aninhar painel dentro de painel.
-- **Don't** usar `background-clip: text` com gradiente, nem sombra preta, nem `z-index` arbitrário (a escala é: nav 40, modal 80).
+- **Don't** usar `background-clip: text` com gradiente, nem sombra preta, nem `z-index` arbitrário (a escala é nav 40 · overlay 80 · toast 90 · confete 100).
+- **Don't** usar `confirm()`/`alert()` nativos: a caixa do navegador diz "the.sims diz:" e derruba o mundo de bolso na hora. Modal do sistema, ou desfazer.
+- **Don't** colocar atalho na Home que repita item da NavBar. A barra é fixa e fica debaixo do polegar; duplicar isso é gastar a dobra com navegação.
 - **Don't** trocar Baloo 2 + Nunito nem introduzir uma terceira família ou uma biblioteca de ícones SVG.
+- **Don't** usar `100vh` onde a altura significa "a tela toda": no Safari de celular ela mede errado e o layout pula quando a barra de URL some. `100dvh`/`100svh`.
+- **Don't** deixar a interface selecionável — a lupa do iOS em cima de um emoji da NavBar entrega o navegador na hora. Texto de memória e carta é a exceção, e é de propósito.
+- **Don't** entregar affordance só no `:hover`: no aparelho não existe ponteiro. O que precisa ser visto está visível em repouso; o retorno do toque é o `:active`.
+- **Don't** deixar o pull-to-refresh vivo. Rolar pra cima e recarregar o mundo por acidente é a pior quebra possível da ilusão — `overscroll-behavior-y: contain`.
+- **Don't** mostrar tela de erro de rede, spinner de conexão ou qualquer aviso de offline: o save é local, o app abre igual com ou sem sinal e nunca fala sobre isso.
+- **Don't** esticar a coluna do celular pra preencher o iPad. Mais tela vira respiro e, onde couber, mais colunas — nunca linha de texto mais longa que 75ch.

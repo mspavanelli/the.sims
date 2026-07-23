@@ -8,11 +8,17 @@ brand
 
 web
 
+PWA instalável, e essa é a forma canônica de usar: ícone na tela de início do iPhone ou do iPad, aberto em `standalone` (sem barra de URL, sem abas, sem botão de voltar do navegador). O navegador é o instalador, não o lugar onde o app mora. Não passa por app store, não tem backend: o save inteiro vive no `localStorage` do aparelho de cada um.
+
+O alvo é **iPhone em retrato** (a tela do produto) e **iPad**, retrato ou paisagem. Desktop existe porque a web é assim, mas não é onde o app foi pensado; a versão desktop é a mesma coisa com trilho lateral, nunca uma tela "completa" que o celular não tem.
+
+A referência de execução é um **jogo de tablet/celular**, não um site responsivo: abre offline sem tela de erro, respeita as bordas físicas da tela (notch, Dynamic Island, barra de gestos), não faz rubber-band nem pull-to-refresh, não deixa selecionar a interface por acidente e responde ao toque na hora. Qualquer coisa que denuncie "isto é uma página web dentro de um navegador" é bug de produto.
+
 ## Users
 
 Duas pessoas, e só. Matheus (32) é quem alimenta o save: escreve as memórias, marca as missões, esconde os easter eggs. Luiza (23) é quem visita — abre o app pra ver o que mudou desde a última vez e pra achar o que ele deixou ali pra ela. Ambos INTP, juntos desde 20/04/2026, se veem praticamente toda semana.
 
-O contexto de uso é celular, ao longo do dia, em brechas curtas: uma mão, tela pequena, luz variável. Não é uma sessão de trabalho sentado no computador. O que ela quer fazer ao abrir são duas coisas ao mesmo tempo: **ver o que está acontecendo agora** (as novidades, o clima, a música do momento) e **descobrir algo escondido**.
+O contexto de uso é o aparelho pessoal, ao longo do dia, em brechas curtas: celular numa mão, no ônibus, na fila, na cama; ou iPad no sofá, com as duas mãos e mais calma. Nunca uma sessão de trabalho sentado no computador. Ela abre pelo ícone da tela de início, com o aparelho já na mão — muitas vezes sem sinal bom, às vezes sem sinal nenhum. O que ela quer fazer ao abrir são duas coisas ao mesmo tempo: **ver o que está acontecendo agora** (as novidades, o clima, a música do momento) e **descobrir algo escondido**.
 
 Público-alvo do que se constrói é ela. Sucesso é a reação dela: surpresa, carinho, a sensação de que aquilo foi feito pra ela.
 
@@ -47,6 +53,7 @@ As referências que capturam a sensação certa são **Animal Crossing / Stardew
 - **App de hábitos.** Streaks, notas, cobrança, "você falhou 3 dias".
 - **Rede social.** Feed infinito, curtidas, perfil público, sensação de plateia. Não tem audiência aqui; são duas pessoas.
 - **App infantil.** Cores berrantes, mascote fofinho demais, tipografia de desenho animado. O app é lúdico, não é pra criança.
+- **Site.** Cara de página web aberta no navegador: conteúdo colado na borda de cima do iPhone, `alert()` dizendo "the.sims diz:", texto da interface selecionando quando o dedo encosta, tela branca de erro quando cai a rede, elástico de scroll no fim da página, botão que só reage no `:hover`. O app é instalado; tem que se comportar como app instalado.
 
 ## Design Principles
 
@@ -55,9 +62,13 @@ As referências que capturam a sensação certa são **Animal Crossing / Stardew
 - **Esconder é uma feature.** Nem tudo se anuncia. Descobrir por acaso vale mais do que um botão explicando. Cada easter egg é uma prova de que alguém pensou nela.
 - **Específico bate genérico.** Nomes reais, datas reais, piadas internas, curiosidades. Qualquer texto que serviria pra outro casal está errado.
 - **Lúdico sem cobrar.** Vocabulário de jogo, zero mecânica de punição. Nenhum número que possa ser lido como nota.
+- **Parece um app, não parece um site.** O mundo de bolso é literal: ícone na tela de início, tela cheia, bordas respeitadas, toque que responde na hora, abre offline. A ilusão é frágil e cara de construir — qualquer detalhe que lembre "navegador" derruba tudo de uma vez, e nenhuma economia de implementação vale isso.
+- **O aparelho é o palco.** Retrato de celular é a composição canônica; iPad é a mesma cena com mais ar, nunca a mesma tela esticada. Se um layout só funciona com mouse e teclado, ele não está pronto.
 
 ## Accessibility & Inclusion
 
 Nenhuma necessidade específica conhecida entre os dois usuários. Mantém-se WCAG AA como piso: contraste de texto ≥4.5:1 (atenção especial ao `--ink-300` e `--ink-500` sobre superfícies claras), alvos de toque confortáveis no celular, e foco visível — já existe `:focus-visible` global com `--sh-ring`.
+
+Como o app roda em tela cheia num aparelho de mão, a ergonomia entra junto com a acessibilidade: alvo mínimo de 44px (`--tap`), ação principal ao alcance do polegar, nada de conteúdo ou controle debaixo do notch, da Dynamic Island ou da barra de gestos, e teclado virtual que não pode esconder o campo que está sendo preenchido. O foco de teclado continua obrigatório mesmo sem teclado à vista — iPad com Magic Keyboard é um cenário real.
 
 Estado e categoria nunca podem depender só de cor: pill, ícone, emoji ou texto acompanham sempre. O `@media (prefers-reduced-motion: reduce)` global já existe e deve continuar cobrindo toda animação nova.
