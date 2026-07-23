@@ -38,6 +38,9 @@ export default function AspirationForm({ open, aspiration, onClose, onSave }: Pr
       emoji="🌟"
       footer={
         <>
+          {(!draft.title.trim()) && (
+            <span className="form-why">Falta o título da aspiração</span>
+          )}
           <button className="btn btn-ghost" onClick={onClose}>
             Cancelar
           </button>

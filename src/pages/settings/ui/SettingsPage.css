@@ -1,8 +1,3 @@
 .settings > .settings-card + .settings-card { margin-top: var(--s-4); }
 .settings-card { padding: var(--s-5); }
-.settings-saved {
-  font-weight: 800;
-  color: var(--accent-strong);
-  animation: pop-in 0.3s var(--ease-bounce) both;
-}
 .settings-about { background: var(--surface-2); }

@@ -8,11 +8,21 @@ import {
   saveRelationship,
 } from "./relationship-storage";
 
-function upsert<T extends { id: string }>(list: T[], item: T): T[] {
+/**
+ * `at` só é usado pelo "desfazer": restaurar um item removido tem que devolvê-lo
+ * ao lugar de onde saiu, senão ele reaparece no fim da lista e o desfazer vira
+ * uma segunda mudança em vez de uma volta atrás.
+ */
+function upsert<T extends { id: string }>(list: T[], item: T, at?: number): T[] {
   const idx = list.findIndex((i) => i.id === item.id);
-  if (idx === -1) return [...list, item];
+  if (idx !== -1) {
+    const next = list.slice();
+    next[idx] = item;
+    return next;
+  }
+  if (at === undefined || at < 0 || at > list.length) return [...list, item];
   const next = list.slice();
-  next[idx] = item;
+  next.splice(at, 0, item);
   return next;
 }
 
@@ -37,21 +47,21 @@ function reducer(state: AppState, action: RelationshipAction): AppState {
     case "upsertCharacter":
       return { ...state, characters: upsert(state.characters, action.character) };
     case "upsertMemory":
-      return { ...state, memories: upsert(state.memories, action.memory) };
+      return { ...state, memories: upsert(state.memories, action.memory, action.at) };
     case "removeMemory":
       return { ...state, memories: state.memories.filter((m) => m.id !== action.id) };
     case "upsertMission":
-      return { ...state, missions: upsert(state.missions, action.mission) };
+      return { ...state, missions: upsert(state.missions, action.mission, action.at) };
     case "removeMission":
       return { ...state, missions: state.missions.filter((m) => m.id !== action.id) };
     case "upsertGoal":
-      return { ...state, goals: upsert(state.goals, action.goal) };
+      return { ...state, goals: upsert(state.goals, action.goal, action.at) };
     case "removeGoal":
       return { ...state, goals: state.goals.filter((g) => g.id !== action.id) };
     case "upsertConversation":
       return {
         ...state,
-        conversations: upsert(state.conversations, action.conversation),
+        conversations: upsert(state.conversations, action.conversation, action.at),
       };
     case "removeConversation":
       return {
@@ -59,12 +69,17 @@ function reducer(state: AppState, action: RelationshipAction): AppState {
         conversations: state.conversations.filter((c) => c.id !== action.id),
       };
     case "upsertAspiration":
-      return { ...state, aspirations: upsert(state.aspirations, action.aspiration) };
+      return { ...state, aspirations: upsert(state.aspirations, action.aspiration, action.at) };
     case "removeAspiration":
       return {
         ...state,
         aspirations: state.aspirations.filter((a) => a.id !== action.id),
       };
+    case "discoverIdea": {
+      const discovered = state.discoveredIdeas ?? [];
+      if (discovered.includes(action.id)) return state;
+      return { ...state, discoveredIdeas: [...discovered, action.id] };
+    }
     default:
       return state;
   }

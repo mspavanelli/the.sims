@@ -12,17 +12,17 @@
   place-items: center;
   width: 52px;
   height: 52px;
-  font-size: 1.6rem;
+  font-size: var(--e-lg);
   border-radius: 30% 70% 62% 38% / 42% 40% 60% 58%;
   background: rgba(255, 255, 255, 0.7);
   flex-shrink: 0;
 }
-.aspiration-title { font-size: 1.05rem; }
-.aspiration-desc { font-size: 0.85rem; margin-top: 2px; }
+.aspiration-title { font-size: var(--t-body-lg); }
+.aspiration-desc { font-size: var(--t-label); margin-top: 2px; }
 .aspiration-actions { display: flex; flex-direction: column; gap: 4px; }
 .aspiration-actions .btn-icon {
   width: 32px;
   height: 32px;
-  font-size: 0.8rem;
+  font-size: var(--t-pill);
   background: rgba(255, 255, 255, 0.7);
 }

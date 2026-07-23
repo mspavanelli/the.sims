@@ -44,6 +44,9 @@ export default function MemoryForm({ open, memory, onClose, onSave }: Props) {
       emoji="🧭"
       footer={
         <>
+          {(!draft.title.trim() || !draft.date) && (
+            <span className="form-why">Falta o título ou a data</span>
+          )}
           <button className="btn btn-ghost" onClick={onClose}>
             Cancelar
           </button>

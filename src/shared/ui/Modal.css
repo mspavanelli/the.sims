@@ -33,9 +33,9 @@
   display: flex;
   align-items: center;
   gap: var(--s-2);
-  font-size: 1.3rem;
+  font-size: var(--t-title-lg);
 }
-.modal-title-emoji { font-size: 1.4rem; }
+.modal-title-emoji { font-size: var(--e-md); }
 
 .modal-body {
   padding: 0 var(--s-5) var(--s-4);
@@ -44,11 +44,22 @@
 
 .modal-foot {
   display: flex;
+  align-items: center;
   gap: var(--s-3);
   justify-content: flex-end;
+  flex-wrap: wrap;
   padding: var(--s-4) var(--s-5) var(--s-5);
   border-top: var(--sh-border);
   background: var(--surface-2);
+}
+
+/* Por que o botão de salvar está desligado. Empurra os botões para a direita
+   e some assim que o campo obrigatório é preenchido. */
+.modal-foot .form-why {
+  margin-right: auto;
+  font-size: var(--t-label);
+  font-weight: 700;
+  color: var(--ink-500);
 }
 
 @media (min-width: 640px) {

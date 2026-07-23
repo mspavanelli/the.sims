@@ -1,4 +1,11 @@
-const CACHE_NAME = "the-sims-v2";
+const CACHE_NAME = "the-sims-v3";
+
+/**
+ * Baloo 2 e Nunito vêm do Google Fonts, então são cross-origin. Sem cachear,
+ * o app instalado abria offline em system-ui e perdia a identidade tipográfica
+ * inteira — justamente no cenário que o service worker existe para cobrir.
+ */
+const FONT_HOSTS = ["fonts.googleapis.com", "fonts.gstatic.com"];
 const APP_SHELL = [
   "/",
   "/manifest.webmanifest",
@@ -25,6 +32,28 @@ self.addEventListener("fetch", (event) => {
   if (event.request.method !== "GET") return;
 
   const requestUrl = new URL(event.request.url);
+
+  // Fontes: serve do cache na hora e revalida em segundo plano. As respostas do
+  // gstatic são opacas (no-cors), o que é suficiente para o navegador desenhar.
+  if (FONT_HOSTS.includes(requestUrl.hostname)) {
+    event.respondWith(
+      caches.open(CACHE_NAME).then((cache) =>
+        cache.match(event.request).then((cached) => {
+          const network = fetch(event.request)
+            .then((response) => {
+              if (response.ok || response.type === "opaque") {
+                void cache.put(event.request, response.clone());
+              }
+              return response;
+            })
+            .catch(() => cached);
+          return cached || network;
+        }),
+      ),
+    );
+    return;
+  }
+
   if (requestUrl.origin !== self.location.origin) return;
 
   if (event.request.mode === "navigate") {

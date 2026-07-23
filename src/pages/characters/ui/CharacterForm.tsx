@@ -55,6 +55,9 @@ export default function CharacterForm({ open, character, onClose, onSave }: Prop
       emoji="🧑‍🎨"
       footer={
         <>
+          {(!draft.name.trim()) && (
+            <span className="form-why">Falta o nome do personagem</span>
+          )}
           <button className="btn btn-ghost" onClick={onClose}>
             Cancelar
           </button>

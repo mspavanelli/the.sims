@@ -6,7 +6,7 @@
   gap: var(--s-3);
   margin-bottom: var(--s-4);
 }
-.plans-section-hint { font-size: 0.85rem; margin-top: 4px; max-width: 46ch; }
+.plans-section-hint { font-size: var(--t-label); margin-top: 4px; max-width: 46ch; }
 .plans-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));

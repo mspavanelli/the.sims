@@ -20,9 +20,11 @@ export function burstConfetti(origin: HTMLElement, count = 16): void {
   const cx = rect.left + rect.width / 2;
   const cy = rect.top + rect.height / 2;
 
+  // A camada entra no topo da escala documentada (nav 40 · overlay 80 ·
+  // toast 90 · confete 100), nunca num 9999 solto.
   const layer = document.createElement("div");
   layer.style.cssText =
-    "position:fixed;left:0;top:0;width:0;height:0;pointer-events:none;z-index:9999;";
+    "position:fixed;left:0;top:0;width:0;height:0;pointer-events:none;z-index:var(--z-confetti);";
   document.body.appendChild(layer);
 
   for (let i = 0; i < count; i++) {

@@ -2,7 +2,7 @@
   padding: var(--s-5);
   display: flex;
   flex-direction: column;
-  gap: var(--s-3);
+  gap: var(--s-4);
   background:
     radial-gradient(120% 140% at 100% 0%, var(--bg-tint-a), transparent 55%),
     var(--surface);
@@ -30,16 +30,16 @@
 }
 .home-now-weather:hover { transform: translateY(-2px); box-shadow: var(--sh-md); }
 .home-now-weather-emoji {
-  font-size: 1.7rem;
+  font-size: var(--e-lg);
   animation: float-y 5s ease-in-out infinite;
 }
 .home-now-weather-text { display: flex; flex-direction: column; line-height: 1.2; }
 .home-now-moment {
   font-family: var(--font-display);
   font-weight: 700;
-  font-size: 0.98rem;
+  font-size: var(--t-action);
 }
-.home-now-weather-text .muted { font-size: 0.78rem; }
+.home-now-weather-text .muted { font-size: var(--t-pill); }
 
 /* Música do momento */
 .home-now-music {
@@ -57,7 +57,7 @@
 .home-now-music:hover { transform: translateY(-2px); }
 .home-now-music-note {
   color: var(--c-plum-500);
-  font-size: 1.15rem;
+  font-size: var(--e-sm);
   animation: vinyl-spin 8s linear infinite;
 }
 .home-now-music-text {
@@ -68,76 +68,86 @@
 }
 .home-now-music-label {
   color: var(--ink-500);
-  font-size: 0.68rem;
+  font-size: var(--t-micro);
   font-weight: 800;
   letter-spacing: 0.05em;
   text-transform: uppercase;
 }
 .home-now-music-text strong {
   font-family: var(--font-display);
-  font-size: 0.92rem;
+  font-size: var(--t-body-sm);
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
 }
-.home-now-music-text .muted { font-size: 0.76rem; }
-.home-now-music.editing {
-  background: var(--surface);
-  padding: 6px;
-  gap: 6px;
-  flex-wrap: wrap;
-}
-.home-now-music.editing .input { padding: 8px 12px; width: 140px; }
+.home-now-music-text .muted { font-size: var(--t-pill); }
 
-.home-now-album {
-  display: flex;
-  align-items: center;
-  gap: var(--s-2);
-  color: var(--ink-700);
-  font-size: 0.8rem;
-}
-.home-now-album > span:first-child { font-size: 1.05rem; }
-.home-now-album strong { color: var(--ink-900); }
-
-@keyframes vinyl-spin {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
-}
-
-/* Saudação */
+/* Saudação — o texto maior do painel, e a âncora da tela */
 .home-now-greeting {
   font-family: var(--font-display);
   font-weight: 700;
-  font-size: clamp(1.3rem, 3vw, 1.7rem);
+  font-size: var(--t-headline);
+  line-height: 1.12;
   color: var(--ink-900);
+  text-wrap: balance;
 }
 
-/* Novidades */
+/* Novidades — o que mudou desde a última visita */
 .home-now-news {
   display: flex;
   flex-direction: column;
   gap: var(--s-2);
 }
-.home-now-news li {
+.home-now-news-item {
   display: flex;
   align-items: center;
   gap: var(--s-3);
   padding: 10px 14px;
+  min-height: var(--tap);
   background: var(--surface-2);
   border-radius: var(--r-md);
   font-weight: 600;
   color: var(--ink-700);
+  transition: background 0.18s var(--ease-out), transform 0.18s var(--ease-out);
+}
+a.home-now-news-item:hover {
+  background: var(--c-mint-100);
+  color: var(--accent-ink);
+  transform: translateX(3px);
 }
 .home-now-news-emoji {
   display: grid;
   place-items: center;
   width: 34px;
   height: 34px;
-  font-size: 1.1rem;
+  font-size: var(--t-body-lg);
   border-radius: 40% 60% 55% 45% / 55% 45% 60% 40%;
   background: var(--surface);
   box-shadow: var(--sh-sm);
   flex-shrink: 0;
+}
+.home-now-news-go {
+  margin-left: auto;
+  flex-shrink: 0;
+  font-weight: 800;
+  color: var(--ink-500);
+}
+a.home-now-news-item:hover .home-now-news-go { color: var(--accent-ink); }
+
+/* Disco da semana — rodapé do painel, o detalhe que vira sozinho */
+.home-now-album {
+  display: flex;
+  align-items: center;
+  gap: var(--s-2);
+  color: var(--ink-700);
+  font-size: var(--t-pill);
+}
+.home-now-album > span:first-child { font-size: var(--t-body-lg); }
+.home-now-album strong { color: var(--ink-900); }
+
+@keyframes vinyl-spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
 }
 
 @media (max-width: 720px) {
@@ -147,4 +157,5 @@
 
 @media (prefers-reduced-motion: reduce) {
   .home-now-music-note { animation: none; }
+  a.home-now-news-item:hover { transform: none; }
 }

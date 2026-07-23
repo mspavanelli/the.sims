@@ -9,18 +9,18 @@
   gap: var(--s-4);
   align-items: flex-start;
 }
-.character-card-name { font-size: 1.45rem; }
+.character-card-name { font-size: var(--t-title-lg); }
 .character-card-meta { margin-top: 6px; }
 .character-card-mbti {
   background: color-mix(in srgb, var(--c-plum-500) 14%, white);
-  color: var(--c-plum-500);
+  color: color-mix(in srgb, var(--c-plum-500) 35%, var(--ink-900));
 }
 .character-card-tagline { margin-top: 8px; font-weight: 600; }
 
 /* Bio humana — substitui a descrição genérica de MBTI */
 .character-card-bio {
   color: var(--ink-700);
-  font-size: 0.96rem;
+  font-size: var(--t-action);
   line-height: 1.55;
 }
 
@@ -32,13 +32,13 @@
   border: 1px solid color-mix(in srgb, var(--c-plum-500) 22%, transparent);
   border-radius: var(--r-md);
   font-family: var(--font-display);
-  font-size: 1.02rem;
+  font-size: var(--t-body);
   font-weight: 700;
   line-height: 1.45;
 }
 .character-card-quote span {
   color: var(--c-plum-500);
-  font-size: 1.7rem;
+  font-size: var(--e-lg);
   line-height: 0;
   vertical-align: -0.18em;
   margin-right: 3px;
@@ -56,18 +56,18 @@
     var(--surface-2);
   border: 1px dashed color-mix(in srgb, var(--c-green-500) 30%, transparent);
 }
-.character-today-label { color: var(--accent-strong); }
+.character-today-label { color: var(--accent-ink); }
 .character-today-text {
   display: flex;
   align-items: center;
   gap: var(--s-2);
   font-family: var(--font-display);
   font-weight: 700;
-  font-size: 1.02rem;
+  font-size: var(--t-body);
   color: var(--ink-900);
 }
 .character-today-emoji {
-  font-size: 1.3rem;
+  font-size: var(--e-md);
   animation: float-y 4s ease-in-out infinite;
 }
 
@@ -79,7 +79,7 @@
 .character-section { display: flex; flex-direction: column; gap: 8px; }
 .character-section-label {
   font-weight: 800;
-  font-size: 0.8rem;
+  font-size: var(--t-pill);
   color: var(--ink-500);
   text-transform: uppercase;
   letter-spacing: 0.06em;

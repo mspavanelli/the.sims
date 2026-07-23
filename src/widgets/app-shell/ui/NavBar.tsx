@@ -1,6 +1,5 @@
-import { useState } from "react";
 import { NavLink } from "react-router-dom";
-import IdeaJar from "./IdeaJar";
+import { useIdeaJar } from "../model/idea-jar-context";
 import "./NavBar.css";
 
 const items = [
@@ -12,7 +11,7 @@ const items = [
 ];
 
 export default function NavBar() {
-  const [jarOpen, setJarOpen] = useState(false);
+  const { openJar } = useIdeaJar();
 
   return (
     <nav className="nav" aria-label="Navegação principal">
@@ -21,7 +20,7 @@ export default function NavBar() {
         <button
           type="button"
           className="nav-brand-mark idea-jar-trigger"
-          onClick={() => setJarOpen(true)}
+          onClick={openJar}
           aria-label="Abrir o pote de ideias"
         >
           <span aria-hidden>♡</span>
@@ -58,8 +57,6 @@ export default function NavBar() {
         <span aria-hidden>⚙️</span>
         <span className="nav-config-label">Ajustes</span>
       </NavLink>
-
-      <IdeaJar open={jarOpen} onClose={() => setJarOpen(false)} />
     </nav>
   );
 }

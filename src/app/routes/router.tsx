@@ -1,11 +1,29 @@
+import { Suspense, type ReactNode } from "react";
 import { Navigate, createHashRouter } from "react-router-dom";
-import { CharactersPage } from "@/pages/characters";
 import { HomePage } from "@/pages/home";
-import { JourneyPage } from "@/pages/journey";
-import { MissionsPage } from "@/pages/missions";
-import { PlansPage } from "@/pages/plans";
-import { SettingsPage } from "@/pages/settings";
 import { AppShell } from "@/widgets/app-shell";
+import {
+  CharactersPage,
+  JourneyPage,
+  MissionsPage,
+  PlansPage,
+  SettingsPage,
+} from "./lazy-pages";
+
+/** Espera curta e silenciosa: em rede local o pedaço chega antes de aparecer. */
+function lazyRoute(element: ReactNode) {
+  return (
+    <Suspense
+      fallback={
+        <div className="page route-loading" role="status">
+          <span className="muted">carregando esse cantinho…</span>
+        </div>
+      }
+    >
+      {element}
+    </Suspense>
+  );
+}
 
 export const router = createHashRouter([
   {
@@ -14,11 +32,11 @@ export const router = createHashRouter([
     children: [
       { index: true, element: <Navigate to="/inicio" replace /> },
       { path: "inicio", element: <HomePage /> },
-      { path: "personagens", element: <CharactersPage /> },
-      { path: "jornada", element: <JourneyPage /> },
-      { path: "missoes", element: <MissionsPage /> },
-      { path: "planos", element: <PlansPage /> },
-      { path: "config", element: <SettingsPage /> },
+      { path: "personagens", element: lazyRoute(<CharactersPage />) },
+      { path: "jornada", element: lazyRoute(<JourneyPage />) },
+      { path: "missoes", element: lazyRoute(<MissionsPage />) },
+      { path: "planos", element: lazyRoute(<PlansPage />) },
+      { path: "config", element: lazyRoute(<SettingsPage />) },
       { path: "*", element: <Navigate to="/inicio" replace /> },
     ],
   },

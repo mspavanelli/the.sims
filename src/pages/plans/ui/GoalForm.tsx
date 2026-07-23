@@ -65,6 +65,9 @@ export default function GoalForm({ open, goal, onClose, onSave }: Props) {
       emoji="🎈"
       footer={
         <>
+          {(!draft.title.trim()) && (
+            <span className="form-why">Falta o título da meta</span>
+          )}
           <button className="btn btn-ghost" onClick={onClose}>
             Cancelar
           </button>

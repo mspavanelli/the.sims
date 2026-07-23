@@ -1,5 +1,5 @@
 .idea-jar-intro {
-  font-size: 0.88rem;
+  font-size: var(--t-label);
   margin-bottom: var(--s-4);
 }
 
@@ -15,7 +15,7 @@
   background:
     radial-gradient(120% 90% at 50% 0%, var(--c-mint-50), transparent 70%),
     var(--surface-2);
-  border: 1px solid rgba(23, 98, 74, 0.08);
+  border: 1px solid var(--c-line);
   animation: pop-in 0.32s var(--ease-bounce) both;
 }
 
@@ -24,7 +24,7 @@
   place-items: center;
   width: 84px;
   height: 84px;
-  font-size: 2.4rem;
+  font-size: var(--e-xl);
   border-radius: var(--r-blob);
   background: var(--surface);
   box-shadow: var(--sh-sm);
@@ -32,17 +32,17 @@
 }
 
 .idea-jar-title {
-  font-size: 1.25rem;
+  font-size: var(--t-title-lg);
   text-wrap: balance;
 }
 
 .idea-jar-desc {
   color: var(--ink-700);
-  font-size: 0.95rem;
+  font-size: var(--t-action);
   max-width: 42ch;
 }
 
-/* ---------- Lista das 20 ---------- */
+/* ---------- O que já saiu do pote ---------- */
 .idea-jar-list {
   display: flex;
   flex-direction: column;
@@ -61,7 +61,7 @@
   background: var(--surface-2);
   transition: background 0.2s ease, transform 0.16s var(--ease-bounce);
 }
-.idea-jar-list-item:hover {
+button.idea-jar-list-item:hover {
   background: var(--c-mint-50);
   transform: translateX(3px);
 }
@@ -69,17 +69,28 @@
   background: var(--c-mint-100);
   box-shadow: inset 0 0 0 1px var(--c-mint-200);
 }
+/* Ainda não descoberta: presente fechado, não item desabilitado. */
+.idea-jar-list-item.is-secret {
+  background: transparent;
+  border: 1px dashed var(--c-line-strong);
+  color: var(--ink-500);
+}
+.idea-jar-list-item.is-secret .idea-jar-list-text strong {
+  color: var(--ink-500);
+  font-weight: 700;
+}
 
 .idea-jar-list-num {
   font-family: var(--font-display);
   font-weight: 800;
-  font-size: 0.78rem;
-  color: var(--ink-300);
+  font-size: var(--t-pill);
+  /* Era Tinta Musgo (2.6:1). Numeração é texto, então vale o piso legível. */
+  color: var(--ink-500);
   padding-top: 3px;
 }
 
 .idea-jar-list-emoji {
-  font-size: 1.2rem;
+  font-size: var(--e-sm);
   line-height: 1.2;
 }
 
@@ -90,9 +101,9 @@
 }
 .idea-jar-list-text strong {
   font-family: var(--font-display);
-  font-size: 0.95rem;
+  font-size: var(--t-action);
 }
-.idea-jar-list-text .muted { font-size: 0.82rem; line-height: 1.4; }
+.idea-jar-list-text .muted { font-size: var(--t-pill); line-height: 1.4; }
 
 /* ---------- Rodapé do corpo ---------- */
 .idea-jar-foot {
@@ -101,13 +112,14 @@
   justify-content: space-between;
   gap: var(--s-3);
   margin-top: var(--s-4);
-  font-size: 0.82rem;
+  font-size: var(--t-pill);
 }
 
 .idea-jar-link {
   font-weight: 800;
-  font-size: 0.82rem;
-  color: var(--accent-strong);
+  font-size: var(--t-pill);
+  min-height: var(--tap-sm);
+  color: var(--accent-ink);
   padding: 0;
 }
 .idea-jar-link:hover { text-decoration: underline; }

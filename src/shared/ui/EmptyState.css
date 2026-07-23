@@ -7,9 +7,9 @@
   padding: var(--s-7) var(--s-4);
   background: var(--surface-2);
   border-radius: var(--r-lg);
-  border: 2px dashed rgba(23, 98, 74, 0.14);
+  border: 2px dashed var(--c-line-strong);
 }
-.empty-state-emoji { font-size: 3rem; }
-.empty-state-title { font-size: 1.15rem; }
+.empty-state-emoji { font-size: var(--e-2xl); }
+.empty-state-title { font-size: var(--t-title); }
 .empty-state-msg { max-width: 34ch; }
 .empty-state-action { margin-top: var(--s-2); }

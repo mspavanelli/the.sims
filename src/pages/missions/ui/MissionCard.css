@@ -5,7 +5,14 @@
   gap: var(--s-2);
   padding: var(--s-5);
   border-radius: var(--r-lg);
-  border-top: 4px solid var(--cat);
+  /* Gramática única de destaque de categoria: uma lavagem de cor que nasce
+     no topo e se dissolve na superfície. Substitui a listra de 4px — que
+     era `border-left` numa carta e `border-top` em duas outras. */
+  background: linear-gradient(
+    180deg,
+    color-mix(in srgb, var(--cat) 10%, var(--surface)) 0,
+    var(--surface) 104px
+  );
 }
 .mission-card.is-completed {
   background: linear-gradient(180deg, var(--c-mint-50), var(--surface));
@@ -24,14 +31,14 @@
   gap: 5px;
   padding: 6px 12px;
   border-radius: var(--r-pill);
-  font-size: 0.78rem;
+  font-size: var(--t-pill);
   font-weight: 800;
-  color: color-mix(in srgb, var(--st) 60%, var(--ink-900));
+  color: color-mix(in srgb, var(--st) 35%, var(--ink-900));
   background: color-mix(in srgb, var(--st) 14%, white);
 }
-.mission-card-title { font-size: 1.15rem; margin-top: 2px; }
-.mission-card-date { font-weight: 700; font-size: 0.8rem; color: var(--ink-500); }
-.mission-card-desc { font-size: 0.9rem; }
+.mission-card-title { font-size: var(--t-title); margin-top: 2px; }
+.mission-card-date { font-weight: 700; font-size: var(--t-pill); color: var(--ink-500); }
+.mission-card-desc { font-size: var(--t-body-sm); }
 
 .mission-steps {
   display: flex;
@@ -42,14 +49,14 @@
   border-radius: var(--r-md);
   margin-top: 4px;
 }
-.mission-steps-count { font-size: 0.78rem; font-weight: 800; color: var(--ink-500); }
+.mission-steps-count { font-size: var(--t-pill); font-weight: 800; color: var(--ink-500); }
 .mission-steps ul { display: flex; flex-direction: column; gap: 4px; }
 .mission-step {
   display: flex;
   align-items: center;
   gap: 8px;
   cursor: pointer;
-  font-size: 0.9rem;
+  font-size: var(--t-body-sm);
 }
 .mission-step input { position: absolute; opacity: 0; pointer-events: none; }
 .mission-step-box {
@@ -57,8 +64,8 @@
   place-items: center;
   width: 20px;
   height: 20px;
-  border-radius: 7px;
-  font-size: 0.7rem;
+  border-radius: var(--r-xs);
+  font-size: var(--t-micro);
   color: transparent;
   background: var(--surface);
   border: 2px solid var(--c-mint-200);
@@ -71,7 +78,7 @@
   color: white;
 }
 .mission-step input:focus-visible + .mission-step-box { box-shadow: var(--sh-ring); }
-.mission-step-done { text-decoration: line-through; color: var(--ink-300); }
+.mission-step-done { text-decoration: line-through; color: var(--ink-500); }
 
 .mission-card-actions {
   display: flex;

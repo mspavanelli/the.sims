@@ -4,7 +4,7 @@
   gap: 6px;
   padding: 6px 13px;
   border-radius: var(--r-pill);
-  font-size: 0.82rem;
+  font-size: var(--t-pill);
   font-weight: 700;
   /* Mesma escada da CategoryPill: 35% da cor na tinta garante 5.5:1+ em
      qualquer matiz da paleta. */
@@ -13,4 +13,4 @@
   transition: transform 0.16s var(--ease-bounce);
 }
 .trait-badge:hover { transform: translateY(-2px); }
-.trait-badge-emoji { font-size: 0.92rem; }
+.trait-badge-emoji { font-size: var(--t-body-sm); }

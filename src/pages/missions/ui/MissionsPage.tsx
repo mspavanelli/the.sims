@@ -6,7 +6,7 @@ import {
   type Mission,
   type MissionStatus,
 } from "@/entities/relationship";
-import { CategoryPill, EmptyState, PageHeader } from "@/shared/ui";
+import { CategoryPill, EmptyState, PageHeader, useToast } from "@/shared/ui";
 import MissionCard from "./MissionCard";
 import MissionForm from "./MissionForm";
 import "./MissionsPage.css";
@@ -15,6 +15,7 @@ const ALL = "__all__";
 
 export default function MissionsPage() {
   const { state, dispatch } = useRelationship();
+  const { notify } = useToast();
   const [editing, setEditing] = useState<Mission | null>(null);
   const [open, setOpen] = useState(false);
   const [filter, setFilter] = useState<MissionStatus | typeof ALL>(ALL);
@@ -37,7 +38,16 @@ export default function MissionsPage() {
     setEditing(m);
     setOpen(true);
   };
-  const save = (m: Mission) => dispatch({ type: "upsertMission", mission: m });
+  const save = (m: Mission) => {
+    const isNew = !state.missions.some((x) => x.id === m.id);
+    dispatch({ type: "upsertMission", mission: m });
+    notify({
+      emoji: "🎯",
+      message: isNew
+        ? `"${m.title}" entrou nas missões.`
+        : `"${m.title}" foi atualizada.`,
+    });
+  };
   const setStatus = (m: Mission, status: MissionStatus) =>
     dispatch({ type: "upsertMission", mission: { ...m, status } });
   const toggleStep = (m: Mission, stepId: string) =>
@@ -50,8 +60,17 @@ export default function MissionsPage() {
         ),
       },
     });
-  const remove = (id: string) => {
-    if (confirm("Remover esta missão?")) dispatch({ type: "removeMission", id });
+  const remove = (mission: Mission) => {
+    const at = state.missions.findIndex((m) => m.id === mission.id);
+    dispatch({ type: "removeMission", id: mission.id });
+    notify({
+      emoji: "🎯",
+      message: `"${mission.title}" saiu das missões.`,
+      action: {
+        label: "Desfazer",
+        onClick: () => dispatch({ type: "upsertMission", mission, at }),
+      },
+    });
   };
 
   return (
@@ -106,7 +125,7 @@ export default function MissionsPage() {
               onEdit={() => openEdit(m)}
               onToggleStep={(stepId) => toggleStep(m, stepId)}
               onSetStatus={(status) => setStatus(m, status)}
-              onDelete={() => remove(m.id)}
+              onDelete={() => remove(m)}
             />
           ))}
         </div>

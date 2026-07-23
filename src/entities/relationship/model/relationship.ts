@@ -149,4 +149,6 @@ export type AppState = {
   conversations: Conversation[];
   aspirations: Aspiration[];
   featuredConversationId?: string;
+  /** Ideias do pote que já saíram alguma vez. Segredo descoberto não volta a ser segredo. */
+  discoveredIdeas?: string[];
 };

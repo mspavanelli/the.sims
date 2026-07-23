@@ -54,7 +54,9 @@
   --danger-tint-hover: #ffd0d6;
   --danger-ink: #b31a30;
 
-  /* Radii — organic, rounded */
+  /* Radii — organic, rounded. O xs existe só para caixinhas de 20–22px, onde
+     10px já viraria círculo e a caixa perderia a cara de caixa. */
+  --r-xs: 7px;
   --r-sm: 10px;
   --r-md: 16px;
   --r-lg: 24px;
@@ -66,7 +68,12 @@
   --sh-sm: 0 4px 12px rgba(23, 98, 74, 0.08);
   --sh-md: 0 12px 30px rgba(23, 98, 74, 0.12);
   --sh-lg: 0 24px 60px rgba(23, 98, 74, 0.18);
-  --sh-border: 1px solid rgba(23, 98, 74, 0.08);
+  /* O traço quase invisível que fecha painel, campo e rodapé. Verde translúcido
+     como as sombras — nunca cinza neutro. */
+  --c-line: rgba(23, 98, 74, 0.08);
+  --c-line-soft: rgba(23, 98, 74, 0.06);
+  --c-line-strong: rgba(23, 98, 74, 0.14);
+  --sh-border: 1px solid var(--c-line);
 
   /* Foco de teclado — contorno sólido com folga, em vez de halo translúcido.
      O verde 800 dá 5.3:1 sobre branco; a folga separa do que estiver embaixo. */
@@ -91,6 +98,28 @@
   --font-body: "Nunito", "Quicksand", system-ui, -apple-system, "Segoe UI", sans-serif;
   --font-display: "Baloo 2", "Nunito", system-ui, sans-serif;
 
+  /* Rampa de texto — onze degraus e nenhum tamanho solto fora deles.
+     Hierarquia aqui se faz com peso e família; a escala só acompanha. */
+  --t-micro: 0.72rem;
+  --t-pill: 0.82rem;
+  --t-label: 0.85rem;
+  --t-body-sm: 0.92rem;
+  --t-action: 0.95rem;
+  --t-body: 1rem;
+  --t-body-lg: 1.1rem;
+  --t-title: 1.15rem;
+  --t-title-lg: 1.3rem;
+  --t-headline: clamp(1.5rem, 4vw, 2rem);
+  --t-display: clamp(1.9rem, 5vw, 2.9rem);
+
+  /* Escala de ornamento — emoji e sinais decorativos, que crescem por outra
+     lógica que a do texto e não devem puxar a rampa de leitura para cima. */
+  --e-sm: 1.15rem;
+  --e-md: 1.35rem;
+  --e-lg: 1.7rem;
+  --e-xl: 2.2rem;
+  --e-2xl: 3rem;
+
   --nav-h: 74px;
   --shell-max: 1080px;
 
@@ -106,7 +135,10 @@
   --tap: 44px;
   --tap-sm: 40px;
 
-  /* Camadas */
+  /* Camadas — escala fechada, nenhum valor solto. O moodlet fica acima do
+     modal porque também confirma o que acontece dentro dele. */
   --z-nav: 40;
   --z-overlay: 80;
+  --z-toast: 90;
+  --z-confetti: 100;
 }

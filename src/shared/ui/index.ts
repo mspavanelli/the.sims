@@ -7,4 +7,6 @@ export { default as Modal } from "./Modal";
 export { default as PageHeader } from "./PageHeader";
 export { default as ProgressBar } from "./ProgressBar";
 export { default as StepsEditor } from "./StepsEditor";
+export { ToastProvider } from "./Toast";
+export { useToast } from "./use-toast";
 export { default as TraitBadge } from "./TraitBadge";

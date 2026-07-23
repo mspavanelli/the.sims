@@ -95,7 +95,7 @@ export default function CharacterCard({
             <button
               className="btn-icon"
               onClick={onEdit}
-              aria-label="Editar personagem"
+              aria-label={`Editar a ficha de ${character.name}`}
             >
               ✎
             </button>

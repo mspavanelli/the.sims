@@ -25,10 +25,10 @@ export default function GoalCard({
           {meta.emoji} {meta.label}
         </span>
         <div className="row gap-1">
-          <button className="btn-icon" onClick={onEdit} aria-label="Editar meta">
+          <button className="btn-icon" onClick={onEdit} aria-label={`Editar a meta ${goal.title}`}>
             ✎
           </button>
-          <button className="btn-icon" onClick={onDelete} aria-label="Remover meta">
+          <button className="btn-icon" onClick={onDelete} aria-label={`Remover a meta ${goal.title}`}>
             🗑
           </button>
         </div>

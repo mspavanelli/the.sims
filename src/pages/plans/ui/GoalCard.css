@@ -4,7 +4,14 @@
   gap: var(--s-3);
   padding: var(--s-5);
   border-radius: var(--r-lg);
-  border-left: 4px solid var(--h);
+  /* Gramática única de destaque de categoria: uma lavagem de cor que nasce
+     no topo e se dissolve na superfície. Substitui a listra de 4px — que
+     era `border-left` numa carta e `border-top` em duas outras. */
+  background: linear-gradient(
+    180deg,
+    color-mix(in srgb, var(--h) 10%, var(--surface)) 0,
+    var(--surface) 104px
+  );
 }
 .goal-card-head {
   display: flex;
@@ -18,18 +25,18 @@
   gap: 6px;
   padding: 5px 12px;
   border-radius: var(--r-pill);
-  font-size: 0.76rem;
+  font-size: var(--t-pill);
   font-weight: 800;
-  color: color-mix(in srgb, var(--h) 60%, var(--ink-900));
+  color: color-mix(in srgb, var(--h) 35%, var(--ink-900));
   background: color-mix(in srgb, var(--h) 14%, white);
 }
-.goal-card-title { font-size: 1.12rem; }
-.goal-card-desc { font-size: 0.88rem; }
+.goal-card-title { font-size: var(--t-body-lg); }
+.goal-card-desc { font-size: var(--t-label); }
 
 .goal-progress { display: flex; align-items: center; gap: var(--s-3); }
 .goal-progress > .progress { flex: 1; }
 .goal-progress-controls { display: flex; gap: 6px; }
-.goal-progress-controls .btn-icon { width: 34px; height: 34px; font-size: 1.1rem; }
+.goal-progress-controls .btn-icon { width: 34px; height: 34px; font-size: var(--t-body-lg); }
 
 .goal-checklist { display: flex; flex-direction: column; gap: 6px; }
 .goal-step {
@@ -37,7 +44,7 @@
   align-items: center;
   gap: 10px;
   cursor: pointer;
-  font-size: 0.92rem;
+  font-size: var(--t-body-sm);
 }
 .goal-step input { position: absolute; opacity: 0; pointer-events: none; }
 .goal-step-box {
@@ -45,8 +52,8 @@
   place-items: center;
   width: 22px;
   height: 22px;
-  border-radius: 7px;
-  font-size: 0.72rem;
+  border-radius: var(--r-xs);
+  font-size: var(--t-micro);
   color: transparent;
   background: var(--surface-2);
   border: 2px solid var(--c-mint-200);
@@ -59,7 +66,7 @@
   color: white;
 }
 .goal-step input:focus-visible + .goal-step-box { box-shadow: var(--sh-ring); }
-.goal-step-done { text-decoration: line-through; color: var(--ink-300); }
+.goal-step-done { text-decoration: line-through; color: var(--ink-500); }
 
 .goal-narrative {
   padding: var(--s-3);

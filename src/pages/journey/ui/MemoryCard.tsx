@@ -26,10 +26,10 @@ export default function MemoryCard({
         <div className="row between gap-2">
           <span className="memory-card-date">📅 {formatDate(memory.date)}</span>
           <div className="memory-card-actions">
-            <button className="btn-icon" onClick={onEdit} aria-label="Editar memória">
+            <button className="btn-icon" onClick={onEdit} aria-label={`Editar a memória ${memory.title}`}>
               ✎
             </button>
-            <button className="btn-icon" onClick={onDelete} aria-label="Remover memória">
+            <button className="btn-icon" onClick={onDelete} aria-label={`Remover a memória ${memory.title}`}>
               🗑
             </button>
           </div>

@@ -1,12 +1,13 @@
 import { useState } from "react";
 import { useRelationship, type Character } from "@/entities/relationship";
-import { EmptyState, PageHeader } from "@/shared/ui";
+import { EmptyState, PageHeader, useToast } from "@/shared/ui";
 import CharacterCard from "./CharacterCard";
 import CharacterForm from "./CharacterForm";
 import "./CharactersPage.css";
 
 export default function CharactersPage() {
   const { state, dispatch } = useRelationship();
+  const { notify } = useToast();
   const [editing, setEditing] = useState<Character | null>(null);
   const [open, setOpen] = useState(false);
 
@@ -18,7 +19,10 @@ export default function CharactersPage() {
     setEditing(c);
     setOpen(true);
   };
-  const save = (c: Character) => dispatch({ type: "upsertCharacter", character: c });
+  const save = (c: Character) => {
+    dispatch({ type: "upsertCharacter", character: c });
+    notify({ emoji: c.emoji || "🧑‍🎨", message: `A ficha de ${c.name} foi salva.` });
+  };
 
   return (
     <div className="page">

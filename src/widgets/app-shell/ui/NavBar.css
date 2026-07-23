@@ -19,8 +19,8 @@
   place-items: center;
   width: 40px;
   height: 40px;
-  border-radius: 14px;
-  font-size: 1.2rem;
+  border-radius: var(--r-md);
+  font-size: var(--e-sm);
   color: var(--on-accent);
   background: linear-gradient(135deg, var(--c-green-400), var(--c-blue-500));
   box-shadow: var(--sh-sm);
@@ -28,7 +28,7 @@
 .nav-brand-text {
   font-family: var(--font-display);
   font-weight: 800;
-  font-size: 1.05rem;
+  font-size: var(--t-body-lg);
 }
 
 .nav-list {
@@ -62,7 +62,7 @@
   background: var(--surface-2);
   color: var(--ink-900);
 }
-.nav-emoji { font-size: 1.15rem; line-height: 1; }
+.nav-emoji { font-size: var(--e-sm); line-height: 1; }
 
 /* Mobile-first bottom bar layout */
 @media (max-width: 899px) {
@@ -90,14 +90,14 @@
     flex-direction: column;
     gap: 2px;
     padding: 8px 10px;
-    font-size: 0.7rem;
+    font-size: var(--t-micro);
   }
   .nav-link .nav-label {
     display: block;
-    font-size: 0.7rem;
+    font-size: var(--t-micro);
     font-weight: 800;
   }
-  .nav-emoji { font-size: 1.35rem; }
+  .nav-emoji { font-size: var(--e-md); }
   .nav-config {
     padding: 10px;
   }

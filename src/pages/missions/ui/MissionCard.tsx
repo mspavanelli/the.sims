@@ -45,7 +45,7 @@ export default function MissionCard({
             {stat.emoji} {stat.label}
           </span>
         </div>
-        <button className="btn-icon" onClick={onEdit} aria-label="Editar missão">
+        <button className="btn-icon" onClick={onEdit} aria-label={`Editar a missão ${mission.title}`}>
           ✎
         </button>
       </div>
@@ -123,7 +123,7 @@ export default function MissionCard({
         <button
           className="btn btn-danger btn-sm mission-delete"
           onClick={onDelete}
-          aria-label="Remover missão"
+          aria-label={`Remover a missão ${mission.title}`}
         >
           🗑
         </button>

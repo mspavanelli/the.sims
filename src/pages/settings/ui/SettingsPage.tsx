@@ -1,17 +1,18 @@
 import { useState } from "react";
 import { seed, useRelationship } from "@/entities/relationship";
-import { Field, PageHeader } from "@/shared/ui";
+import { Field, Modal, PageHeader, useToast } from "@/shared/ui";
 import "./SettingsPage.css";
 
 export default function SettingsPage() {
   const { state, dispatch } = useRelationship();
+  const { notify } = useToast();
   const [coupleName, setCoupleName] = useState(state.coupleName);
   const [tagline, setTagline] = useState(state.saveTagline ?? "");
   const [chapterTitle, setChapterTitle] = useState(state.currentChapter.title);
   const [chapterSubtitle, setChapterSubtitle] = useState(
     state.currentChapter.subtitle ?? "",
   );
-  const [saved, setSaved] = useState(false);
+  const [restoreOpen, setRestoreOpen] = useState(false);
 
   const saveIdentity = () => {
     dispatch({
@@ -26,22 +27,21 @@ export default function SettingsPage() {
         subtitle: chapterSubtitle.trim() || undefined,
       },
     });
-    setSaved(true);
-    setTimeout(() => setSaved(false), 2200);
+    notify({ emoji: "💞", message: "O jeitinho do save foi atualizado." });
   };
 
+  // Única ação sem volta do app — e por isso a única que ainda pergunta antes.
   const restore = () => {
-    if (
-      confirm(
-        "Restaurar os dados iniciais? Isso substitui personagens, memórias, missões e planos atuais pelos exemplos.",
-      )
-    ) {
-      dispatch({ type: "restoreDefaults" });
-      setCoupleName(seed.coupleName);
-      setTagline(seed.saveTagline ?? "");
-      setChapterTitle(seed.currentChapter.title);
-      setChapterSubtitle(seed.currentChapter.subtitle ?? "");
-    }
+    dispatch({ type: "restoreDefaults" });
+    setCoupleName(seed.coupleName);
+    setTagline(seed.saveTagline ?? "");
+    setChapterTitle(seed.currentChapter.title);
+    setChapterSubtitle(seed.currentChapter.subtitle ?? "");
+    setRestoreOpen(false);
+    notify({
+      emoji: "🌱",
+      message: "O mundinho voltou pro conteúdo de exemplo.",
+    });
   };
 
   return (
@@ -89,7 +89,6 @@ export default function SettingsPage() {
             <button className="btn btn-primary" onClick={saveIdentity}>
               Salvar alterações
             </button>
-            {saved && <span className="settings-saved">✅ Salvo!</span>}
           </div>
         </div>
       </section>
@@ -102,7 +101,7 @@ export default function SettingsPage() {
         </p>
         <button
           className="btn btn-danger"
-          onClick={restore}
+          onClick={() => setRestoreOpen(true)}
           style={{ marginTop: "var(--s-4)" }}
         >
           ↺ Restaurar dados iniciais
@@ -112,11 +111,37 @@ export default function SettingsPage() {
       <section className="panel settings-card settings-about">
         <h2 className="section-title">♡ Sobre</h2>
         <p className="muted" style={{ marginTop: "var(--s-2)" }}>
-          The Sims é um cantinho lúdico para registrar a jornada de vocês.
-          Tudo fica salvo apenas neste navegador (localStorage) — nada é enviado
-          para lugar nenhum.
+          The Sims é um cantinho lúdico para registrar a jornada de vocês. Tudo
+          fica salvo apenas neste navegador (localStorage) — nada é enviado para
+          lugar nenhum.
         </p>
       </section>
+
+      <Modal
+        open={restoreOpen}
+        onClose={() => setRestoreOpen(false)}
+        title="Restaurar os dados iniciais?"
+        emoji="🌱"
+        footer={
+          <>
+            <button
+              className="btn btn-ghost"
+              onClick={() => setRestoreOpen(false)}
+            >
+              Deixar como está
+            </button>
+            <button className="btn btn-danger" onClick={restore}>
+              ↺ Restaurar mesmo assim
+            </button>
+          </>
+        }
+      >
+        <p>
+          Isso substitui <strong>personagens, memórias, missões e planos</strong>{" "}
+          pelos exemplos que vieram com o save. Diferente de remover uma memória,
+          esta é a única ação do app que não tem "desfazer".
+        </p>
+      </Modal>
     </div>
   );
 }

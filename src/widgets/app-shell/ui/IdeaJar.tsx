@@ -1,7 +1,7 @@
 import { useEffect, useState, type MouseEvent } from "react";
 import { missionCategoryMeta, useRelationship } from "@/entities/relationship";
 import { burstConfetti, newId } from "@/shared/lib";
-import { CategoryPill, Modal } from "@/shared/ui";
+import { CategoryPill, Modal, useToast } from "@/shared/ui";
 import { dateIdeas, type DateIdea } from "../model/date-ideas";
 import "./IdeaJar.css";
 
@@ -15,9 +15,12 @@ function shuffle(list: DateIdea[]): DateIdea[] {
 }
 
 /**
- * O pote de ideias — segredinho escondido atrás do ♡.
- * Sorteia uma das 20 ideias de encontro (sem repetir até dar a volta) e
- * deixa guardar a que agradar como missão. Não mexe no save enquanto ninguém pede.
+ * O pote de ideias — segredinho escondido atrás do ♡, e um só no app inteiro.
+ * Sorteia uma das 20 ideias de encontro (sem repetir até dar a volta) e deixa
+ * guardar a que agradar como missão.
+ *
+ * O que já saiu fica registrado no save. A lista mostra só o que foi
+ * descoberto: o resto continua fechado, porque descobrir é a graça.
  */
 export default function IdeaJar({
   open,
@@ -27,19 +30,20 @@ export default function IdeaJar({
   onClose: () => void;
 }) {
   const { state, dispatch } = useRelationship();
+  const { notify } = useToast();
   const [deck, setDeck] = useState<DateIdea[]>(() => shuffle(dateIdeas));
   const [pos, setPos] = useState(0);
-  const [discovered, setDiscovered] = useState<Record<string, true>>({});
   const [showAll, setShowAll] = useState(false);
 
   const current = deck[pos];
   const meta = missionCategoryMeta[current.category];
   const alreadySaved = state.missions.some((m) => m.title === current.title);
+  const discovered = state.discoveredIdeas ?? [];
+  const count = discovered.length;
 
   useEffect(() => {
-    if (!open) return;
-    setDiscovered((d) => (d[current.id] ? d : { ...d, [current.id]: true }));
-  }, [open, current.id]);
+    if (open) dispatch({ type: "discoverIdea", id: current.id });
+  }, [open, current.id, dispatch]);
 
   const drawAgain = () => {
     if (pos + 1 < deck.length) {
@@ -71,9 +75,8 @@ export default function IdeaJar({
       },
     });
     burstConfetti(e.currentTarget);
+    notify({ emoji: "🫙", message: `"${current.title}" foi pras missões.` });
   };
-
-  const count = Object.keys(discovered).length;
 
   return (
     <Modal
@@ -109,29 +112,46 @@ export default function IdeaJar({
 
       {showAll ? (
         <ul className="idea-jar-list">
-          {dateIdeas.map((idea, i) => (
-            <li key={idea.id}>
-              <button
-                type="button"
-                className={
-                  "idea-jar-list-item" +
-                  (idea.id === current.id ? " is-current" : "")
-                }
-                onClick={() => pick(idea)}
-              >
-                <span className="idea-jar-list-num">
-                  {String(i + 1).padStart(2, "0")}
-                </span>
-                <span className="idea-jar-list-emoji" aria-hidden>
-                  {idea.emoji}
-                </span>
-                <span className="idea-jar-list-text">
-                  <strong>{idea.title}</strong>
-                  <span className="muted">{idea.description}</span>
-                </span>
-              </button>
-            </li>
-          ))}
+          {dateIdeas.map((idea, i) => {
+            const found = discovered.includes(idea.id);
+            const num = String(i + 1).padStart(2, "0");
+            return (
+              <li key={idea.id}>
+                {found ? (
+                  <button
+                    type="button"
+                    className={
+                      "idea-jar-list-item" +
+                      (idea.id === current.id ? " is-current" : "")
+                    }
+                    onClick={() => pick(idea)}
+                  >
+                    <span className="idea-jar-list-num">{num}</span>
+                    <span className="idea-jar-list-emoji" aria-hidden>
+                      {idea.emoji}
+                    </span>
+                    <span className="idea-jar-list-text">
+                      <strong>{idea.title}</strong>
+                      <span className="muted">{idea.description}</span>
+                    </span>
+                  </button>
+                ) : (
+                  <div className="idea-jar-list-item is-secret">
+                    <span className="idea-jar-list-num">{num}</span>
+                    <span className="idea-jar-list-emoji" aria-hidden>
+                      🎁
+                    </span>
+                    <span className="idea-jar-list-text">
+                      <strong>Ainda no fundo do pote</strong>
+                      <span className="muted">
+                        Chacoalhe mais um pouco pra essa aparecer.
+                      </span>
+                    </span>
+                  </div>
+                )}
+              </li>
+            );
+          })}
         </ul>
       ) : (
         <div className="idea-jar-card" key={current.id}>
@@ -149,14 +169,16 @@ export default function IdeaJar({
       )}
 
       <div className="idea-jar-foot">
-        <span className="muted">{count} de {dateIdeas.length} descobertas</span>
+        <span className="muted">
+          {count} de {dateIdeas.length} descobertas
+        </span>
         {!showAll && (
           <button
             type="button"
             className="idea-jar-link"
             onClick={() => setShowAll(true)}
           >
-            Ver as 20 →
+            Ver o que já saiu →
           </button>
         )}
       </div>

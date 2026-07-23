@@ -41,7 +41,7 @@
 }
 .progress-value {
   font-weight: 800;
-  font-size: 0.82rem;
+  font-size: var(--t-pill);
   color: var(--ink-500);
   min-width: 38px;
   text-align: right;

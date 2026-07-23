@@ -1,6 +1,6 @@
 import { useMemo, useState } from "react";
 import { useRelationship, type Memory } from "@/entities/relationship";
-import { CategoryPill, EmptyState, PageHeader } from "@/shared/ui";
+import { CategoryPill, EmptyState, PageHeader, useToast } from "@/shared/ui";
 import MemoryCard from "./MemoryCard";
 import MemoryForm from "./MemoryForm";
 import TimelineItem from "./TimelineItem";
@@ -10,6 +10,7 @@ const ALL = "__all__";
 
 export default function JourneyPage() {
   const { state, dispatch } = useRelationship();
+  const { notify } = useToast();
   const [editing, setEditing] = useState<Memory | null>(null);
   const [open, setOpen] = useState(false);
   const [filter, setFilter] = useState<string>(ALL);
@@ -45,12 +46,29 @@ export default function JourneyPage() {
     setEditing(m);
     setOpen(true);
   };
-  const remove = (id: string) => {
-    if (confirm("Remover esta memória da jornada?")) {
-      dispatch({ type: "removeMemory", id });
-    }
+  // Remove primeiro e oferece o caminho de volta. Menos toques que confirmar,
+  // e a memória continua recuperável por alguns segundos.
+  const remove = (memory: Memory) => {
+    dispatch({ type: "removeMemory", id: memory.id });
+    notify({
+      emoji: "🧭",
+      message: `"${memory.title}" saiu da jornada.`,
+      action: {
+        label: "Desfazer",
+        onClick: () => dispatch({ type: "upsertMemory", memory }),
+      },
+    });
   };
-  const save = (m: Memory) => dispatch({ type: "upsertMemory", memory: m });
+  const save = (m: Memory) => {
+    const isNew = !state.memories.some((x) => x.id === m.id);
+    dispatch({ type: "upsertMemory", memory: m });
+    notify({
+      emoji: m.emoji ?? "📸",
+      message: isNew
+        ? `"${m.title}" entrou na jornada.`
+        : `"${m.title}" foi atualizada.`,
+    });
+  };
 
   return (
     <div className="page">
@@ -111,7 +129,7 @@ export default function JourneyPage() {
                     <MemoryCard
                       memory={m}
                       onEdit={() => openEdit(m)}
-                      onDelete={() => remove(m.id)}
+                      onDelete={() => remove(m)}
                     />
                   </TimelineItem>
                 ))}

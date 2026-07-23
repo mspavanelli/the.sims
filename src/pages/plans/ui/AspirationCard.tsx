@@ -22,10 +22,10 @@ export default function AspirationCard({
         )}
       </div>
       <div className="aspiration-actions">
-        <button className="btn-icon" onClick={onEdit} aria-label="Editar aspiração">
+        <button className="btn-icon" onClick={onEdit} aria-label={`Editar a aspiração ${aspiration.title}`}>
           ✎
         </button>
-        <button className="btn-icon" onClick={onDelete} aria-label="Remover aspiração">
+        <button className="btn-icon" onClick={onDelete} aria-label={`Remover a aspiração ${aspiration.title}`}>
           🗑
         </button>
       </div>

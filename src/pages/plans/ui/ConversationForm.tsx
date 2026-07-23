@@ -55,6 +55,9 @@ export default function ConversationForm({
       emoji="💌"
       footer={
         <>
+          {(!draft.title.trim()) && (
+            <span className="form-why">Falta o título da carta</span>
+          )}
           <button className="btn btn-ghost" onClick={onClose}>
             Cancelar
           </button>

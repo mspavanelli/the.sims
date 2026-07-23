@@ -16,7 +16,7 @@
   background: var(--surface-2);
   border-radius: var(--r-md);
 }
-.steps-editor-list li span { flex: 1; font-size: 0.92rem; }
+.steps-editor-list li span { flex: 1; font-size: var(--t-body-sm); }
 .steps-editor-check {
   position: relative;
   display: grid;
@@ -24,7 +24,7 @@
   width: 22px;
   height: 22px;
   border-radius: var(--r-sm);
-  font-size: 0.72rem;
+  font-size: var(--t-micro);
   color: transparent;
   background: var(--surface);
   border: 2px solid var(--c-mint-200);
@@ -42,7 +42,7 @@
 .steps-editor-remove {
   position: relative;
   color: var(--ink-500);
-  font-size: 0.85rem;
+  font-size: var(--t-label);
   transition: color 0.16s var(--ease-out);
 }
 .steps-editor-remove:hover { color: var(--danger-ink); }

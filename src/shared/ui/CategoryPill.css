@@ -5,7 +5,7 @@
   min-height: 36px;
   padding: 7px 14px;
   border-radius: var(--r-pill);
-  font-size: 0.82rem;
+  font-size: var(--t-pill);
   font-weight: 800;
   /* Tinta puxada bem para o escuro: a mistura antiga (60% da cor) descia a
      3.9:1 no verde e a 3.2:1 no âmbar. */

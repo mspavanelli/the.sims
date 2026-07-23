@@ -5,7 +5,7 @@ import {
   type Conversation,
   type Goal,
 } from "@/entities/relationship";
-import { EmptyState, PageHeader } from "@/shared/ui";
+import { EmptyState, PageHeader, useToast } from "@/shared/ui";
 import AspirationCard from "./AspirationCard";
 import AspirationForm from "./AspirationForm";
 import ConversationCard from "./ConversationCard";
@@ -16,6 +16,7 @@ import "./PlansPage.css";
 
 export default function PlansPage() {
   const { state, dispatch } = useRelationship();
+  const { notify } = useToast();
 
   const [goalEditing, setGoalEditing] = useState<Goal | null>(null);
   const [goalOpen, setGoalOpen] = useState(false);
@@ -23,6 +24,46 @@ export default function PlansPage() {
   const [convOpen, setConvOpen] = useState(false);
   const [aspEditing, setAspEditing] = useState<Aspiration | null>(null);
   const [aspOpen, setAspOpen] = useState(false);
+
+  // Remover é reversível: o item sai na hora e o moodlet segura o caminho de volta.
+  const removeGoal = (goal: Goal) => {
+    const at = state.goals.findIndex((x) => x.id === goal.id);
+    dispatch({ type: "removeGoal", id: goal.id });
+    notify({
+      emoji: "🎈",
+      message: `"${goal.title}" saiu das metas.`,
+      action: {
+        label: "Desfazer",
+        onClick: () => dispatch({ type: "upsertGoal", goal, at }),
+      },
+    });
+  };
+
+  const removeConversation = (conversation: Conversation) => {
+    const at = state.conversations.findIndex((x) => x.id === conversation.id);
+    dispatch({ type: "removeConversation", id: conversation.id });
+    notify({
+      emoji: "💌",
+      message: `"${conversation.title}" saiu das cartas.`,
+      action: {
+        label: "Desfazer",
+        onClick: () => dispatch({ type: "upsertConversation", conversation, at }),
+      },
+    });
+  };
+
+  const removeAspiration = (aspiration: Aspiration) => {
+    const at = state.aspirations.findIndex((x) => x.id === aspiration.id);
+    dispatch({ type: "removeAspiration", id: aspiration.id });
+    notify({
+      emoji: "🌟",
+      message: `"${aspiration.title}" saiu das aspirações.`,
+      action: {
+        label: "Desfazer",
+        onClick: () => dispatch({ type: "upsertAspiration", aspiration, at }),
+      },
+    });
+  };
 
   return (
     <div className="page">
@@ -58,9 +99,7 @@ export default function PlansPage() {
                   setGoalEditing(g);
                   setGoalOpen(true);
                 }}
-                onDelete={() => {
-                  if (confirm("Remover esta meta?")) dispatch({ type: "removeGoal", id: g.id });
-                }}
+                onDelete={() => removeGoal(g)}
                 onSetProgress={(value) =>
                   dispatch({ type: "upsertGoal", goal: { ...g, progress: value } })
                 }
@@ -117,10 +156,7 @@ export default function PlansPage() {
                   setConvEditing(c);
                   setConvOpen(true);
                 }}
-                onDelete={() => {
-                  if (confirm("Remover esta carta?"))
-                    dispatch({ type: "removeConversation", id: c.id });
-                }}
+                onDelete={() => removeConversation(c)}
                 onToggleFeatured={() =>
                   dispatch({
                     type: "setFeaturedConversation",
@@ -163,10 +199,7 @@ export default function PlansPage() {
                   setAspEditing(a);
                   setAspOpen(true);
                 }}
-                onDelete={() => {
-                  if (confirm("Remover esta aspiração?"))
-                    dispatch({ type: "removeAspiration", id: a.id });
-                }}
+                onDelete={() => removeAspiration(a)}
               />
             ))}
           </div>
@@ -177,19 +210,28 @@ export default function PlansPage() {
         open={goalOpen}
         goal={goalEditing}
         onClose={() => setGoalOpen(false)}
-        onSave={(g) => dispatch({ type: "upsertGoal", goal: g })}
+        onSave={(g) => {
+          dispatch({ type: "upsertGoal", goal: g });
+          notify({ emoji: "🎈", message: `"${g.title}" está guardada nas metas.` });
+        }}
       />
       <ConversationForm
         open={convOpen}
         conversation={convEditing}
         onClose={() => setConvOpen(false)}
-        onSave={(c) => dispatch({ type: "upsertConversation", conversation: c })}
+        onSave={(c) => {
+          dispatch({ type: "upsertConversation", conversation: c });
+          notify({ emoji: "💌", message: `"${c.title}" está guardada nas cartas.` });
+        }}
       />
       <AspirationForm
         open={aspOpen}
         aspiration={aspEditing}
         onClose={() => setAspOpen(false)}
-        onSave={(a) => dispatch({ type: "upsertAspiration", aspiration: a })}
+        onSave={(a) => {
+          dispatch({ type: "upsertAspiration", aspiration: a });
+          notify({ emoji: "🌟", message: `"${a.title}" está guardada nas aspirações.` });
+        }}
       />
     </div>
   );

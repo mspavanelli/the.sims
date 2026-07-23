@@ -43,6 +43,9 @@ function withDefaults(parsed: Partial<AppState>): AppState {
   merged.weeklyAlbum = weeklyAlbum;
   merged.nowPlayingId = track.id;
   merged.nowPlaying = trackToNowPlaying(track);
+  // O contador de segredos do pote precisa sobreviver ao recarregamento —
+  // era estado de componente e zerava a cada visita.
+  merged.discoveredIdeas = parsed.discoveredIdeas ?? [];
   // Personagens ganham campos-lista novos ao longo do tempo; garante que
   // arrays esperados existam mesmo em fichas salvas antes deles.
   merged.characters = (parsed.characters ?? base.characters).map((c) => ({

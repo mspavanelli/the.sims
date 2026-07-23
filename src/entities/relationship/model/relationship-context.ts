@@ -20,16 +20,17 @@ export type RelationshipAction =
   | { type: "setNowPlaying"; nowPlaying?: NowPlaying }
   | { type: "setFeaturedConversation"; id?: string }
   | { type: "upsertCharacter"; character: Character }
-  | { type: "upsertMemory"; memory: Memory }
+  | { type: "upsertMemory"; memory: Memory; at?: number }
   | { type: "removeMemory"; id: string }
-  | { type: "upsertMission"; mission: Mission }
+  | { type: "upsertMission"; mission: Mission; at?: number }
   | { type: "removeMission"; id: string }
-  | { type: "upsertGoal"; goal: Goal }
+  | { type: "upsertGoal"; goal: Goal; at?: number }
   | { type: "removeGoal"; id: string }
-  | { type: "upsertConversation"; conversation: Conversation }
+  | { type: "upsertConversation"; conversation: Conversation; at?: number }
   | { type: "removeConversation"; id: string }
-  | { type: "upsertAspiration"; aspiration: Aspiration }
-  | { type: "removeAspiration"; id: string };
+  | { type: "upsertAspiration"; aspiration: Aspiration; at?: number }
+  | { type: "removeAspiration"; id: string }
+  | { type: "discoverIdea"; id: string };
 
 export type RelationshipContextValue = {
   state: AppState;

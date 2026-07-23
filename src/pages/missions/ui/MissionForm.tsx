@@ -51,6 +51,9 @@ export default function MissionForm({ open, mission, onClose, onSave }: Props) {
       emoji="🎯"
       footer={
         <>
+          {(!draft.title.trim()) && (
+            <span className="form-why">Falta o título da missão</span>
+          )}
           <button className="btn btn-ghost" onClick={onClose}>
             Cancelar
           </button>
