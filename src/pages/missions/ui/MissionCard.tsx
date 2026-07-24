@@ -34,13 +34,19 @@ export default function MissionCard({
       className={
         "mission-card panel card-hover" +
         (isCompleted ? " is-completed" : "") +
-        (isArchived ? " is-archived" : "")
+        (isArchived ? " is-archived" : "") +
+        (mission.isImportant ? " is-important" : "")
       }
       style={{ ["--cat" as string]: cat.color }}
     >
       <div className="mission-card-head">
         <div className="row wrap gap-2">
           <CategoryPill label={cat.label} emoji={cat.emoji} color={cat.color} />
+          {mission.isImportant && (
+            <span className="mission-important" aria-label="Missão prioritária">
+              🚨 Prioridade
+            </span>
+          )}
           <span className="mission-status" style={{ ["--st" as string]: stat.color }}>
             {stat.emoji} {stat.label}
           </span>

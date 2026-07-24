@@ -24,7 +24,7 @@ const STORAGE_KEY = "the-sims:v1";
  */
 const legacySeedAvatars = ["/avatar-matheus.png", "/avatar-luiza.png"];
 const newGoalIds = new Set(["goal-4", "goal-5", "goal-6"]);
-const newMissionIds = new Set(["mis-6"]);
+const newMissionIds = new Set(["mis-6", "mis-7", "mis-8", "mis-9", "mis-10"]);
 
 function withDefaults(parsed: Partial<AppState>): AppState {
   const base = cloneSeed();

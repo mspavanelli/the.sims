@@ -6,6 +6,7 @@ import {
   type Mission,
   type MissionStatus,
 } from "@/entities/relationship";
+import { useNow } from "@/shared/lib";
 import { CategoryPill, EmptyState, PageHeader, useToast } from "@/shared/ui";
 import MissionCard from "./MissionCard";
 import MissionForm from "./MissionForm";
@@ -16,19 +17,33 @@ const ALL = "__all__";
 export default function MissionsPage() {
   const { state, dispatch } = useRelationship();
   const { notify } = useToast();
+  const now = useNow();
   const [editing, setEditing] = useState<Mission | null>(null);
   const [open, setOpen] = useState(false);
   const [filter, setFilter] = useState<MissionStatus | typeof ALL>(ALL);
+  const today = [
+    now.getFullYear(),
+    String(now.getMonth() + 1).padStart(2, "0"),
+    String(now.getDate()).padStart(2, "0"),
+  ].join("-");
+  const upcomingMissions = state.missions.filter(
+    (mission) => !mission.date || mission.date >= today,
+  );
 
   const counts = useMemo(() => {
     const c: Record<string, number> = {};
-    state.missions.forEach((m) => (c[m.status] = (c[m.status] ?? 0) + 1));
+    upcomingMissions.forEach((m) => (c[m.status] = (c[m.status] ?? 0) + 1));
     return c;
-  }, [state.missions]);
+  }, [upcomingMissions]);
 
-  const visible = state.missions.filter(
-    (m) => filter === ALL || m.status === filter,
-  );
+  const visible = upcomingMissions
+    .filter((m) => filter === ALL || m.status === filter)
+    .sort((a, b) => {
+      if (!a.date && !b.date) return 0;
+      if (!a.date) return 1;
+      if (!b.date) return -1;
+      return a.date.localeCompare(b.date);
+    });
 
   const openNew = () => {
     setEditing(null);
@@ -88,7 +103,7 @@ export default function MissionsPage() {
 
       <div className="row wrap gap-2 missions-filters">
         <CategoryPill
-          label={`Todas · ${state.missions.length}`}
+          label={`Todas · ${upcomingMissions.length}`}
           emoji="🌈"
           active={filter === ALL}
           onClick={() => setFilter(ALL)}

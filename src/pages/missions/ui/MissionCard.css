@@ -18,6 +18,10 @@
   background: linear-gradient(180deg, var(--c-mint-50), var(--surface));
 }
 .mission-card.is-archived { opacity: 0.78; }
+.mission-card.is-important {
+  border: 2px solid var(--c-coral-500);
+  background: linear-gradient(180deg, #fff0f2 0, var(--surface) 128px);
+}
 
 .mission-card-head {
   display: flex;
@@ -35,6 +39,16 @@
   font-weight: 800;
   color: color-mix(in srgb, var(--st) 35%, var(--ink-900));
   background: color-mix(in srgb, var(--st) 14%, white);
+}
+.mission-important {
+  display: inline-flex;
+  align-items: center;
+  padding: 6px 12px;
+  border-radius: var(--r-pill);
+  color: var(--danger-ink);
+  background: var(--danger-tint);
+  font-size: var(--t-pill);
+  font-weight: 800;
 }
 .mission-card-title { font-size: var(--t-title); margin-top: 2px; }
 .mission-card-date { font-weight: 700; font-size: var(--t-pill); color: var(--ink-500); }

@@ -77,6 +77,8 @@ export type Mission = {
   status: MissionStatus;
   date?: string;
   steps?: Step[];
+  /** Missões que precisam aparecer antes das outras no mural. */
+  isImportant?: boolean;
 };
 
 export type Memory = {

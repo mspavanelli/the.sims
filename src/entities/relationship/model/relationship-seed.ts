@@ -9,10 +9,15 @@ export const seed: AppState = {
   saveTagline: "Um mundinho só nosso, em construção",
   currentChapter: {
     title: "Capítulo 1 — O começo de tudo",
-    subtitle: "Duas cabeças curiosas começaram uma história que continua se escrevendo.",
+    subtitle:
+      "Duas cabeças curiosas começaram uma história que continua se escrevendo.",
   },
   saveWeather: { emoji: "🌤️", label: "Céu de tarde preguiçosa" },
-  nowPlaying: { title: "You're My Best Friend", artist: "Queen", album: "A Night at the Opera" },
+  nowPlaying: {
+    title: "You're My Best Friend",
+    artist: "Queen",
+    album: "A Night at the Opera",
+  },
   featuredConversationId: "conv-1",
 
   characters: [
@@ -58,7 +63,7 @@ export const seed: AppState = {
         "Faz diagramas por diversão.",
         "Transforma qualquer ideia em framework.",
         "Lê placas, mapas e infográficos por curiosidade.",
-        "Sempre pergunta \"qual é o sistema por trás disso?\"",
+        'Sempre pergunta "qual é o sistema por trás disso?"',
         "Costuma enxergar tendências antes de aplicações.",
         "Guarda referências para projetos futuros.",
       ],
@@ -70,8 +75,8 @@ export const seed: AppState = {
         "Caminhadas sem pressa",
       ],
       loveLanguages: {
-        words: 4,
-        qualityTime: 5,
+        words: 1,
+        qualityTime: 4,
         gifts: 1,
         actsOfService: 3,
         physicalTouch: 5,
@@ -110,9 +115,17 @@ export const seed: AppState = {
         "🎧 Fone de ouvido",
         "🗺️ Caderno de ideias",
       ],
-      soundtrack: ["The Beatles", "Queen", "The Who", "The Smiths", "Led Zeppelin", "Mac DeMarco"],
+      soundtrack: [
+        "The Beatles",
+        "Queen",
+        "The Who",
+        "The Smiths",
+        "Led Zeppelin",
+        "Mac DeMarco",
+      ],
       currentReads: [],
-      characterQuote: "Existe um padrão escondido aqui. Só precisamos olhar pelo ângulo certo.",
+      characterQuote:
+        "Existe um padrão escondido aqui. Só precisamos olhar pelo ângulo certo.",
     },
     {
       id: "char-2",
@@ -178,11 +191,11 @@ export const seed: AppState = {
         "Compartilhar músicas",
       ],
       loveLanguages: {
-        words: 4,
+        words: 3,
         qualityTime: 5,
-        gifts: 3,
+        gifts: 5,
         actsOfService: 3,
-        physicalTouch: 4,
+        physicalTouch: 1,
       },
       energySources: [
         "Dias tranquilos",
@@ -237,7 +250,8 @@ export const seed: AppState = {
       ],
       soundtrack: ["The Smiths", "Queen", "Oasis"],
       currentReads: [],
-      characterQuote: "A melhor parte dos dias costuma estar escondida nos detalhes.",
+      characterQuote:
+        "A melhor parte dos dias costuma estar escondida nos detalhes.",
     },
   ],
 
@@ -245,7 +259,8 @@ export const seed: AppState = {
     {
       id: "mem-1",
       title: "O dia em que a gente se conheceu",
-      description: "Duas cabeças curiosas começaram uma conversa que parecia não querer acabar.",
+      description:
+        "Duas cabeças curiosas começaram uma conversa que parecia não querer acabar.",
       date: "2026-04-20",
       emoji: "✨",
       category: "Capítulo 1 — O começo de tudo",
@@ -254,7 +269,8 @@ export const seed: AppState = {
     {
       id: "mem-2",
       title: "Primeiro encontro no Mug",
-      description: "Uma salada compartilhada, banoffee e uma conversa que passou muito mais rápido do que deveria.",
+      description:
+        "Uma salada compartilhada, banoffee e uma conversa que passou muito mais rápido do que deveria.",
       date: "2026-04-25",
       emoji: "☕",
       category: "Capítulo 1 — O começo de tudo",
@@ -272,7 +288,8 @@ export const seed: AppState = {
     {
       id: "mem-4",
       title: "Café no MAC + caminhada no Ibirapuera",
-      description: "Um daqueles dias em que caminhar parecia mais importante do que chegar.",
+      description:
+        "Um daqueles dias em que caminhar parecia mais importante do que chegar.",
       date: "2026-05-09",
       emoji: "🌳",
       category: "Capítulo 1 — O começo de tudo",
@@ -281,7 +298,8 @@ export const seed: AppState = {
     {
       id: "mem-5",
       title: "Começamos a treinar juntos",
-      description: "A academia deixou de ser apenas treino e virou mais um lugar para dividir a rotina.",
+      description:
+        "A academia deixou de ser apenas treino e virou mais um lugar para dividir a rotina.",
       date: "2026-05-16",
       emoji: "🏋️",
       category: "Capítulo 2 — Criando nossos rituais",
@@ -290,7 +308,8 @@ export const seed: AppState = {
     {
       id: "mem-6",
       title: "Queen para cantar junto",
-      description: "O primeiro show. Descobrimos que cantar desafinado junto também conta como talento.",
+      description:
+        "O primeiro show. Descobrimos que cantar desafinado junto também conta como talento.",
       date: "2026-05-23",
       emoji: "👑",
       category: "Capítulo 2 — Criando nossos rituais",
@@ -299,7 +318,8 @@ export const seed: AppState = {
     {
       id: "mem-7",
       title: "Descobrindo o Codex",
-      description: "Ela resolveu brincar com programação depois de conhecer o Codex. Foi divertido ver a curiosidade vencer a timidez.",
+      description:
+        "Ela resolveu brincar com programação depois de conhecer o Codex. Foi divertido ver a curiosidade vencer a timidez.",
       date: "2026-05-30",
       emoji: "🎮",
       category: "Capítulo 2 — Criando nossos rituais",
@@ -326,7 +346,8 @@ export const seed: AppState = {
     {
       id: "mem-10",
       title: "Escape Room",
-      description: "Descobrimos que resolver enigmas juntos também faz parte do relacionamento.",
+      description:
+        "Descobrimos que resolver enigmas juntos também faz parte do relacionamento.",
       date: "2026-06-20",
       emoji: "🧩",
       category: "Capítulo 3 — Expandindo nosso mundo",
@@ -353,7 +374,8 @@ export const seed: AppState = {
     {
       id: "mem-13",
       title: "Girassóis",
-      description: "Aprendi que algumas flores carregam significados maiores do que parecem.",
+      description:
+        "Aprendi que algumas flores carregam significados maiores do que parecem.",
       date: "2026-07-11",
       emoji: "🌻",
       category: "Capítulo 3 — Expandindo nosso mundo",
@@ -362,7 +384,8 @@ export const seed: AppState = {
     {
       id: "mem-14",
       title: "A ligação depois da viagem",
-      description: "Depois de um dia difícil, ela quis ligar. Não resolvemos tudo naquela noite, mas decidimos continuar conversando.",
+      description:
+        "Depois de um dia difícil, ela quis ligar. Não resolvemos tudo naquela noite, mas decidimos continuar conversando.",
       date: "2026-07-12",
       emoji: "📞",
       category: "Capítulo 4 — Aprendendo a atravessar tempestades",
@@ -371,7 +394,8 @@ export const seed: AppState = {
     {
       id: "mem-15",
       title: "Narrando o voo",
-      description: "Do embarque ao táxi. Pequenos detalhes que só contamos para quem faz parte da nossa rotina.",
+      description:
+        "Do embarque ao táxi. Pequenos detalhes que só contamos para quem faz parte da nossa rotina.",
       date: "2026-07-13",
       emoji: "✈️",
       category: "Capítulo 4 — Aprendendo a atravessar tempestades",
@@ -380,7 +404,8 @@ export const seed: AppState = {
     {
       id: "mem-16",
       title: "O sonho",
-      description: "Alguns sonhos dizem mais sobre nossos medos e esperanças do que sobre a própria noite.",
+      description:
+        "Alguns sonhos dizem mais sobre nossos medos e esperanças do que sobre a própria noite.",
       date: "2026-07-14",
       emoji: "💭",
       category: "Capítulo 4 — Aprendendo a atravessar tempestades",
@@ -389,7 +414,8 @@ export const seed: AppState = {
     {
       id: "mem-17",
       title: "Primeiro dia de chuva juntos",
-      description: "Descobri que algumas pessoas realmente ficam mais felizes quando começa a chover.",
+      description:
+        "Descobri que algumas pessoas realmente ficam mais felizes quando começa a chover.",
       date: "2026-07-15",
       emoji: "☔",
       category: "Capítulo 5 — Nosso mundo",
@@ -407,7 +433,8 @@ export const seed: AppState = {
     {
       id: "mem-19",
       title: "Playlist compartilhada",
-      description: "Cada música nova passou a carregar um pedaço da nossa história.",
+      description:
+        "Cada música nova passou a carregar um pedaço da nossa história.",
       date: "2026-07-17",
       emoji: "🎶",
       category: "Capítulo 5 — Nosso mundo",
@@ -431,11 +458,15 @@ export const seed: AppState = {
       description: "Levar câmera analógica e a manta xadrez.",
       category: "encontro",
       status: "planned",
-      date: "2026-07-26",
+      date: "2026-08-26",
       steps: [
         { id: "s1", title: "Comprar frutas na feira", completed: true },
         { id: "s2", title: "Carregar a câmera", completed: false },
-        { id: "s3", title: "Montar playlist do fim de tarde", completed: false },
+        {
+          id: "s3",
+          title: "Montar playlist do fim de tarde",
+          completed: false,
+        },
       ],
     },
     {
@@ -473,10 +504,49 @@ export const seed: AppState = {
     {
       id: "mis-6",
       title: "Show do The Smiths",
-      description: "Uma noite para cantar junto e guardar mais uma memória na trilha sonora da gente.",
+      description:
+        "Uma noite para cantar junto e guardar mais uma memória na trilha sonora da gente.",
       category: "experiencia",
       status: "planned",
       date: "2026-08-08",
+    },
+    {
+      id: "mis-7",
+      title: "Jantar no Insalata",
+      description: "Hoje tem jantar no Insalata. 🍝",
+      category: "encontro",
+      status: "planned",
+      date: "2026-07-24",
+    },
+    {
+      id: "mis-8",
+      title: "Almoço na casa dos pais do Matheus",
+      description: "Almoço em família no sábado.",
+      category: "cotidiano",
+      status: "planned",
+      date: "2026-07-25",
+    },
+    {
+      id: "mis-9",
+      title: "Mudança de casa da Luiza",
+      description:
+        "Mega missão: a mudança é dia 31 de julho. Ainda falta o sofá chegar.",
+      category: "cotidiano",
+      status: "planned",
+      date: "2026-07-31",
+      isImportant: true,
+      steps: [
+        { id: "s1", title: "Acompanhar a chegada do sofá", completed: false },
+      ],
+    },
+    {
+      id: "mis-10",
+      title: "AI.Brasil",
+      description: "Evento nos dias 28 e 29 de outubro.",
+      category: "experiencia",
+      status: "planned",
+      date: "2026-10-28",
+      steps: [{ id: "s1", title: "Comprar ingressos", completed: false }],
     },
   ],
 
@@ -547,7 +617,11 @@ export const seed: AppState = {
       id: "conv-1",
       title: "Como queremos passar as festas de fim de ano",
       context: "Equilibrar as duas famílias sem correria.",
-      topics: ["Dividir as datas", "Criar uma tradição nossa", "Viajar ou ficar?"],
+      topics: [
+        "Dividir as datas",
+        "Criar uma tradição nossa",
+        "Viajar ou ficar?",
+      ],
       sensitivity: "meaningful",
       status: "ready",
     },
@@ -555,7 +629,11 @@ export const seed: AppState = {
       id: "conv-2",
       title: "Nossos ritmos de energia social",
       context: "Entender quando cada um precisa de recolhimento.",
-      topics: ["Sinais de cansaço", "Combinar pausas", "Planos que respeitam os dois"],
+      topics: [
+        "Sinais de cansaço",
+        "Combinar pausas",
+        "Planos que respeitam os dois",
+      ],
       sensitivity: "delicate",
       status: "horizon",
     },
