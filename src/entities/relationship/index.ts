@@ -34,6 +34,8 @@ export type {
   Chapter,
   Character,
   CharacterToday,
+  LoveLanguage,
+  LoveLanguageScores,
   Conversation,
   ConversationSensitivity,
   ConversationStatus,

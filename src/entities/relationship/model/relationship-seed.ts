@@ -69,6 +69,13 @@ export const seed: AppState = {
         "Criar projetos juntos",
         "Caminhadas sem pressa",
       ],
+      loveLanguages: {
+        words: 4,
+        qualityTime: 5,
+        gifts: 1,
+        actsOfService: 3,
+        physicalTouch: 5,
+      },
       energySources: [
         "Aprender algo novo",
         "Conversas longas",
@@ -104,6 +111,7 @@ export const seed: AppState = {
         "🗺️ Caderno de ideias",
       ],
       soundtrack: ["The Beatles", "Queen", "The Who", "The Smiths", "Led Zeppelin", "Mac DeMarco"],
+      currentReads: [],
       characterQuote: "Existe um padrão escondido aqui. Só precisamos olhar pelo ângulo certo.",
     },
     {
@@ -169,6 +177,13 @@ export const seed: AppState = {
         "Pequenos gestos espontâneos",
         "Compartilhar músicas",
       ],
+      loveLanguages: {
+        words: 4,
+        qualityTime: 5,
+        gifts: 3,
+        actsOfService: 3,
+        physicalTouch: 4,
+      },
       energySources: [
         "Dias tranquilos",
         "Ouvir música",
@@ -221,6 +236,7 @@ export const seed: AppState = {
         "🎨 Bloco de desenho",
       ],
       soundtrack: ["The Smiths", "Queen", "Oasis"],
+      currentReads: [],
       characterQuote: "A melhor parte dos dias costuma estar escondida nos detalhes.",
     },
   ],

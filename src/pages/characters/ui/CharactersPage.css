@@ -1,5 +1,12 @@
-.characters-grid {
+.characters-duo {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-  gap: var(--s-4);
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 320px), 1fr));
+  gap: clamp(var(--s-5), 4vw, var(--s-7));
+  align-items: start;
+}
+
+@media (min-width: 720px) {
+  .characters-duo > :nth-child(2) {
+    margin-top: var(--s-6);
+  }
 }

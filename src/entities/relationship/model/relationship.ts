@@ -10,12 +10,23 @@ export type CharacterToday = {
   text: string;
 };
 
+export type LoveLanguage =
+  | "words"
+  | "qualityTime"
+  | "gifts"
+  | "actsOfService"
+  | "physicalTouch";
+
+export type LoveLanguageScores = Partial<Record<LoveLanguage, 1 | 2 | 3 | 4 | 5>>;
+
 export type Character = {
   id: string;
   name: string;
   image?: string;
   emoji?: string;
   age?: number;
+  /** Altura livre (ex.: "1,72 m"). Não inferir: é um detalhe pessoal. */
+  height?: string;
   tagline?: string;
   /** Descrição humana e longa — substitui o rótulo genérico de MBTI. */
   bio?: string;
@@ -28,6 +39,8 @@ export type Character = {
   likes: string[];
   quirks: string[];
   affectionStyles: string[];
+  /** Escala das cinco linguagens do amor, exibida como pips no perfil. */
+  loveLanguages?: LoveLanguageScores;
   energySources: string[];
   /** O que drena a energia dessa pessoa. */
   energyDrains: string[];
@@ -36,6 +49,8 @@ export type Character = {
   inventory?: string[];
   /** Artistas e bandas que fazem parte da trilha sonora da pessoa. */
   soundtrack?: string[];
+  /** Livros que estão acompanhando o Sim nesta fase do save. */
+  currentReads?: string[];
   /** Frase que resume a lógica interna do personagem. */
   characterQuote?: string;
   /** Habilidades que aparecem nas ações desse personagem. */
